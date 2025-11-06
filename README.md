@@ -3,6 +3,17 @@
 
 ---
 
+## Descripción del Proyecto
+**Santorini Blue** es un sitio web ficticio para un resort costero de lujo, desarrollado como práctica del **Taller de Desarrollo Web 2025**.  
+El objetivo principal es aplicar conocimientos de **HTML, CSS y JavaScript** para construir una página **responsive, funcional y visualmente atractiva**, que simule la experiencia real de un alojamiento turístico.
+
+---
+
+## Objetivo del Proyecto
+Crear una experiencia digital inmersiva que refleje la estética mediterránea del resort **Santorini Blue**, priorizando el diseño limpio, la navegabilidad y la presentación clara de servicios, reservas y contacto.
+
+---
+
 ## Índice
 1. [Autores](#autores)
 2. [Link de GitHub Pages](#link-de-github-pages)
@@ -13,7 +24,7 @@
 
 ---
 
-## Autores
+## 👥 Autores
 - **Peiretti Sofia**  
 - **Ruiz Lola**
 
@@ -25,39 +36,50 @@
 ---
 
 ## 🏝️ Contenido de la Página
-La web del resort **Santorini Blue** cuenta con las siguientes secciones:
+La web del resort **Santorini Blue** cuenta con las siguientes secciones principales:
 
-- **Home**: Sección principal con el nombre del resort y navegación.  
-- **Reservar (Book a Room)**: Formulario de reservas para huéspedes.  
-- **Sobre Nosotros (About)**: Información general de la posada, su ambiente y servicios.  
-- **Contacto**: Formulario de contacto y mapa de ubicación.  
+### Secciones Principales
+- **Home**: Presentación del resort con navegación y vista inicial.  
+- **Reservar (Book a Room)**: Formulario interactivo de reservas.  
+- **Sobre Nosotros (About)**: Información del lugar, servicios y ambiente.  
+- **Contacto**: Formulario de contacto y mapa de ubicación.
+
+### Características Destacadas
+- Diseño **responsivo** adaptado a dispositivos móviles y desktop.  
+- Formularios con **validación en JavaScript**.  
+- Navegación clara y coherente entre secciones.  
+- Uso de **paleta de colores inspirada en Santorini** y tipografía moderna.
 
 ---
 
 ## Tecnologías Usadas
-| Tecnología      | Uso en el proyecto |
-|-----------------|--------------------|
-| **HTML5**       | Estructura de las páginas |
-| **CSS3**        | Estilos y diseño responsivo |
-| **JavaScript**  | Interacciones y validaciones |
-| **Markdown**    | Documentación del proyecto |
-| **Figma**       | Creación de wireframes y mockups |
+| **Tecnología** | **Uso en el Proyecto** |
+|-----------------|------------------------|
+| **HTML5** | Estructura semántica de las páginas |
+| **CSS3** | Diseño visual y maquetación responsive |
+| **JavaScript** | Validaciones, interacciones y navegación dinámica |
+| **Markdown** | Documentación del proyecto (README) |
+| **Figma** | Diseño de wireframes y mockups del sitio |
 
 ---
 
 ## Sketch y Mockups
-- Carpeta **Sketch**: contiene la versión Desktop y Mobile en PDF.  
-- Carpeta **Mockup**: incluye prototipos Desktop y Mobile diseñados en Figma.  
-- Ambos contemplan la **estructura de la web**, los formularios y la **navegación entre páginas**.
+- Carpeta **Sketch**: contiene las versiones **Desktop y Mobile** en formato PDF.  
+- Carpeta **Mockup**: incluye prototipos finales diseñados en **Figma**.  
+- Ambas versiones contemplan la **estructura general**, los **formularios** y la **navegación completa** de la página.
 
 ---
 
 ## Benchmarking
-Para diseñar y estructurar la página realizamos un análisis comparativo de sitios de hoteles y resorts:
+Para definir la estética y estructura de la web, realizamos un **análisis comparativo** de sitios de hoteles y resorts reconocidos:
 
-- [Airbnb](https://www.airbnb.com) → Observamos el uso de imágenes grandes y diseño visual atractivo para destacar alojamientos.  
-- [Hilton Hotels](https://www.hilton.com) → Identificamos la importancia de mostrar servicios y amenities destacados en la sección “About”.  
-- [RIU Hotels & Resorts](https://www.riu.com) → Analizamos cómo presentan sus formularios de reserva y la navegación clara hacia ofertas y habitaciones.  
+| **Sitio Analizado** | **Aspecto Destacado** |
+|----------------------|-----------------------|
+| [**Airbnb**](https://www.airbnb.com) | Uso de imágenes grandes y diseño visual atractivo para destacar alojamientos. |
+| [**Hilton Hotels**](https://www.hilton.com) | Presentación clara de servicios y amenities principales. |
+| [**RIU Hotels & Resorts**](https://www.riu.com) | Formularios de reserva simples y navegación intuitiva. |
 
-A partir de este análisis incorporamos ideas como **formularios simples y accesibles**, **enfoque visual con imágenes representativas**, y **presentación clara de servicios y amenities**.
+A partir de este análisis, incorporamos **formularios accesibles**, un **enfoque visual con imágenes representativas** y una **presentación clara de servicios y contacto**.
+
+---
 

@@ -1,0 +1,13 @@
+.card-prod {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.modalProd {
+    z-index: 10; // mas adelante o atras que otros elementos
+    border: 1px; 
+    border-radius: 8px;
+}

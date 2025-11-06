@@ -1,0 +1,27 @@
+{
+    "habitaciones": {
+    "title": "Habitaciones",
+    "products": [
+        {
+        "id": 1,
+        "name": "Habitación Individual",
+        "description": "Una cómoda habitación para una persona, ideal para viajeros solos.",
+        "price": 5000,
+        "image": "/images/habitacion_individual.jpg"
+        },
+        {
+        "id": 2,
+        "name": "Habitación Doble",
+        "description": "Espaciosa habitación para dos personas, perfecta para parejas o amigos.",
+        "price": 8000,
+        "image": "/images/habitacion_doble.jpg"
+        },
+        {
+        "id": 3,
+        "name": "Suite Familiar",
+        "description": "Amplia suite con múltiples camas y comodidades para toda la familia.",
+        "price": 15000,
+        "image": "/images/suite_familiar.jpg"
+        }
+    ]
+}}
