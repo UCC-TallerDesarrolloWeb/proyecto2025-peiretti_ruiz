@@ -1,0 +1,51 @@
+/* ====== CONTACT ====== */
+
+.contact-box {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+.contact-big {
+  font-size: 22px;
+  font-weight: 700;
+}
+.contact-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.soc {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  font-weight: 600;
+  background: #fff;
+}
+
+/* Formulario */
+.form.contact-form {
+  display: grid;
+  gap: 12px;
+}
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 600; }
+.field input, .field textarea {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+}
+.field textarea { resize: vertical; }
+
+/* Mapa */
+.mapa { margin-top: 18px; }
+.mapa iframe {
+  width: 100%;
+  height: 360px;
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 0 #e5e7eb;
+}

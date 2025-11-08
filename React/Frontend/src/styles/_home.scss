@@ -1,0 +1,78 @@
+/* ===== HOME ===== */
+
+:root {
+  --azul: #2f4a92;
+  --azulclaro: #4a69bd;
+  --blanco: #fff;
+  --arena: #e6c899;
+  --terracota: #b35a36;
+}
+
+/* Hero principal */
+.hero {
+  background: center / cover no-repeat;
+  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: var(--azulclaro);
+    position: relative;
+    padding-top: 80px;
+    z-index: 0;
+}
+
+
+.hero h1 {
+  position: relative;
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    z-index: 1;
+}
+
+.hero p {
+  position: relative;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  z-index: 1;
+}
+
+/* Botón principal */
+.hero .btn-primary {
+  position: relative;
+  background: var(--terracota);
+  color: var(--blanco);
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+}
+
+.hero .btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.hero .btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 40px 16px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}

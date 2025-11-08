@@ -1,27 +1,28 @@
 {
-    "habitaciones": {
-    "title": "Habitaciones",
-    "products": [
-        {
-        "id": 1,
-        "name": "Habitación Individual",
-        "description": "Una cómoda habitación para una persona, ideal para viajeros solos.",
-        "price": 5000,
-        "image": "/images/habitacion_individual.jpg"
-        },
-        {
-        "id": 2,
-        "name": "Habitación Doble",
-        "description": "Espaciosa habitación para dos personas, perfecta para parejas o amigos.",
-        "price": 8000,
-        "image": "/images/habitacion_doble.jpg"
-        },
-        {
-        "id": 3,
-        "name": "Suite Familiar",
-        "description": "Amplia suite con múltiples camas y comodidades para toda la familia.",
-        "price": 15000,
-        "image": "/images/suite_familiar.jpg"
-        }
-    ]
-}}
+  "rooms": [
+    {
+      "id": "std",
+      "name": "Standard Room",
+      "price": 200,
+      "img": "/habitaciones/standardRoom.png",
+      "meta": ["1 adult max", "30 m²"],
+      "desc": "More details"
+    },
+    {
+      "id": "sup",
+      "name": "Superior Room",
+      "price": 300,
+      "img": "/habitaciones/superiorRoom.png",
+      "meta": ["2 adults max", "40 m²"],
+      "desc": "More details"
+    },
+    {
+      "id": "fam",
+      "name": "Family Suite",
+      "price": 400,
+      "img": "/habitaciones/familySuite.png",
+      "meta": ["4 guests max", "60 m²"],
+      "desc": "More details"
+    }
+  ]
+}
