@@ -15,6 +15,7 @@
   height: clamp(220px, 32vh, 420px);
   object-fit: cover;
 }
+
 .imagen-about {
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -49,6 +50,7 @@
   display: block;
   margin: 0 auto 8px;
 }
+
 .figure {
   text-align: center;
   color: #666;
@@ -58,9 +60,10 @@
 .amenities-list {
   list-style: none;
   padding: 0;
-  margin: 10px auto 40px; 
+  margin: 10px auto 40px;
   max-width: 420px;
 }
+
 .amenities-list li {
   margin: 6px 0;
   letter-spacing: .02em;
@@ -70,10 +73,19 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .intro { padding: 0 6px; }
-  .imagen-about img { height: 200px; }
+  .intro {
+    padding: 0 6px;
+  }
+  .imagen-about img {
+    height: 200px;
+  }
 }
+
 @media (max-width: 560px) {
-  .imagen-about img { height: 180px; }
-  .about-title { font-size: 1.5rem; }
+  .imagen-about img {
+    height: 180px;
+  }
+  .about-title {
+    font-size: 1.5rem;
+  }
 }

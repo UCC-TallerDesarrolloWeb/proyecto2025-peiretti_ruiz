@@ -28,13 +28,29 @@
   background-repeat: no-repeat;
   background-size: 60%;
 }
-.soc:hover { background-size: 72%; transform: scale(1.06); }
-.soc:focus-visible { outline: 2px solid var(--arena); outline-offset: 2px; }
+
+.soc:hover {
+  background-size: 72%;
+  transform: scale(1.06);
+}
+
+.soc:focus-visible {
+  outline: 2px solid var(--arena);
+  outline-offset: 2px;
+}
 
 /* usa assets en /public/images */
-.soc-ig { background-image: url("/images/instaLogo.png"); }
-.soc-x  { background-image: url("/images/twitLogo.png"); }
-.soc-fb { background-image: url("/images/faceLogo.png"); }
+.soc-ig {
+  background-image: url("/images/instaLogo.png");
+}
+
+.soc-x {
+  background-image: url("/images/twitLogo.png");
+}
+
+.soc-fb {
+  background-image: url("/images/faceLogo.png");
+}
 
 .mapa {
   max-width: 900px;
@@ -44,6 +60,7 @@
   border: 1px solid #dcdcdc;
   background: #fff;
 }
+
 .mapa iframe {
   display: block;
   width: 100%;
@@ -91,7 +108,9 @@
   background: #fff;
 }
 
-.contact-form .field-full { grid-column: 1 / -1; }
+.contact-form .field-full {
+  grid-column: 1 / -1;
+}
 
 .phone-field .phone-input {
   display: grid;
@@ -112,31 +131,43 @@
   font-weight: 600;
   cursor: pointer;
 }
+
 .btn-primary {
   background: var(--terracota);
   color: #fff;
 }
-.btn-primary:hover { opacity: .92; }
-.btn-primary:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+
+.btn-primary:hover {
+  opacity: .92;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+}
 
 /* Responsive */
 @media (max-width: 760px) {
-  .contact-form { grid-template-columns: 1fr; }
-  .phone-field .phone-input { grid-template-columns: 1fr 2fr; }
+  .contact-form {
+    grid-template-columns: 1fr;
+  }
+  .phone-field .phone-input {
+    grid-template-columns: 1fr 2fr;
+  }
 }
 
 
 .imagen-acostada {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 .imagen-acostada img {
-    display: block;
-    width: 100%;
-    height: clamp(220px, 32vh, 420px);
-    object-fit: cover;
+  display: block;
+  width: 100%;
+  height: clamp(220px, 32vh, 420px);
+  object-fit: cover;
 }
 
 .titulo {

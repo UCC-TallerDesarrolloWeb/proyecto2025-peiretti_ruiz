@@ -33,7 +33,9 @@
 }
 
 @media (max-width: 900px) {
-  .pay-grid { grid-template-columns: 1fr; }
+  .pay-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== CARD izquierda (form) ===== */
@@ -93,7 +95,9 @@
 
 /* ------------------------------------ */
 
-.pay-form label { font-weight: 600; }
+.pay-form label {
+  font-weight: 600;
+}
 
 .pay-form input,
 .pay-form select {
@@ -124,8 +128,15 @@
   cursor: pointer;
   transition: opacity .2s ease, transform .1s ease;
 }
-.btn-pay:hover { opacity: .95; transform: translateY(-1px); }
-.btn-pay:active { transform: translateY(0); }
+
+.btn-pay:hover {
+  opacity: .95;
+  transform: translateY(-1px);
+}
+
+.btn-pay:active {
+  transform: translateY(0);
+}
 
 /* ===== RESUMEN derecha ===== */
 .resumen {
@@ -151,31 +162,44 @@
   gap: 8px;
   color: #fff;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.55);
+  border-bottom: 1px solid rgba(255, 255, 255, .55);
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
 }
-.resumen-line:last-of-type { border-bottom: none; }
+
+.resumen-line:last-of-type {
+  border-bottom: none;
+}
 
 .resumen-sep {
   border: 0;
-  border-top: 1px solid rgba(255,255,255,.55);
+  border-top: 1px solid rgba(255, 255, 255, .55);
   margin: 12px 0;
 }
 
 /* filas de ítems (rooms) */
-#sum-rooms { display: grid; gap: 0; }
+#sum-rooms {
+  display: grid;
+  gap: 0;
+}
+
 .sum-row {
   display: flex;
   justify-content: space-between;
   gap: 12px;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.35);
+  border-bottom: 1px solid rgba(255, 255, 255, .35);
   color: #fff;
   font-family: "Montserrat", sans-serif;
 }
-.sum-row:last-child { border-bottom: 0; }
-.sum-row strong { font-weight: 700; }
+
+.sum-row:last-child {
+  border-bottom: 0;
+}
+
+.sum-row strong {
+  font-weight: 700;
+}
 
 /* total */
 .resumen-total {
@@ -193,10 +217,15 @@
   color: #2f4a92;
   text-underline-offset: 3px;
 }
-.resumen a:hover { text-decoration: underline; }
+
+.resumen a:hover {
+  text-decoration: underline;
+}
 
 /* Texto auxiliar */
-.muted { color: #666; }
+.muted {
+  color: #666;
+}
 
 /* hace que la línea de separación (hr) ocupe el ancho completo */
 .pay-form hr {
