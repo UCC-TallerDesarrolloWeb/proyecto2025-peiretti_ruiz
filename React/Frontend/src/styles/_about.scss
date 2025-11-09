@@ -1,55 +1,79 @@
-/* ====== ABOUT ====== */
-
-.about .grid-2 article h2 {
-  margin: 10px 0 8px;
-  font-size: 22px;
+/* ===== About ===== */
+:root {
+  --azul: #2f4a92;
+  --azulclaro: #4a69bd;
+  --blanco: #fff;
+  --arena: #e6c899;
+  --terracota: #b35a36;
+  --notanblanco: #f6f5f3;
 }
-.about .grid-2 article p { color: var(--c-muted); }
 
-.lista-check {
+/* reutiliza el banner de página */
+.imagen-about img {
+  display: block;
+  width: 100%;
+  height: clamp(220px, 32vh, 420px);
+  object-fit: cover;
+}
+.imagen-about {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Título */
+.about-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  color: var(--terracota);
+  letter-spacing: .03em;
+  margin: 16px 0 12px;
+  text-align: center;
+}
+
+/* Intro centrada */
+.intro {
+  max-width: 760px;
+  margin: 0 auto 28px;
+  color: #555; /* “muted” */
+  line-height: 1.9;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+/* Imagen destacada */
+.figure img {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  display: block;
+  margin: 0 auto 8px;
+}
+.figure {
+  text-align: center;
+  color: #666;
+  margin-top: 16px;
+}
+
+.amenities-list {
   list-style: none;
   padding: 0;
-  margin: 10px 0 0;
+  margin: 10px auto 40px; 
+  max-width: 420px;
 }
-.lista-check li {
-  position: relative;
-  padding-left: 26px;
+.amenities-list li {
   margin: 6px 0;
-}
-.lista-check li::before {
-  content: '✔';
-  position: absolute;
-  left: 0; top: 0;
-  color: var(--c-primary);
-  font-weight: 700;
+  letter-spacing: .02em;
+  text-align: center;
+  font-family: "Playfair Display", serif;
 }
 
-/* Mosaico de imágenes */
-.mosaico {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-.mosaico figure {
-  margin: 0;
-  overflow: hidden;
-  border-radius: var(--radius);
-  border: 1px solid #e5e7eb;
-  background: #fff;
-}
-.mosaico img {
-  width: 100%;
-  height: clamp(120px, 18vw, 220px);
-  object-fit: cover;
-  display: block;
-}
-.mosaico figcaption {
-  padding: 8px 10px;
-  font-size: 13px;
-  color: var(--c-muted);
-}
-
+/* Responsive */
 @media (max-width: 900px) {
-  .mosaico { grid-template-columns: 1fr; }
+  .intro { padding: 0 6px; }
+  .imagen-about img { height: 200px; }
+}
+@media (max-width: 560px) {
+  .imagen-about img { height: 180px; }
+  .about-title { font-size: 1.5rem; }
 }

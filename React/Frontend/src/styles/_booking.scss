@@ -1,196 +1,11 @@
 /* ===== Booking ===== */
-.book-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 16px;
-  align-items: stretch;
-  max-width: 1100px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.campo { display: flex; flex-direction: column; gap: 6px; height: auto; }
-@media (min-width: 641px) { .campo { height: 90px; } }
-
-.rango-fecha {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 2px solid #cfcfcf;
-  border-radius: 4px;
-  height: 48px;
-  padding: 0 8px;
-  background: #fff;
-  overflow: hidden;
-}
-.rango-fecha input[type="date"]{
-  border: 0; outline: none; height: 100%; flex: 1; min-width: 0;
-  font-family: "Montserrat", sans-serif; font-size: .95rem; color: #333; background: transparent;
-}
-.rango-fecha .dash { color: #888; }
-
-.book-form select{
-  width: 100%; height: 48px; border: 2px solid #cfcfcf; border-radius: 4px;
-  font-family: "Montserrat", sans-serif; font-size: .95rem; padding: 0 12px; color: #333; background: #fff;
-}
-
-.search { display: flex; }
-.btn-buscar{
-  height: 48px; padding: 0 28px; background: #2f4a92; color:#fff; border:0; border-radius:6px;
-  font-family:"Montserrat", sans-serif; font-weight:600; cursor:pointer;
-  transition: transform .06s ease, opacity .2s ease, background .2s ease;
-}
-.btn-buscar:hover{ opacity:.95; transform: translateY(-1px); }
-.btn-buscar:active{ transform: translateY(0); }
-.btn-buscar:disabled{ opacity:.6; cursor:not-allowed; }
-
-/* focus */
-.book-form input[type="date"]:focus-visible,
-.book-form select:focus-visible,
-.rango-fecha:focus-within,
-.btn-buscar:focus-visible{
-  outline:3px solid color-mix(in oklab, #2f4a92, white 70%);
-  outline-offset:2px;
-}
-
-/* Booking responsive (form) */
-@media (max-width: 1024px){
-  .book-form{ grid-template-columns: 1fr 1fr; }
-  .search{ grid-column: 1/-1; justify-content: flex-end; }
-}
-@media (max-width: 920px){
-  .book-form{ grid-template-columns: 1fr 1fr; }
-  .search{ grid-column: 1/-1; }
-  .btn-buscar{ width: 100%; }
-}
-@media (max-width: 640px){
-  .book{ padding: 20px 16px; }
-  .book-form{ grid-template-columns: 1fr; gap: 16px; }
-  .search{ justify-content: stretch; }
-  .btn-buscar{ width: 100%; }
-  .container{ padding-inline: 12px; }
-}
-
-/* ===== Rooms list ===== */
-.rooms{ padding: 24px 32px; background: #f6f5f3; }
-
-.sr-titulo{
-  margin: 0 0 16px; font-family: "Playfair Display", serif; font-size: 1.4rem; color: #b35a36;
-}
-
-.rooms-layout{
-  display: grid; grid-template-columns: 1.6fr .9fr; gap: 32px; align-items: start;
-}
-.rooms-list{ display: grid; gap: 18px; }
-
-.room-card{
-  display: grid; grid-template-columns: 220px 1fr; gap: 16px;
-  background:#fff; border:1px solid #cfcfcf; border-radius:8px; padding:12px;
-}
-.room-img{
-  width:100%; height:160px; object-fit: cover; border-radius:6px;
-}
-.room-body{ display:flex; flex-direction: column; min-height: 140px; }
-
-.room-head{ display:flex; align-items:flex-start; justify-content: space-between; gap:12px; }
-.room-name{ margin:2px 0 6px; font-family:"Playfair Display", serif; font-size:1.05rem; color:#222; }
-.room-price{ font-family:"Montserrat", sans-serif; font-weight:600; color:#222; }
-
-.room-meta{
-  list-style:none; padding:0; margin:4px 0 0; display:grid; gap:6px;
-  color:#444; font-size:.92rem; font-family:"Montserrat", sans-serif; grid-template-columns: 1fr;
-}
-.room-meta li{ display:flex; align-items:center; }
-
-.room-more{
-  margin-top:auto; margin-bottom:10px; align-self:flex-start;
-  font-family:"Montserrat", sans-serif; font-size:.9rem; color:#2f4a92; text-decoration:none; text-align:left;
-}
-.room-more:hover{ text-decoration: underline; }
-
-.room-cant{ align-self:flex-end; text-align:right; }
-.qty-label{ display:block; font-family:"Montserrat", sans-serif; font-size:.85rem; color:#444; margin-bottom:6px; }
-
-.counter.nojs{
-  display:inline-flex; align-items:center; border:1px solid #cfcfcf; border-radius:4px; height:32px;
-}
-.counter.nojs button{
-  width:32px; height:30px; border:0; background:#fff; font-size:16px; cursor:pointer;
-}
-.counter.nojs input{
-  width:52px; height:30px; border:0; text-align:center; font-family:"Montserrat", sans-serif; font-size:.95rem;
-}
-
-/* ===== Summary (aside) ===== */
-.resumen{
-  background: color-mix(in srgb, #e6c899 85%, white 15%);
-  color:#fff; border-radius:8px; padding:18px 20px 20px; position: sticky; top: 96px;
-}
-.resumen-title{
-  font-family:"Playfair Display", serif; font-size:1.25rem; margin:0 0 12px; color:#fff;
-}
-.resumen-line{
-  display:flex; justify-content: space-between; font-family:"Montserrat", sans-serif; font-size:.95rem;
-  padding:8px 0; border-bottom:1px solid rgba(255,255,255,.5);
-}
-.resumen-line:last-of-type{ border-bottom: none; }
-.resumen-sep{ border:0; border-top:1px solid rgba(255,255,255,.6); margin:12px 0; }
-.resumen-warn{ margin:4px 0 8px; font-family:"Montserrat", sans-serif; color:#fff; opacity:.85; }
-.resumen-total{
-  display:flex; justify-content: space-between; align-items:center; font-family:"Playfair Display", serif;
-  font-size:1.2rem; color:#fff; margin:6px 0 14px;
-}
-.btn-continue{
-  display:block; width:100%; height:40px; border:0; border-radius:8px; background:#b35a36;
-  color:#fff; font-family:"Montserrat", sans-serif; font-weight:600; cursor:pointer;
-}
-.btn-continue:hover{ opacity:.95; }
-
-/* Items removibles */
-.resumen-items{ list-style:none; margin:0 0 8px; padding:0; }
-.resumen-items li{
-  display:flex; align-items:center; justify-content: space-between; gap:12px; padding:6px 0;
-  border-bottom:1px solid rgba(255,255,255,.35);
-}
-.resumen-items li:last-child{ border-bottom:0; }
-.resumen-items li span{ font-family:"Montserrat", sans-serif; color:#fff; }
-.line-remove{
-  border:0; background:transparent; color:#fff; font-size:18px; line-height:1; padding:2px 8px;
-  border-radius:6px; cursor:pointer; transition: background-color .2s ease;
-}
-.line-remove:hover{ background:#b35a36; }
-.line-remove:focus-visible{ outline:2px solid rgba(255,255,255,.8); outline-offset:2px; }
-
-/* Responsive layout */
-@media (max-width: 1024px){
-  .rooms-layout{ grid-template-columns: 1fr; }
-  .resumen{ position: static; }
-}
-@media (max-width: 560px){
-  .room-card{ grid-template-columns: 1fr; }
-  .room-img{ height: 180px; }
-}
-
-/* tamaño del título en booking */
-.titulo-book {
-    font-family: "Playfair Display", serif;
-    text-align: center;
-    color: var(--terracota);
-    font-size: 1.4rem;
-    letter-spacing: .06em;
-    margin: 0 0 16px;
-}
-
-/* separación arriba de la grilla de rooms */
-.rooms--spaced { margin-top: 22px; }
-
-/* por si querés asegurar alto del banner superior */
-.imagen-acostada img {
-    display: block;
-    width: 100%;
-    height: clamp(220px, 32vh, 420px);
-    object-fit: cover;
+:root {
+  --azul: #2f4a92;
+  --azulclaro: #4a69bd;
+  --blanco: #fff;
+  --arena: #e6c899;
+  --terracota: #b35a36;
+  --notanblanco: #f6f5f3;
 }
 
 .imagen-acostada {
@@ -198,3 +13,250 @@
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
 }
+
+.imagen-acostada img {
+    display: block;
+    width: 100%;
+    height: clamp(220px, 32vh, 420px);
+    object-fit: cover;
+}
+
+
+.book {
+  background: var(--notanblanco);
+  padding-block: 15px 10px;
+}
+
+.titulo-book {
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  color: var(--terracota);
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 24px;
+}
+
+/* ===== Formulario ===== */
+.book-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto; /* fechas | select | botón */
+  gap: 20px;
+  align-items: end;               /* alinea por la base */
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.campo label { font-weight: 600; }
+
+/* contenedor de ambas fechas: un solo borde, sin “líneas internas” */
+.rango-fecha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 8px;
+  background: #fff;
+  border: 2px solid #cfcfcf;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rango-fecha input[type="date"] {
+  appearance: none;
+  border: 0 !important;
+  outline: none;
+  height: 100%;
+  flex: 1;
+  min-width: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: .95rem;
+  color: #333;
+  background: transparent;
+}
+.rango-fecha .dash { color: #888; user-select: none; }
+
+/* select con la misma altura que las fechas */
+.book-form select {
+  width: 100%;
+  height: 48px;
+  border: 2px solid #cfcfcf;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-size: .95rem;
+  padding: 0 12px;
+  color: #333;
+  background: #fff;
+}
+
+/* botón a la misma altura de los campos */
+.search {
+  display: flex;
+  align-items: end;  /* alinea el botón abajo */
+  align-self: end;   /* asegura que la celda alinee con la fila */
+}
+.btn-buscar {
+  height: 48px;
+  padding: 0 40px;
+  background: var(--azul);
+  color: var(--blanco);
+  border: 0;
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .06s ease, opacity .2s ease, background .2s ease;
+}
+.btn-buscar:hover { opacity: .95; transform: translateY(-1px); }
+.btn-buscar:active{ transform: translateY(0); }
+.btn-buscar:disabled{ opacity: .6; cursor: not-allowed; }
+
+/* focus accesible */
+.rango-fecha:focus-within,
+.book-form select:focus-visible,
+.btn-buscar:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--azul), white 70%);
+  outline-offset: 2px;
+}
+
+/* responsive form */
+@media (max-width: 1024px){
+  .book-form { grid-template-columns: 1fr 1fr; }
+  .search { grid-column: 1 / -1; justify-content: flex-end; }
+}
+@media (max-width: 920px){
+  .book-form { grid-template-columns: 1fr 1fr; }
+  .search { grid-column: 1 / -1; justify-content: center; margin-top: 10px; }
+}
+@media (max-width: 640px){
+  .book { padding: 20px 16px; }
+  .book-form { grid-template-columns: 1fr; gap: 16px; }
+  .search { justify-content: stretch; }
+  .btn-buscar { width: 100%; }
+  .container { padding-inline: 12px; }
+}
+
+/* ===== Rooms list ===== */
+.rooms {
+  padding: 24px 32px;
+  background: #f6f5f3;
+}
+.sr-titulo {
+  margin: 0 0 16px;
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  color: var(--terracota);
+}
+
+.rooms-layout {
+  display: grid;
+  grid-template-columns: 1.6fr .9fr;
+  gap: 32px;
+  align-items: start;
+}
+.rooms-list { display: grid; gap: 18px; }
+
+/* tarjetas */
+.room-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+  padding: 12px;
+}
+.room-img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; }
+.room-body { display: flex; flex-direction: column; min-height: 140px; }
+
+.room-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.room-name { margin: 2px 0 6px; font-family: "Playfair Display", serif; font-size: 1.05rem; color: #222; }
+.room-price { font-family: "Montserrat", sans-serif; font-weight: 600; color: #222; }
+
+.room-meta {
+  list-style: none; padding: 0; margin: 4px 0 0;
+  display: grid; gap: 6px; color: #444; font-size: .92rem; font-family: "Montserrat", sans-serif;
+}
+.room-meta li { display: flex; align-items: center; }
+
+.room-more {
+  margin-top: auto; margin-bottom: 10px; align-self: flex-start;
+  font-family: "Montserrat", sans-serif; font-size: .9rem; color: var(--azul); text-decoration: none; text-align: left;
+}
+.room-more:hover { text-decoration: underline; }
+
+.room-cant { align-self: flex-end; text-align: right; }
+.qty-label { display: block; font-family: "Montserrat", sans-serif; font-size: .85rem; color: #444; margin-bottom: 6px; }
+
+.counter.nojs { display: inline-flex; align-items: center; border: 1px solid #cfcfcf; border-radius: 4px; height: 32px; }
+.counter.nojs button { width: 32px; height: 30px; border: 0; background: #fff; font-size: 16px; cursor: pointer; }
+.counter.nojs input { width: 52px; height: 30px; border: 0; text-align: center; font-family: "Montserrat", sans-serif; font-size: .95rem; }
+
+/* ===== Summary (aside) ===== */
+/* Empieza a la misma altura que las tarjetas (debajo del h3 “Select room”) */
+.resumen {
+  background: color-mix(in srgb, var(--arena) 85%, white 15%);
+  color: #fff;
+  border-radius: 8px;
+  padding: 18px 20px 20px;
+  position: sticky;
+  top: 96px;
+  margin-top: 56px; /* ← empuja el aside para que arranque a la altura de las cards */
+}
+.resumen-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.resumen-line {
+  display: flex; justify-content: space-between;
+  font-family: "Montserrat", sans-serif; font-size: .95rem;
+  padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+.resumen-line:last-of-type { border-bottom: none; }
+.resumen-sep { border: 0; border-top: 1px solid rgba(255, 255, 255, .6); margin: 12px 0; }
+.resumen-warn { margin: 4px 0 8px; font-family: "Montserrat", sans-serif; color: #fff; opacity: .85; }
+.resumen-total {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: "Playfair Display", serif; font-size: 1.2rem; color: #fff; margin: 6px 0 14px;
+}
+.btn-continue {
+  display: block; width: 100%; height: 40px; border: 0; border-radius: 8px;
+  background: var(--terracota); color: #fff; font-family: "Montserrat", sans-serif; font-weight: 600; cursor: pointer;
+}
+.btn-continue:hover { opacity: .95; }
+
+/* items removibles */
+.resumen-items { list-style: none; margin: 0 0 8px; padding: 0; }
+.resumen-items li {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .35);
+}
+.resumen-items li:last-child { border-bottom: 0; }
+.resumen-items li span { font-family: "Montserrat", sans-serif; color: #fff; }
+.line-remove {
+  border: 0; background: transparent; color: #fff; font-size: 18px; line-height: 1;
+  padding: 2px 8px; border-radius: 6px; cursor: pointer; transition: background-color .2s ease;
+}
+.line-remove:hover { background: var(--terracota); }
+.line-remove:focus-visible { outline: 2px solid rgba(255, 255, 255, .8); outline-offset: 2px; }
+
+/* responsive layout rooms + aside */
+@media (max-width: 1024px){
+  .rooms-layout { grid-template-columns: 1fr; }
+  .resumen { position: static; margin-top: 18px; }
+}
+@media (max-width: 560px){
+  .room-card { grid-template-columns: 1fr; }
+  .room-img { height: 180px; }
+}
+
+/* separación arriba de la grilla de rooms */
+.rooms--spaced { margin-top: 22px; }
+

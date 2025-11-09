@@ -1,4 +1,4 @@
-/* ====== LAYOUT (Header + Footer) ====== */
+/* ====== LAYOUT ====== */
 
 :root {
   --azul: #2f4a92;
@@ -8,6 +8,11 @@
   --terracota: #b35a36;
   --container-w: 1100px;
   --header-h: 64px;
+}
+
+.main-content {
+  padding-top: 16px;
+  min-height: 70vh; 
 }
 
 /* === HEADER === */
@@ -97,3 +102,4 @@
     text-align: center;
   }
 }
+

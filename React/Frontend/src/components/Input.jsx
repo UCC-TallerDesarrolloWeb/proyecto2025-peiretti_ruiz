@@ -1,14 +1,38 @@
 import { useId } from 'react'
 
 export default function Input({
-  label, value, onChange, type='text', placeholder='', error, ...rest
+  label,
+  value,
+  onChange,
+  type = 'text',
+  placeholder = '',
+  error,
+  full = false,      
+  ...rest
 }) {
   const id = useId()
+  const classes = [
+    'field',
+    error ? 'is-error' : '',
+    full ? 'field-full' : ''   
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <div className={`field ${error ? 'is-error' : ''}`}>
+    <div className={classes}>
       <label htmlFor={id}>{label}</label>
-      <input id={id} value={value} onChange={onChange} type={type} placeholder={placeholder} {...rest}/>
-      <div role="alert" aria-live="polite" className="field-error">{error || ''}</div>
+      <input
+        id={id}
+        value={value}
+        onChange={onChange}
+        type={type}
+        placeholder={placeholder}
+        {...rest}
+      />
+      <div role="alert" aria-live="polite" className="field-error">
+        {error || ''}
+      </div>
     </div>
   )
 }

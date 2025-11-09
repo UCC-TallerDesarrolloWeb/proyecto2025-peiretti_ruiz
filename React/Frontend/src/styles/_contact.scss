@@ -1,51 +1,149 @@
-/* ====== CONTACT ====== */
+/* ===== Contact ===== */
+:root {
+  --azul: #2f4a92;
+  --azulclaro: #4a69bd;
+  --blanco: #fff;
+  --arena: #e6c899;
+  --terracota: #b35a36;
+  --notanblanco: #f6f5f3;
+}
 
-.contact-box {
-  display: grid;
-  gap: 10px;
-  align-content: start;
-}
-.contact-big {
-  font-size: 22px;
-  font-weight: 700;
-}
+/* bloque superior con imagen acostada ya lo tenés en global */
+
 .contact-social {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: center;
+  gap: 12px;
+  margin: 4px 0 20px;
 }
+
 .soc {
+  width: 58px;
+  height: 58px;
   display: inline-block;
-  padding: 8px 12px;
-  border-radius: 999px;
-  text-decoration: none;
-  border: 1px solid #e5e7eb;
-  color: #111827;
-  font-weight: 600;
+  border-radius: 0;
+  transition: background-size .15s ease, transform .15s ease;
+  will-change: transform, background-size;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+}
+.soc:hover { background-size: 72%; transform: scale(1.06); }
+.soc:focus-visible { outline: 2px solid var(--arena); outline-offset: 2px; }
+
+/* usa assets en /public/images */
+.soc-ig { background-image: url("/images/instaLogo.png"); }
+.soc-x  { background-image: url("/images/twitLogo.png"); }
+.soc-fb { background-image: url("/images/faceLogo.png"); }
+
+.mapa {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+}
+.mapa iframe {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 0;
+}
+
+/* ===== Contact form ===== */
+.contact-form {
+  margin-top: 18px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.contact-form h2 {
+  grid-column: 1 / -1;
+  margin: 0 0 4px;
+}
+
+.contact-form .field {
+  display: flex;
+  flex-direction: column;
+  max-width: 550px;
+  gap: 6px;
+}
+
+.contact-form .field label {
+  font-size: .9rem;
+  color: #555;
+}
+
+.contact-form .field input,
+.contact-form .field textarea,
+.contact-form .field select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+  font: inherit;
   background: #fff;
 }
 
-/* Formulario */
-.form.contact-form {
-  display: grid;
-  gap: 12px;
-}
-.field { display: grid; gap: 6px; }
-.field label { font-weight: 600; }
-.field input, .field textarea {
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 10px 12px;
-  font: inherit;
-}
-.field textarea { resize: vertical; }
+.contact-form .field-full { grid-column: 1 / -1; }
 
-/* Mapa */
-.mapa { margin-top: 18px; }
-.mapa iframe {
-  width: 100%;
-  height: 360px;
+.phone-field .phone-input {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px;
+}
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
   border: 0;
-  border-radius: var(--radius);
-  box-shadow: 0 1px 0 #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--terracota);
+  color: #fff;
+}
+.btn-primary:hover { opacity: .92; }
+.btn-primary:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+
+/* Responsive */
+@media (max-width: 760px) {
+  .contact-form { grid-template-columns: 1fr; }
+  .phone-field .phone-input { grid-template-columns: 1fr 2fr; }
+}
+
+
+.imagen-acostada {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+.imagen-acostada img {
+    display: block;
+    width: 100%;
+    height: clamp(220px, 32vh, 420px);
+    object-fit: cover;
+}
+
+.titulo {
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  color: var(--terracota);
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  margin: 24px 0 24px;
 }
