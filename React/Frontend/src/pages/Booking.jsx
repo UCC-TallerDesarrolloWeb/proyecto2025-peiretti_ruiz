@@ -106,7 +106,7 @@ export default function Booking() {
         <>
             {/* Imagen superior */}
             <section className="imagen-acostada">
-                <img src="/images/imagenBook.png" alt="Santorini sea view"/>
+                <img src="/images/imagenBook.png" alt="View of Santorini Blue resort"/>
             </section>
 
             <section className="container book">

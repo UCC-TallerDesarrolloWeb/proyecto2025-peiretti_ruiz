@@ -36,7 +36,6 @@ export default function Contact() {
 
     return (
         <>
-            {/* Imagen superior */}
             <section className="imagen-acostada">
                 <img src="/images/imagencontact.png" alt="Private balcony with Aegean Sea view"/>
             </section>

@@ -3,10 +3,8 @@ import '@styles/_about.scss'
 export default function About() {
     return (
         <>
-            {/* Banner superior */}
             <section className="imagen-acostada imagen-about">
-                {/* en /public/images */}
-                <img src="/images/imagenabout.png" alt="Atardecer en Santorini"/>
+                <img src="/images/imagenabout.png" alt="Aerial view of Santorini"/>
             </section>
 
             <section className="container about">
@@ -23,8 +21,7 @@ export default function About() {
                 </p>
 
                 <figure className="figure">
-                    {/* imagen de apoyo (podés reemplazarla) */}
-                    <img src="/images/about2.png" alt="Balcón con vistas al Egeo"/>
+                    <img src="/images/about2.png" alt="Private cave pool overlooking the Aegean Sea."/>
                 </figure>
 
                 <h2 className="about-title">Hotel Amenities</h2>

@@ -45,21 +45,20 @@ export default function Payment() {
     }
 
     const validate = () => {
-        // 1) Validación compartida usando contactValidation.js
+        // Validación compartida usando contactValidation.js
         const {errors: sharedErrs} = validateContact({
             fname: form.fname,
             lname: form.lname,
             email: form.email,
-            phone: form.phone,  // opcional; se valida max length y dígitos
+            phone: form.phone,  
         })
 
-        // 2) Validaciones específicas de pago
         const e = {...sharedErrs}
 
         const cn = keepDigits(form.card)
         if (!cn || cn.length < 13 || cn.length > 19) e.card = 'Invalid card number'
 
-        // "Name on card" solo letras (reutilizamos sanitizeName para la UI, acá validamos que no quede vacío tras sanear)
+        
         if (!sanitizeName(form.namec)) e.namec = 'Letters only'
 
         if (!isExpiryMMYY(form.exp)) {
