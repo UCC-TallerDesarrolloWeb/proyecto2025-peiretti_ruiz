@@ -41,12 +41,15 @@ Este proyecto fue desarrollado con **React + Vite**, por lo que requiere instala
    git clone https://github.com/2424884sofia/proyecto2025-peiretti_ruiz.git
 
 2. **Instalar dependencias**
+    ```bash
     npm install
 
 3. **Ejecutar el servidor de desarrollo**
+    ```bash
     npm run dev
 
 4. **Abrir el navegador (Ctrl+Click)**
+    ```bash
     http://localhost:5175/
 
 --- 
