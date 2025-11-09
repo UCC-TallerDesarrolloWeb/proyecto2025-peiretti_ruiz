@@ -34,21 +34,39 @@ Crear una experiencia digital inmersiva que refleje la estética mediterránea d
 [Ver proyecto en GitHub Pages](https://2424884sofia.github.io/proyecto2025-peiretti_ruiz/)
 
 ---
+## Pasos para ejecutar el proyecto
+Este proyecto fue desarrollado con **React + Vite**, por lo que requiere instalación local antes de ejecutarse.
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/2424884sofia/proyecto2025-peiretti_ruiz.git
+
+2. **Instalar dependencias**
+    npm install
+
+3. **Ejecutar el servidor de desarrollo**
+    npm run dev
+
+4. **Abrir el navegador (Ctrl+Click)**
+    http://localhost:5175/
+
+--- 
 
 ## 🏝️ Contenido de la Página
 La web del resort **Santorini Blue** cuenta con las siguientes secciones principales:
 
 ### Secciones Principales
 - **Home**: Presentación del resort con navegación y vista inicial.  
-- **Reservar (Book a Room)**: Formulario interactivo de reservas.  
-- **Sobre Nosotros (About)**: Información del lugar, servicios y ambiente.  
-- **Contacto**: Formulario de contacto y mapa de ubicación.
+- **Book a Room**: Formulario interactivo de reservas.  
+- **About**: Información del lugar, servicios y ambiente.  
+- **Contact**: Formulario de contacto y mapa de ubicación.
+- **Payment**: Validación completa de datos de pago y simulación de confirmación.
 
 ### Características Destacadas
 - Diseño **responsivo** adaptado a dispositivos móviles y desktop.  
 - Formularios con **validación en JavaScript**.  
 - Navegación clara y coherente entre secciones.  
 - Uso de **paleta de colores inspirada en Santorini** y tipografía moderna.
+- Estructura modular con carpetas organizadas: **components, pages, styles, utils, api, data.**
 
 ---
 
@@ -60,6 +78,10 @@ La web del resort **Santorini Blue** cuenta con las siguientes secciones princip
 | **JavaScript** | Validaciones, interacciones y navegación dinámica |
 | **Markdown** | Documentación del proyecto (README) |
 | **Figma** | Diseño de wireframes y mockups del sitio |
+| **React(Vite)** | Framework principal y entorno de desarrollo rápido. |
+| **React Router DOM** | Enrutamiento de páginas (Home, Booking, Payment, About, Contact). |
+| **SCSS** | Estilos modulares, variables y diseño responsive. | 
+| **JSON** | Fuente de datos simulada para las habitaciones. | 
 
 ---
 
