@@ -1,8 +1,15 @@
-export const formatPrice = n => new Intl.NumberFormat('en-US', { style:'currency', currency:'USD' }).format(+n || 0)
+// === Formatos y helpers generales ===
+export const formatPrice = n =>
+  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(+n || 0)
+
 export const parseISODate = v => (v ? new Date(v + 'T00:00:00') : null)
-export const calcNights = (inD, outD) => (!inD || !outD ? 0 : Math.max(0, (outD - inD) / 86400000))
+
+export const calcNights = (inD, outD) =>
+  (!inD || !outD ? 0 : Math.max(0, (outD - inD) / 86400000))
+
 export const pluralize = (n, s, p = s + 's') => `${n} ${n === 1 ? s : p}`
 
+// === Letras y dígitos ===
 export const isLetterOrSpace = ch =>
   ch === ' ' || ch === '-' || ch === "'" || ch.toLowerCase() !== ch.toUpperCase()
 export const keepLetters = s => [...(s || '')].filter(isLetterOrSpace).join('')
@@ -12,30 +19,52 @@ export const isDigit = ch => ch >= '0' && ch <= '9'
 export const keepDigits = s => [...(s || '')].filter(isDigit).join('')
 export const isDigits = s => s.length > 0 && [...s].every(isDigit)
 
+// === Email básico ===
 export const isEmailBasic = s => {
   const t = (s || '').trim()
   const at = t.indexOf('@'), dot = t.lastIndexOf('.')
   return at > 0 && dot > at + 1 && dot < t.length - 1
 }
 
+// === Tarjeta / Fechas ===
 export const isExpiryMMYY = s => {
   const t = (s || '').trim()
   if (t.length !== 5 || t[2] !== '/') return false
-  const mm = t.slice(0,2), yy = t.slice(3)
+  const mm = t.slice(0, 2), yy = t.slice(3)
   if (!isDigits(mm) || !isDigits(yy)) return false
   const m = Number(mm)
   return m >= 1 && m <= 12
 }
 
-export const validateDates = (checkin, checkout) => {
-  const inD = parseISODate(checkin), outD = parseISODate(checkout), today = new Date()
-  today.setHours(0,0,0,0)
-  if (!inD || !outD) return 'Complete Check-in and Check-out.'
-  if (inD < today) return 'The check-in date cannot be earlier than today.'
-  if (outD <= inD) return 'The check-out date must be after the check-in date.'
-  return null
+/** Normaliza mientras tipean: "MM/YY" */
+export const normalizeMMYY = (s) => {
+  const d = keepDigits(s).slice(0, 4)
+  return d.length <= 2 ? d : `${d.slice(0, 2)}/${d.slice(2)}`
 }
 
+/** Devuelve true si una fecha MM/YY está vencida (fin de mes) */
+export const isExpiredMMYY = (mmYY) => {
+  const t = (mmYY || '').trim()
+  if (!isExpiryMMYY(t)) return true
+  const [mmStr, yyStr] = t.split('/')
+  const mm = Number(mmStr)
+  const fullYear = 2000 + Number(yyStr)
+  const expDate = new Date(fullYear, mm, 0, 23, 59, 59)
+  return expDate < new Date()
+}
+
+/** Formatea número de tarjeta en grupos de 4 (máx 19 dígitos) */
+export const formatCardGroups = (s) => {
+  const digits = keepDigits(s).slice(0, 19)
+  let out = ''
+  for (let i = 0; i < digits.length; i++) {
+    out += digits[i]
+    if ((i + 1) % 4 === 0 && i !== digits.length - 1) out += ' '
+  }
+  return out
+}
+
+/** Algoritmo Luhn para validación opcional */
 export const isLuhn = s => {
   const digits = keepDigits(s)
   let sum = 0, dbl = false
@@ -45,4 +74,14 @@ export const isLuhn = s => {
     sum += d; dbl = !dbl
   }
   return sum % 10 === 0
+}
+
+// === Booking: fechas ===
+export const validateDates = (checkin, checkout) => {
+  const inD = parseISODate(checkin), outD = parseISODate(checkout), today = new Date()
+  today.setHours(0, 0, 0, 0)
+  if (!inD || !outD) return 'Complete Check-in and Check-out.'
+  if (inD < today) return 'The check-in date cannot be earlier than today.'
+  if (outD <= inD) return 'The check-out date must be after the check-in date.'
+  return null
 }

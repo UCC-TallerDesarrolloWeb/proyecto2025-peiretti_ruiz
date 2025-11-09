@@ -1,49 +1,35 @@
 // src/utils/contactValidation.js
-import {
-  keepDigits,
-  keepLetters,
-  isLetters,
-  isDigits,
-  isEmailBasic,
-} from './validation'
+import { keepDigits, keepLetters, isLetters, isDigits, isEmailBasic } from './validation'
 
-// límites usados en Contact
 export const CONTACT_LIMITS = {
-  phoneMax: 12,     // máx. 12 dígitos (sin contar el código de país)
-  msgMax: 500,      // igual al placeholder del form
+  phoneMax: 12,
+  msgMax: 500,
 }
 
-/**
- * Sanitizadores rápidos para usar en onChange
- */
 export const sanitizeName = (s) => keepLetters(s || '')
 export const sanitizeEmail = (s) => (s || '').trim()
 export const sanitizePhone = (s) => keepDigits(s || '').slice(0, CONTACT_LIMITS.phoneMax)
 export const sanitizeMessage = (s) => (s || '').slice(0, CONTACT_LIMITS.msgMax)
 
 /**
- * Valida todos los campos del form de Contact.
- * @param {Object} data { fname, lname, email, phone, message }
- * @returns {{ ok: boolean, errors: Record<string,string> }}
+ * Valida campos del formulario de Contact.
+ * options.requireMessage: si true (default), el mensaje es obligatorio.
  */
-export function validateContact(data = {}) {
-  const { fname = '', lname = '', email = '', phone = '', message = '' } = data
+export function validateContact(data = {}, options = {}) {
+  const {
+    fname = '', lname = '', email = '', phone = '', message = ''
+  } = data
+  const { requireMessage = true } = options
   const errors = {}
 
   // Nombres
-  if (!fname || !isLetters(fname)) {
-    errors.fname = 'First name: letters only'
-  }
-  if (!lname || !isLetters(lname)) {
-    errors.lname = 'Last name: letters only'
-  }
+  if (!fname || !isLetters(fname)) errors.fname = 'First name: letters only'
+  if (!lname || !isLetters(lname)) errors.lname = 'Last name: letters only'
 
   // Email
-  if (!email || !isEmailBasic(email)) {
-    errors.email = 'Invalid email'
-  }
+  if (!email || !isEmailBasic(email)) errors.email = 'Invalid email'
 
-  // Teléfono (opcional, pero si viene debe ser numérico y con límite)
+  // Teléfono (opcional)
   if (phone) {
     if (!isDigits(phone)) {
       errors.phone = 'Digits only'
@@ -52,19 +38,22 @@ export function validateContact(data = {}) {
     }
   }
 
-  // Mensaje (requerido)
-  if (!message || !message.trim()) {
-    errors.message = 'Message is required'
-  } else if (message.length > CONTACT_LIMITS.msgMax) {
-    errors.message = `Max ${CONTACT_LIMITS.msgMax} characters`
+  // Mensaje
+  if (requireMessage) {
+    if (!message || !message.trim()) {
+      errors.message = 'Message is required'
+    } else if (message.length > CONTACT_LIMITS.msgMax) {
+      errors.message = `Max ${CONTACT_LIMITS.msgMax} characters`
+    }
+  } else {
+    // si no es requerido, solo controlamos el largo si viene
+    if (message && message.length > CONTACT_LIMITS.msgMax) {
+      errors.message = `Max ${CONTACT_LIMITS.msgMax} characters`
+    }
   }
 
   return { ok: Object.keys(errors).length === 0, errors }
 }
 
-/**
- * Ayudín para combinar código de país y número sin símbolos.
- * No valida; solo concatena dígitos limpios.
- */
 export const buildInternationalPhone = (ccode = '', phone = '') =>
   keepDigits(`${ccode}${phone}`)

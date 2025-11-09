@@ -178,3 +178,23 @@
   letter-spacing: 0.06em;
   margin: 24px 0 24px;
 }
+
+/* === Errores de formulario === */
+.field-error {
+  color: #d32f2f;          /* rojo visible (puede ser #dc2626 también) */
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 4px;
+  min-height: 1.1em;       /* mantiene el espacio incluso si no hay error */
+}
+
+.field.is-error input,
+.field.is-error select,
+.field.is-error textarea {
+  border-color: #d32f2f;   /* borde rojo si hay error */
+  outline: none;
+}
+
+.field.is-error label {
+  color: #b71c1c;
+}
