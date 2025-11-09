@@ -22,10 +22,11 @@ export default function About() {
 
         <figure className="figure">
           {/* imagen de apoyo (podés reemplazarla) */}
-          <img src="public/habitaciones/about2.png" alt="Balcón con vistas al Egeo" />
+          <img src="public/images/about2.png" alt="Balcón con vistas al Egeo" />
         </figure>
 
         <h2 className="about-title">Hotel Amenities</h2>
+
         <ul className="amenities-list">
             <li>Free resident car parking</li>
             <li>Free high speed internet</li>
