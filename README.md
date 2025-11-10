@@ -52,11 +52,6 @@ Este proyecto fue desarrollado con **React + Vite**, por lo que requiere instala
     ```bash
     http://localhost:5175/
 
---- 
-
-### Backend simulado con JSON Server
-Este proyecto utiliza **json-server** como API REST falsa para persistir datos del resumen y las habitaciones.
-
  ---
 
 ## 🏝️ Contenido de la Página
