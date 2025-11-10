@@ -1,4 +1,1426 @@
 {
+  "summary": [
+    {
+      "id": 1,
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "5b0b",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "3ba3",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "ee3c",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-11",
+      "nights": 2,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "598d",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "cc57",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "b057",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "ae4e",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "2d02",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "9d93",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "654c",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 3
+        }
+      ],
+      "totalRooms": 3,
+      "total": 0
+    },
+    {
+      "id": "e77e",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "cfb3",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "c1af",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "8ea4",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "4470",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "fc0d",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "239a",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 3
+        }
+      ],
+      "totalRooms": 3,
+      "total": 0
+    },
+    {
+      "id": "9a4a",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "b8fc",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "8b6d",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "42c9",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "sup",
+          "name": "Superior Room",
+          "price": 300,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "e701",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "c7da",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "57de",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "86c0",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "c543",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "fceb",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "3a6f",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "55ec",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "5850",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "72a0",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "a225",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "d04e",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "c529",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "1bac",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "e69c",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "033f",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "5113",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "116a",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "10ff",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "e425",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "b2a7",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "c3d8",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "0170",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "b06f",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "41ed",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "0701",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-11",
+      "nights": 2,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "185c",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-11",
+      "nights": 2,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "3892",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "d002",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "689b",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "b492",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "789b",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "d101",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "0ab6",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "7b92",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "930c",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "11ee",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "f57f",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "4882",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "df76",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "936e",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "d2dd",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "b999",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "sup",
+          "name": "Superior Room",
+          "price": 300,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "9a15",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "a272",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "e82b",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "sup",
+          "name": "Superior Room",
+          "price": 300,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "d635",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "c30b",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "1afa",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "sup",
+          "name": "Superior Room",
+          "price": 300,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "2339",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "3319",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "e833",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "563f",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "c337",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "d7c4",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "60ef",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "04bb",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "473d",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "7e5a",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "9bd2",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "1da5",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "20fa",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "a3db",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "889d",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "db4e",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 3
+        }
+      ],
+      "totalRooms": 3,
+      "total": 0
+    },
+    {
+      "id": "7524",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "a6ec",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "2f13",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "994e",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 3
+        }
+      ],
+      "totalRooms": 3,
+      "total": 0
+    },
+    {
+      "id": "58c7",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "23bd",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "1b94",
+      "checkin": "2025-11-09",
+      "checkout": "2025-11-10",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "cf18",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "b3df",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "6456",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "40a8",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "1604",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "5b65",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "d862",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "95fc",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "5123",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "678d",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "ba06",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "112c",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "8ffd",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "370c",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 1,
+      "total": 0
+    },
+    {
+      "id": "3641",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "efd6",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "17ca",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "cb65",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "8613",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "0757",
+      "checkin": "2025-11-10",
+      "checkout": "2025-11-11",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "8b30",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 2
+        }
+      ],
+      "totalRooms": 2,
+      "total": 0
+    },
+    {
+      "id": "d363",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "7750",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "fc63",
+      "checkin": "2025-11-10",
+      "checkout": "2025-11-11",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "0b24",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "a88a",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "78d3",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "dab7",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "f3b0",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "5712",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "5762",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "e13d",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "e46b",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "7801",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "0595",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "7a4b",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": "5af0",
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": 1,
+      "checkin": "2025-11-10",
+      "checkout": "2025-11-11",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": 1,
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 5
+        }
+      ],
+      "totalRooms": 5,
+      "total": 0
+    },
+    {
+      "id": 1,
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": 1,
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    },
+    {
+      "id": 1,
+      "checkin": "2025-11-10",
+      "checkout": "2025-11-11",
+      "nights": 1,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
+    }
+  ],
   "rooms": [
     {
       "id": "std",
