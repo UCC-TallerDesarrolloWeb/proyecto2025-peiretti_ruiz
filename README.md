@@ -54,6 +54,12 @@ Este proyecto fue desarrollado con **React + Vite**, por lo que requiere instala
 
  ---
 
+ ## Como ejecutar el Backend
+    ```bash
+    npx json-server --watch src/data/db.json --port 4000
+
+ ---
+
 ## 🏝️ Contenido de la Página
 La web del resort **Santorini Blue** cuenta con las siguientes secciones principales:
 
