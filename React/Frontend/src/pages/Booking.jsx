@@ -10,7 +10,7 @@ import db from '@data/db.json'
 const ALL_ROOMS = db.rooms
 
 // API (json-server)
-import { setDates, finalize, syncAllRooms } from '@api/summaryApi.js'
+import { getSummary, setDates, finalize, syncAllRooms } from '@api/summaryApi.js'
 
 const PRICES = { std: 200, sup: 300, fam: 400 }
 
@@ -27,6 +27,42 @@ export default function Booking() {
   const [dateErr, setDateErr] = useState('')
   const [qty, setQty] = useState({ std: 0, sup: 0, fam: 0 })
   const [filteredRooms, setFilteredRooms] = useState(null) // null = mostrar todas
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Cargar el resumen al montar el componente
+  useEffect(() => {
+    (async () => {
+      try {
+        const summary = await getSummary()
+        console.log('📥 Resumen cargado en Booking:', summary)
+        
+        // Si hay datos previos, restaurar filters y qty
+        if (summary.checkin && summary.checkout) {
+          setFilters(prev => ({
+            ...prev,
+            checkin: summary.checkin,
+            checkout: summary.checkout
+          }))
+        }
+        
+        // Restaurar cantidad de habitaciones
+        if (Array.isArray(summary.rooms) && summary.rooms.length > 0) {
+          const newQty = { std: 0, sup: 0, fam: 0 }
+          summary.rooms.forEach(room => {
+            if (room.id in newQty) {
+              newQty[room.id] = room.qty
+            }
+          })
+          setQty(newQty)
+          console.log('♻️ Cantidades restauradas:', newQty)
+        }
+      } catch (e) {
+        console.error('Error al cargar resumen:', e)
+      } finally {
+        setIsLoading(false)
+      }
+    })()
+  }, [])
 
   const nights = useMemo(
     () => calcNights(parseISODate(filters.checkin), parseISODate(filters.checkout)),
@@ -81,6 +117,9 @@ export default function Booking() {
     }
 
     try {
+      console.log('🔄 Iniciando continuePayment...')
+      console.log('📅 Fechas:', { checkin: filters.checkin, checkout: filters.checkout, nights })
+      
       // Construir array de habitaciones con cantidades > 0
       const roomsData = []
       if (qty.std > 0) {
@@ -93,25 +132,42 @@ export default function Booking() {
         roomsData.push({ id: 'fam', name: 'Family Suite', price: PRICES.fam, qty: qty.fam })
       }
 
-      // Sincronizar fechas
-      await setDates({ 
+      console.log('🏠 Habitaciones a sincronizar:', roomsData)
+
+      // Paso 1: Sincronizar fechas
+      console.log('📤 Paso 1: Sincronizando fechas...')
+      const datesResult = await setDates({ 
         checkin: filters.checkin, 
         checkout: filters.checkout, 
         nights 
       })
+      console.log('✅ Fechas sincronizadas:', datesResult)
       
-      // Sincronizar habitaciones de una vez
-      await syncAllRooms(roomsData)
+      // Paso 2: Sincronizar habitaciones
+      console.log('📤 Paso 2: Sincronizando habitaciones...')
+      const roomsResult = await syncAllRooms(roomsData)
+      console.log('✅ Habitaciones sincronizadas:', roomsResult)
       
-      // Finalizar y recalcular
-      await finalize()
+      // Paso 3: Finalizar
+      console.log('📤 Paso 3: Finalizando...')
+      const finalResult = await finalize()
+      console.log('✅ Reserva finalizada:', finalResult)
       
+      console.log('✨ ¡Listo! Navegando a payment...')
       // Navegar a payment
       nav('/payment')
     } catch (error) {
-      console.error('Error al proceder al pago:', error)
-      setDateErr('Could not proceed to payment. Please try again.')
+      console.error('❌ Error al proceder al pago:', error)
+      console.error('Detalles del error:', {
+        message: error.message,
+        stack: error.stack
+      })
+      setDateErr(`Error: ${error.message || 'Could not proceed to payment. Please try again.'}`)
     }
+  }
+
+  if (isLoading) {
+    return <p style={{ textAlign: 'center', marginTop: '40px' }}>Loading...</p>
   }
 
   return (

@@ -74,9 +74,13 @@ export default function Payment() {
     if (!validate()) return
     alert('Payment successful! Confirmation sent.')
 
-    await clearSummary()   // limpia el resumen del json-server
-    setForm(INITIAL_FORM)  // limpia campos del form
+    // SOLO limpia cuando el pago es exitoso
+    await clearSummary()
+    setForm(INITIAL_FORM)
     setErr({})
+    
+    // Redirige a home
+    window.location.replace('/')
   }
 
   if (!sum) return null
@@ -152,7 +156,7 @@ export default function Payment() {
             </div>
 
             <p className="field-full payment-note muted">
-              Your card will be charged the total shown. You’ll receive a confirmation email.
+              Your card will be charged the total shown. You'll receive a confirmation email.
             </p>
           </form>
         </section>

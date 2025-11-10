@@ -1,37 +1,34 @@
 {
   "summary": {
     "item": {
-      "item": {
-        "id": 1,
-        "checkin": "",
-        "checkout": "",
-        "nights": 0,
-        "rooms": [],
-        "totalRooms": 0,
-        "total": 0
-      },
       "id": 1,
-      "checkin": "2025-11-10",
-      "checkout": "2025-11-11",
-      "nights": 1,
-      "rooms": [
-        {
-          "id": "std",
-          "name": "Standard Room",
-          "price": 200,
-          "qty": 2
-        }
-      ],
-      "totalRooms": 2,
-      "total": 400
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
     },
     "id": 1,
-    "checkin": "",
-    "checkout": "",
-    "nights": 0,
-    "rooms": [],
-    "totalRooms": 0,
-    "total": 0
+    "checkin": "2025-11-10",
+    "checkout": "2025-11-12",
+    "nights": 2,
+    "rooms": [
+      {
+        "id": "std",
+        "name": "Standard Room",
+        "price": 200,
+        "qty": 1
+      },
+      {
+        "id": "sup",
+        "name": "Superior Room",
+        "price": 300,
+        "qty": 1
+      }
+    ],
+    "totalRooms": 2,
+    "total": 1000
   },
   "rooms": [
     {
