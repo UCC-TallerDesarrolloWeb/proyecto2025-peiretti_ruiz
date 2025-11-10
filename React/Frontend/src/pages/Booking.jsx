@@ -1,9 +1,10 @@
 // src/pages/Booking.jsx
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { validateDates, calcNights, parseISODate, formatPrice, pluralize } from '@utils/validation'
 import Filters from '@components/Filters'
 import '@styles/_booking.scss'
+import '@styles/_roomModal.scss'
 
 // Mock de habitaciones local (imágenes/nombres/precios)
 import db from '@data/db.json'
@@ -29,13 +30,34 @@ export default function Booking() {
   const [filteredRooms, setFilteredRooms] = useState(null) // null = mostrar todas
   const [isLoading, setIsLoading] = useState(true)
 
+  // ===== Modal state =====
+  const [open, setOpen] = useState(false)
+  const [activeRoom, setActiveRoom] = useState(null)
+
+  const openModal = useCallback((room) => {
+    setActiveRoom(room)
+    setOpen(true)
+  }, [])
+
+  const closeModal = useCallback(() => {
+    setOpen(false)
+    // liberamos después de la animación (simple, sin CSS keyframes)
+    setTimeout(() => setActiveRoom(null), 200)
+  }, [])
+
+  // ESC para cerrar
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => e.key === 'Escape' && closeModal()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, closeModal])
+
   // Cargar el resumen al montar el componente
   useEffect(() => {
     (async () => {
       try {
         const summary = await getSummary()
-        console.log('📥 Resumen cargado en Booking:', summary)
-        
         // Si hay datos previos, restaurar filters y qty
         if (summary.checkin && summary.checkout) {
           setFilters(prev => ({
@@ -44,7 +66,6 @@ export default function Booking() {
             checkout: summary.checkout
           }))
         }
-        
         // Restaurar cantidad de habitaciones
         if (Array.isArray(summary.rooms) && summary.rooms.length > 0) {
           const newQty = { std: 0, sup: 0, fam: 0 }
@@ -54,7 +75,6 @@ export default function Booking() {
             }
           })
           setQty(newQty)
-          console.log('♻️ Cantidades restauradas:', newQty)
         }
       } catch (e) {
         console.error('Error al cargar resumen:', e)
@@ -92,7 +112,6 @@ export default function Booking() {
       return 
     }
     setDateErr('')
-
     // aplicar filtro por tipo
     let r = ALL_ROOMS
     if (filters.type !== 'all') {
@@ -102,66 +121,24 @@ export default function Booking() {
   }
 
   const continuePayment = async () => {
-    // Validar fechas
     const err = validateDates(filters.checkin, filters.checkout)
-    if (err) {
-      setDateErr(err)
-      return
-    }
+    if (err) return setDateErr(err)
 
-    // Validar que haya al menos una habitación seleccionada
     const totalRooms = qty.std + qty.sup + qty.fam
-    if (!totalRooms) {
-      setDateErr('Please add at least one room.')
-      return
-    }
+    if (!totalRooms) return setDateErr('Please add at least one room.')
 
     try {
-      console.log('🔄 Iniciando continuePayment...')
-      console.log('📅 Fechas:', { checkin: filters.checkin, checkout: filters.checkout, nights })
-      
-      // Construir array de habitaciones con cantidades > 0
       const roomsData = []
-      if (qty.std > 0) {
-        roomsData.push({ id: 'std', name: 'Standard Room', price: PRICES.std, qty: qty.std })
-      }
-      if (qty.sup > 0) {
-        roomsData.push({ id: 'sup', name: 'Superior Room', price: PRICES.sup, qty: qty.sup })
-      }
-      if (qty.fam > 0) {
-        roomsData.push({ id: 'fam', name: 'Family Suite', price: PRICES.fam, qty: qty.fam })
-      }
+      if (qty.std > 0) roomsData.push({ id: 'std', name: 'Standard Room', price: PRICES.std, qty: qty.std })
+      if (qty.sup > 0) roomsData.push({ id: 'sup', name: 'Superior Room', price: PRICES.sup, qty: qty.sup })
+      if (qty.fam > 0) roomsData.push({ id: 'fam', name: 'Family Suite',  price: PRICES.fam, qty: qty.fam })
 
-      console.log('🏠 Habitaciones a sincronizar:', roomsData)
-
-      // Paso 1: Sincronizar fechas
-      console.log('📤 Paso 1: Sincronizando fechas...')
-      const datesResult = await setDates({ 
-        checkin: filters.checkin, 
-        checkout: filters.checkout, 
-        nights 
-      })
-      console.log('✅ Fechas sincronizadas:', datesResult)
-      
-      // Paso 2: Sincronizar habitaciones
-      console.log('📤 Paso 2: Sincronizando habitaciones...')
-      const roomsResult = await syncAllRooms(roomsData)
-      console.log('✅ Habitaciones sincronizadas:', roomsResult)
-      
-      // Paso 3: Finalizar
-      console.log('📤 Paso 3: Finalizando...')
-      const finalResult = await finalize()
-      console.log('✅ Reserva finalizada:', finalResult)
-      
-      console.log('✨ ¡Listo! Navegando a payment...')
-      // Navegar a payment
+      await setDates({ checkin: filters.checkin, checkout: filters.checkout, nights })
+      await syncAllRooms(roomsData)
+      await finalize()
       nav('/payment')
     } catch (error) {
       console.error('❌ Error al proceder al pago:', error)
-      console.error('Detalles del error:', {
-        message: error.message,
-        stack: error.stack
-      })
       setDateErr(`Error: ${error.message || 'Could not proceed to payment. Please try again.'}`)
     }
   }
@@ -208,13 +185,19 @@ export default function Booking() {
                   </header>
 
                   <ul className="room-meta">
-                    <li>👤 {r.meta[0]}</li>
-                    <li>▢ {r.meta[1]}</li>
+                    <li>👤 {r.meta?.[0]}</li>
+                    <li>▢ {r.meta?.[1]}</li>
                   </ul>
 
-                  <a className="room-more" href="#" onClick={(e) => e.preventDefault()}>
-                    {r.desc}
-                  </a>
+                  <button
+                    type="button"
+                    className="link-like room-more"
+                    onClick={() => openModal(r)}
+                    aria-haspopup="dialog"
+                    aria-controls="room-dialog"
+                  >
+                    {r.desc || 'More details'}
+                  </button>
 
                   <div className="room-cant">
                     <span className="qty-label">Add rooms</span>
@@ -295,6 +278,47 @@ export default function Booking() {
           </aside>
         </div>
       </section>
+
+      {/* ===== Modal (Room Details) ===== */}
+      <div
+        className="room-backdrop"
+        style={{ display: open ? 'grid' : 'none' }}
+        onClick={(e) => { if (e.target === e.currentTarget) closeModal() }}
+        aria-hidden={!open}
+      >
+        {activeRoom && (
+          <div className="room-dialog" id="room-dialog" role="dialog" aria-modal="true" aria-labelledby="room-title">
+            <button className="room-close" onClick={closeModal} aria-label="Close">×</button>
+
+            <div className="room-media">
+              <img className="room-photo" src={activeRoom.img} alt={activeRoom.name} />
+            </div>
+
+            <div className="room-info">
+              <h3 id="room-title">{activeRoom.name}</h3>
+
+              <div className="room-overview">
+                <div title="Max guests">👤 <span>{activeRoom.meta?.[0] || '—'}</span></div>
+                <div title="Room size">▢ <span>{activeRoom.meta?.[1] || '—'}</span></div>
+              </div>
+
+              <p className="line-clamp" style={{ margin: '8px 0 14px' }}>
+                {activeRoom.about || 'Comfortable room with elegant décor and all the essentials for a pleasant stay.'}
+              </p>
+
+              <h4 className="room-subttl">About this room</h4>
+              <p style={{ marginTop: 6 }}>{activeRoom.longAbout || activeRoom.about || ''}</p>
+
+              <h4 className="room-subttl">Amenities</h4>
+              <ul className="room-amenities">
+                {(activeRoom.amenities ?? ['Sea view', 'Rain shower', 'King bed', 'Smart TV']).map((a, i) => (
+                  <li key={i}>{a}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   )
 }

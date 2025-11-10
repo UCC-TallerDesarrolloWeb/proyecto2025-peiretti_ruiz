@@ -15,20 +15,14 @@
     "nights": 2,
     "rooms": [
       {
-        "id": "std",
-        "name": "Standard Room",
-        "price": 200,
-        "qty": 1
-      },
-      {
         "id": "sup",
         "name": "Superior Room",
         "price": 300,
-        "qty": 1
+        "qty": 2
       }
     ],
     "totalRooms": 2,
-    "total": 1000
+    "total": 1200
   },
   "rooms": [
     {

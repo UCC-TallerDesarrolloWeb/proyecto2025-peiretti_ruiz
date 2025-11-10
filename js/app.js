@@ -334,18 +334,39 @@ const handleContinue = () => {
 
 /* ======= ROOM DETAILS ======= */
 const ROOMS = {
-    std: {t: "Standard Room", c: "1 adult max", s: "30 m²", a: ["Balcony", "AC", "Smart TV", "Mini-fridge"]},
-    sup: {t: "Superior Room", c: "2 adults max", s: "40 m²", a: ["Sea view", "King bed", "Rain shower", "Smart TV"]},
-    fam: {t: "Family Suite", c: "Up to 5 guests", s: "45 m²", a: ["Kitchenette", "Terrace", "2 bathrooms", "Crib"]}
+    std: {
+        t: "Standard Room", 
+        c: "1 adult max", 
+        s: "30 m²", 
+        a: ["Balcony", "AC", "Smart TV", "Mini-fridge"],
+        img: "Imagenes/standardRoom.png"
+    },
+    sup: {
+        t: "Superior Room", 
+        c: "2 adults max", 
+        s: "40 m²", 
+        a: ["Sea view", "King bed", "Rain shower", "Smart TV"],
+        img: "Imagenes/superiorRoom.png"
+    },
+    fam: {
+        t: "Family Suite", 
+        c: "Up to 5 guests", 
+        s: "45 m²", 
+        a: ["Kitchenette", "Terrace", "2 bathrooms", "Crib"],
+        img: "Imagenes/familySuite.png"
+    }
 };
 
 const openRoomDetails = btn => {
     const id = btn.dataset.room;
     const d = ROOMS[id];
+    
     document.getElementById("room-title").textContent = d.t;
     document.getElementById("room-capacity").textContent = d.c;
     document.getElementById("room-size").textContent = d.s;
     document.getElementById("room-amenities").innerHTML = d.a.map(a => `<li>${a}</li>`).join("");
+    document.getElementById("room-photo").src = d.img;
+    
     document.getElementById("room-modal").style.display = "grid";
     document.body.style.overflow = "hidden";
 };
