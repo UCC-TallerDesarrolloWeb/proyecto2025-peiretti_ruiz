@@ -174,7 +174,9 @@ export default function Payment() {
           </div>
 
           <div className="resumen-total"><span>Total</span><span>{formatPrice(sum.total)}</span></div>
-          <p style={{ marginTop: 8 }}><a href="/booking">Modify selection</a></p>
+          <p className="modify-selection">
+            <a href="/booking">Modify selection</a>
+          </p>
         </aside>
       </div>
     </div>

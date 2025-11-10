@@ -10,7 +10,7 @@ import db from '@data/db.json'
 const ALL_ROOMS = db.rooms
 
 // API (json-server)
-import { setDates, upsertRoom, finalize } from '@api/summaryApi'
+import { setDates, finalize, syncAllRooms } from '@api/summaryApi.js'
 
 const PRICES = { std: 200, sup: 300, fam: 400 }
 
@@ -41,30 +41,20 @@ export default function Booking() {
 
   const roomsShown = filteredRooms ?? ALL_ROOMS
 
-  // Sincroniza fechas con la API cuando estén completas y válidas
+  // Limpia error visual cuando cambian las fechas
   useEffect(() => {
-    const err = validateDates(filters.checkin, filters.checkout)
-    if (!err) {
-      setDates({ checkin: filters.checkin, checkout: filters.checkout, nights }).catch(() => {})
+    if (filters.checkin || filters.checkout) {
+      setDateErr('')
     }
-    // limpiamos error visual cuando cambian
-    setDateErr('')
-  }, [filters.checkin, filters.checkout, nights])
-
-  // Sincroniza cantidades con la API cada vez que cambian
-  useEffect(() => {
-    const sync = async () => {
-      await upsertRoom({ id: 'std', name: 'Standard Room', price: PRICES.std, qty: qty.std })
-      await upsertRoom({ id: 'sup', name: 'Superior Room', price: PRICES.sup, qty: qty.sup })
-      await upsertRoom({ id: 'fam', name: 'Family Suite',  price: PRICES.fam, qty: qty.fam })
-    }
-    sync().catch(() => {})
-  }, [qty])
+  }, [filters.checkin, filters.checkout])
 
   const onSearch = (e) => {
     e.preventDefault()
     const err = validateDates(filters.checkin, filters.checkout)
-    if (err) { setDateErr(err); return }
+    if (err) { 
+      setDateErr(err)
+      return 
+    }
     setDateErr('')
 
     // aplicar filtro por tipo
@@ -76,37 +66,59 @@ export default function Booking() {
   }
 
   const continuePayment = async () => {
-  const err = validateDates(filters.checkin, filters.checkout)
-  if (err) return setDateErr(err)
+    // Validar fechas
+    const err = validateDates(filters.checkin, filters.checkout)
+    if (err) {
+      setDateErr(err)
+      return
+    }
 
-  const totalRooms = qty.std + qty.sup + qty.fam
-  if (!totalRooms) return setDateErr('Please add rooms.')
+    // Validar que haya al menos una habitación seleccionada
+    const totalRooms = qty.std + qty.sup + qty.fam
+    if (!totalRooms) {
+      setDateErr('Please add at least one room.')
+      return
+    }
 
-  try {
-    // 1) Persistir cantidades vigentes de forma explícita
-    await Promise.all([
-      upsertRoom({ id: 'std', name: 'Standard Room', price: PRICES.std, qty: qty.std }),
-      upsertRoom({ id: 'sup', name: 'Superior Room', price: PRICES.sup,  qty: qty.sup }),
-      upsertRoom({ id: 'fam', name: 'Family Suite',  price: PRICES.fam, qty: qty.fam }),
-    ])
+    try {
+      // Construir array de habitaciones con cantidades > 0
+      const roomsData = []
+      if (qty.std > 0) {
+        roomsData.push({ id: 'std', name: 'Standard Room', price: PRICES.std, qty: qty.std })
+      }
+      if (qty.sup > 0) {
+        roomsData.push({ id: 'sup', name: 'Superior Room', price: PRICES.sup, qty: qty.sup })
+      }
+      if (qty.fam > 0) {
+        roomsData.push({ id: 'fam', name: 'Family Suite', price: PRICES.fam, qty: qty.fam })
+      }
 
-    // 2) Persistir fechas/nights justo antes del finalize
-    await setDates({ checkin: filters.checkin, checkout: filters.checkout, nights })
-
-    // 3) Recalcular en el server y navegar
-    await finalize()
-    nav('/payment')
-  } catch {
-    setDateErr('Could not proceed. Try again.')
+      // Sincronizar fechas
+      await setDates({ 
+        checkin: filters.checkin, 
+        checkout: filters.checkout, 
+        nights 
+      })
+      
+      // Sincronizar habitaciones de una vez
+      await syncAllRooms(roomsData)
+      
+      // Finalizar y recalcular
+      await finalize()
+      
+      // Navegar a payment
+      nav('/payment')
+    } catch (error) {
+      console.error('Error al proceder al pago:', error)
+      setDateErr('Could not proceed to payment. Please try again.')
+    }
   }
-}
-
 
   return (
     <>
       {/* Imagen superior */}
       <section className="imagen-acostada">
-        <img src="public/images/imagenBook.png" alt="Santorini sea view" />
+        <img src="/images/imagenbook.png" alt="Santorini sea view" />
       </section>
 
       <section className="container book">
@@ -122,7 +134,7 @@ export default function Booking() {
         </form>
 
         {/* error de fecha visible */}
-        {dateErr && <p className="field-error" style={{ textAlign: 'center' }}>{dateErr}</p>}
+        {dateErr && <p className="field-error" style={{ textAlign: 'center', marginTop: '12px' }}>{dateErr}</p>}
 
         {/* Lista + Resumen */}
         <div className="rooms rooms-layout rooms--spaced">
@@ -151,8 +163,13 @@ export default function Booking() {
                   <div className="room-cant">
                     <span className="qty-label">Add rooms</span>
                     <div className="counter nojs">
-                      <button type="button"
-                              onClick={() => setQty(s => ({ ...s, [r.id]: Math.max(0, (s[r.id] || 0) - 1) }))}>−</button>
+                      <button 
+                        type="button"
+                        onClick={() => setQty(s => ({ ...s, [r.id]: Math.max(0, (s[r.id] || 0) - 1) }))}
+                        aria-label={`Decrease ${r.name} quantity`}
+                      >
+                        −
+                      </button>
                       <input
                         inputMode="numeric"
                         value={qty[r.id] || 0}
@@ -160,9 +177,15 @@ export default function Booking() {
                           const n = Math.max(0, Math.min(9, Number(e.target.value || 0)))
                           setQty(s => ({ ...s, [r.id]: n }))
                         }}
+                        aria-label={`${r.name} quantity`}
                       />
-                      <button type="button"
-                              onClick={() => setQty(s => ({ ...s, [r.id]: Math.min(9, (s[r.id] || 0) + 1) }))}>+</button>
+                      <button 
+                        type="button"
+                        onClick={() => setQty(s => ({ ...s, [r.id]: Math.min(9, (s[r.id] || 0) + 1) }))}
+                        aria-label={`Increase ${r.name} quantity`}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -172,8 +195,14 @@ export default function Booking() {
 
           <aside className="resumen">
             <h3 className="resumen-title">Your Reservation</h3>
-            <div className="resumen-line"><span>Check-In:</span><span>{filters.checkin || '—'}</span></div>
-            <div className="resumen-line"><span>Check-Out:</span><span>{filters.checkout || '—'}</span></div>
+            <div className="resumen-line">
+              <span>Check-In:</span>
+              <span>{filters.checkin || '—'}</span>
+            </div>
+            <div className="resumen-line">
+              <span>Check-Out:</span>
+              <span>{filters.checkout || '—'}</span>
+            </div>
             <hr className="resumen-sep" />
 
             <ul className="resumen-items">
@@ -183,16 +212,30 @@ export default function Booking() {
                     {pluralize(v, id === 'fam' ? 'Family Suite' : id === 'sup' ? 'Superior Room' : 'Standard Room')}
                     {nights ? `, ${pluralize(nights, 'night')}` : ''}
                   </span>
-                  <button type="button" className="line-remove" onClick={() => setQty(s => ({ ...s, [id]: 0 }))}>×</button>
+                  <button 
+                    type="button" 
+                    className="line-remove" 
+                    onClick={() => setQty(s => ({ ...s, [id]: 0 }))}
+                    aria-label={`Remove ${id === 'fam' ? 'Family Suite' : id === 'sup' ? 'Superior Room' : 'Standard Room'}`}
+                  >
+                    ×
+                  </button>
                 </li>
               ))}
             </ul>
 
-            <p className="resumen-warn" hidden={Object.values(qty).some(v => v > 0)}>Please add rooms</p>
+            <p className="resumen-warn" hidden={Object.values(qty).some(v => v > 0)}>
+              Please add rooms
+            </p>
             <hr className="resumen-sep" />
 
-            <div className="resumen-total"><span>Total</span><span>{formatPrice(total)}</span></div>
-            <button type="button" className="btn-continue" onClick={continuePayment}>Continue</button>
+            <div className="resumen-total">
+              <span>Total</span>
+              <span>{formatPrice(total)}</span>
+            </div>
+            <button type="button" className="btn-continue" onClick={continuePayment}>
+              Continue
+            </button>
           </aside>
         </div>
       </section>
