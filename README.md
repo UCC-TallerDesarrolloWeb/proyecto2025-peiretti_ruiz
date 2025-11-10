@@ -57,10 +57,6 @@ Este proyecto fue desarrollado con **React + Vite**, por lo que requiere instala
 ### Backend simulado con JSON Server
 Este proyecto utiliza **json-server** como API REST falsa para persistir datos del resumen y las habitaciones.
 
-#### Ejecutar el backend
-```bash
-npx json-server --watch db.json --port 4000
-
  ---
 
 ## 🏝️ Contenido de la Página
