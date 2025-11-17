@@ -54,7 +54,12 @@ Este proyecto fue desarrollado con **React + Vite**, por lo que requiere instala
 
  ---
 
- ## Como ejecutar el Backend
+ ## Backend (API con json-server)
+ Este proyecto usa json-server como backend “fake” para persistir el resumen de la reserva y leer la lista de habitaciones.
+
+ ---
+
+1. **Iniciar el servidor**
     ```bash
     npx json-server --watch src/data/db.json --port 4000
 

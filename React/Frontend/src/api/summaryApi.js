@@ -14,3 +14,48 @@ export async function getSummary() {
     let data = await res.json();
     return recalc(data);
 }
+
+export async function setDates({checkin, checkout, nights}) {
+    const res = await fetch(BASE_URL, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({checkin, checkout, nights})
+    });
+    return res.json();
+}
+
+export async function syncAllRooms(roomsData) {
+    const res = await fetch(BASE_URL, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({rooms: roomsData})
+    });
+    return res.json();
+}
+
+export async function finalize() {
+    // Recalcula el total antes de finalizar
+    const summary = await getSummary();
+    const res = await fetch(BASE_URL, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(summary)
+    });
+    return res.json();
+}
+
+export async function clearSummary() {
+    const res = await fetch(BASE_URL, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            checkin: "",
+            checkout: "",
+            nights: 0,
+            rooms: [],
+            totalRooms: 0,
+            total: 0
+        })
+    });
+    return res.json();
+}
