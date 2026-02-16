@@ -40,17 +40,13 @@
 }
 
 /* usa assets en /public/images */
-.soc-ig {
-  background-image: url("/images/instaLogo.png");
-}
+/* stylelint-disable-next-line */
 
-.soc-x {
-  background-image: url("/images/twitLogo.png");
-}
 
-.soc-fb {
-  background-image: url("/images/faceLogo.png");
-}
+
+
+
+
 
 .mapa {
   max-width: 900px;
@@ -155,7 +151,6 @@
     grid-template-columns: 1fr 2fr;
   }
 }
-
 
 .imagen-acostada {
   width: 100vw;

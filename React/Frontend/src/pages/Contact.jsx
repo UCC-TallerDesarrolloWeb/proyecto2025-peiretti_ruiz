@@ -45,30 +45,15 @@ export default function Contact() {
 
                 {/* Redes sociales */}
                 <div className="contact-social">
-                    <a
-                        aria-label="Instagram"
-                        href="https://www.instagram.com/p/DPKSImIDDjq/?img_index=4&igsh=ZG9sbXh6eHU5bGVu"
-                        className="soc soc-ig"
-                        title="Instagram"
-                        target="_blank"
-                        rel="noopener"
-                    />
-                    <a
-                        aria-label="X / Twitter"
-                        href="https://x.com/worldipictures/status/1825208695044596010?s=48&t=rODdoYJSeQAQYfGSVWoi_A"
-                        className="soc soc-x"
-                        title="X"
-                        target="_blank"
-                        rel="noopener"
-                    />
-                    <a
-                        aria-label="Facebook"
-                        href="https://www.facebook.com/share/17Pcqp5GcP/?mibextid=wwXIfr"
-                        className="soc soc-fb"
-                        title="Facebook"
-                        target="_blank"
-                        rel="noopener"
-                    />
+                    <a href="https://www.instagram.com/..." aria-label="Instagram" target="_blank" rel="noopener">
+                        <img src="/images/instaLogo.png" alt="Instagram" className="soc" />
+                    </a>
+                    <a href="https://x.com/..." aria-label="Twitter" target="_blank" rel="noopener">
+                        <img src="/images/twitLogo.png" alt="Twitter" className="soc" />
+                    </a>
+                    <a href="https://www.facebook.com/..." aria-label="Facebook" target="_blank" rel="noopener">
+                        <img src="/images/faceLogo.png" alt="Facebook" className="soc" />
+                    </a>
                 </div>
 
                 {/* Mapa */}

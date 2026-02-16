@@ -1,113 +1,184 @@
-/* ===== Room Details Modal ===== */
+/* ===== Room Modal Dialog ===== */
+
 .room-backdrop {
   position: fixed;
-  inset: 0;
-  display: none;            /* se controla desde React con display:grid */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
   place-items: center;
-  background: rgba(0, 0, 0, .55);
-  z-index: 9998;
+  z-index: 1000;
+}
+
+.room-backdrop[aria-hidden="true"] {
+  display: none;
 }
 
 .room-dialog {
-  width: min(1040px, 96vw);
-  max-height: 90vh;
-  background: #fff;
-  border-radius: 14px;
-  overflow: auto;
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 26px;
-  padding: 22px;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  background: #fff;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .room-close {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
   border: 0;
   background: transparent;
   font-size: 28px;
-  cursor: pointer;
-  color: #666;
   line-height: 1;
+  cursor: pointer;
+  color: #333;
+  z-index: 10;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.room-close:hover {
+  background: #f0f0f0;
+}
+
+.room-close:focus-visible {
+  outline: 2px solid #2f4a92;
+  outline-offset: 2px;
 }
 
 .room-media {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+  background: #f0f0f0;
 }
 
 .room-photo {
+  display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 12px;
+  height: 100%;
   object-fit: cover;
-  background: #f2f2f2;
 }
 
 .room-info {
-  padding-right: 6px;
+  padding: 28px;
 }
 
-#room-title {
-  margin: 0 0 8px;
+.room-info h3 {
   font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: #222;
+  margin: 0 0 16px;
 }
 
 .room-overview {
   display: flex;
-  gap: 18px;
-  margin: 6px 0 14px;
-  color: #222;
+  gap: 24px;
+  margin-bottom: 16px;
+  font-family: "Montserrat", sans-serif;
+  color: #666;
 }
 
 .room-overview div {
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.room-overview span {
+  font-weight: 600;
+  color: #333;
+}
+
+.room-overview-desc {
+  line-clamp: 2;
+  margin: 8px 0 14px;
+  font-family: "Montserrat", sans-serif;
+  color: #666;
+  font-size: 0.95rem;
 }
 
 .room-subttl {
-  margin: 12px 0 6px;
-  font-size: 1.05rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  color: #222;
+  margin: 16px 0 8px;
+}
+
+.room-about {
+  font-family: "Montserrat", sans-serif;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 6px;
 }
 
 .room-amenities {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 16px;
-  margin: 6px 0 0;
-  padding: 0;
   list-style: none;
-}
-
-.room-amenities li:before {
-  content: "✓";
-  margin-right: 8px;
-}
-
-.link-like {
-  border: 0;
-  background: transparent;
-  color: #2f4a92;
-  text-decoration: underline;
-  cursor: pointer;
+  margin: 12px 0 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
 }
 
-.line-clamp {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.room-amenities li {
+  font-family: "Montserrat", sans-serif;
+  color: #666;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  border-left: 3px solid #b35a36;
 }
 
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width: 640px) {
   .room-dialog {
+    width: 95%;
+    border-radius: 8px;
+  }
+
+  .room-info {
+    padding: 20px 16px;
+  }
+
+  .room-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .room-overview {
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .room-subttl {
+    font-size: 1rem;
+    margin: 14px 0 8px;
+  }
+
+  .room-amenities {
     grid-template-columns: 1fr;
   }
 }

@@ -21,6 +21,10 @@
   object-fit: cover;
 }
 
+.loading-message {
+  text-align: center;
+  margin-top: 40px;
+}
 
 .book {
   background: var(--notanblanco);
@@ -57,7 +61,7 @@
   font-weight: 600;
 }
 
-/* contenedor de ambas fechas: un solo borde, sin “líneas internas” */
+/* contenedor de ambas fechas: un solo borde, sin "líneas internas" */
 .rango-fecha {
   display: flex;
   align-items: center;
@@ -141,6 +145,12 @@
 .btn-buscar:focus-visible {
   outline: 3px solid color-mix(in oklab, var(--azul), white 70%);
   outline-offset: 2px;
+}
+
+/* error de fecha */
+.field-error {
+  text-align: center;
+  margin-top: 12px;
 }
 
 /* responsive form */
@@ -297,7 +307,7 @@
   margin-bottom: 6px;
 }
 
-.counter.nojs {
+.counter.no-js {
   display: inline-flex;
   align-items: center;
   border: 1px solid #cfcfcf;
@@ -305,7 +315,7 @@
   height: 32px;
 }
 
-.counter.nojs button {
+.counter.no-js button {
   width: 32px;
   height: 30px;
   border: 0;
@@ -314,7 +324,7 @@
   cursor: pointer;
 }
 
-.counter.nojs input {
+.counter.no-js input {
   width: 52px;
   height: 30px;
   border: 0;
@@ -324,7 +334,7 @@
 }
 
 /* ===== Summary (aside) ===== */
-/* Empieza a la misma altura que las tarjetas (debajo del h3 “Select room”) */
+/* Empieza a la misma altura que las tarjetas (debajo del h3 "Select room") */
 .resumen {
   background: color-mix(in srgb, var(--arena) 85%, white 15%);
   color: #fff;
@@ -441,6 +451,11 @@
   outline-offset: 2px;
 }
 
+/* separación arriba de la grilla de rooms */
+.rooms--spaced {
+  margin-top: 22px;
+}
+
 /* responsive layout rooms + aside */
 @media (max-width: 1024px) {
   .rooms-layout {
@@ -461,8 +476,27 @@
   }
 }
 
-/* separación arriba de la grilla de rooms */
-.rooms--spaced {
-  margin-top: 22px;
+/* ===== Modal styles (moved from inline) ===== */
+.room-backdrop[aria-hidden="true"] {
+  display: none;
 }
 
+.room-backdrop[aria-hidden="false"] {
+  display: grid;
+}
+
+.room-overview-desc {
+  line-clamp: 2;
+  margin: 8px 0 14px;
+  font-family: "Montserrat", sans-serif;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.room-about {
+  font-family: "Montserrat", sans-serif;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 6px;
+}

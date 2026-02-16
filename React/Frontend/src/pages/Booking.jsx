@@ -57,10 +57,23 @@ export default function Booking() {
     // Cargar el resumen al montar el componente
     useEffect(() => {
         (async () => {
+            // Mostrar la página rápido, cargar datos en background
+            setIsLoading(false)
+            
             try {
-                const summary = await getSummary()
+                // Con timeout para no bloquear si la API es lenta
+                const controller = new AbortController()
+                const timeoutId = setTimeout(() => controller.abort(), 3000) // 3s max
+                
+                const summary = await Promise.race([
+                    getSummary(),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+                ])
+                
+                clearTimeout(timeoutId)
+                
                 // Si hay datos previos, restaurar filters y qty
-                if (summary.checkin && summary.checkout) {
+                if (summary?.checkin && summary?.checkout) {
                     setFilters(prev => ({
                         ...prev,
                         checkin: summary.checkin,
@@ -68,7 +81,7 @@ export default function Booking() {
                     }))
                 }
                 // Restaurar cantidad de habitaciones
-                if (Array.isArray(summary.rooms) && summary.rooms.length > 0) {
+                if (Array.isArray(summary?.rooms) && summary.rooms.length > 0) {
                     const newQty = {std: 0, sup: 0, fam: 0}
                     summary.rooms.forEach(room => {
                         if (room.id in newQty) {
@@ -78,9 +91,8 @@ export default function Booking() {
                     setQty(newQty)
                 }
             } catch (e) {
-                console.error('Error al cargar resumen:', e)
-            } finally {
-                setIsLoading(false)
+                console.warn('⚠️ No se cargaron datos previos:', e.message)
+                // Sigue normal sin datos previos
             }
         })()
     }, [])
@@ -145,7 +157,7 @@ export default function Booking() {
     }
 
     if (isLoading) {
-        return <p style={{textAlign: 'center', marginTop: '40px'}}>Loading...</p>
+        return <p className="loading-message">Loading...</p>
     }
 
     return (
@@ -168,7 +180,7 @@ export default function Booking() {
                 </form>
 
                 {/* error de fecha visible */}
-                {dateErr && <p className="field-error" style={{textAlign: 'center', marginTop: '12px'}}>{dateErr}</p>}
+                {dateErr && <p className="field-error">{dateErr}</p>}
 
                 {/* Lista + Resumen */}
                 <div className="rooms rooms-layout rooms--spaced">
@@ -202,7 +214,7 @@ export default function Booking() {
 
                                     <div className="room-cant">
                                         <span className="qty-label">Add rooms</span>
-                                        <div className="counter nojs">
+                                        <div className="counter no-js">
                                             <button
                                                 type="button"
                                                 onClick={() => setQty(s => ({
@@ -289,7 +301,6 @@ export default function Booking() {
             {/* ===== Modal (Room Details) ===== */}
             <div
                 className="room-backdrop"
-                style={{display: open ? 'grid' : 'none'}}
                 onClick={(e) => {
                     if (e.target === e.currentTarget) closeModal()
                 }}
@@ -312,12 +323,12 @@ export default function Booking() {
                                 <div title="Room size">▢ <span>{activeRoom.meta?.[1] || '—'}</span></div>
                             </div>
 
-                            <p className="line-clamp" style={{margin: '8px 0 14px'}}>
+                            <p className="room-overview-desc">
                                 {activeRoom.about || 'Comfortable room with elegant décor and all the essentials for a pleasant stay.'}
                             </p>
 
                             <h4 className="room-subttl">About this room</h4>
-                            <p style={{marginTop: 6}}>{activeRoom.longAbout || activeRoom.about || ''}</p>
+                            <p className="room-about">{activeRoom.longAbout || activeRoom.about || ''}</p>
 
                             <h4 className="room-subttl">Amenities</h4>
                             <ul className="room-amenities">

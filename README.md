@@ -59,6 +59,8 @@ Este proyecto fue desarrollado con **React + Vite**, por lo que requiere instala
 
  ---
 
+ ### Cómo ejecutar el Backend
+
 1. **Iniciar el servidor**
     ```bash
     npx json-server --watch src/data/db.json --port 4000
