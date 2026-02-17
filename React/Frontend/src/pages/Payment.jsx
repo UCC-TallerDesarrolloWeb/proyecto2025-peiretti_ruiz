@@ -1,5 +1,6 @@
 // src/pages/Payment.jsx
 import {useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import Input from '@components/Input'
 import '@styles/_payment.scss'
 
@@ -26,6 +27,7 @@ const INITIAL_FORM = {
 }
 
 export default function Payment() {
+    const nav = useNavigate()
     const [sum, setSum] = useState(null)
     const [form, setForm] = useState(INITIAL_FORM)
     const [err, setErr] = useState({})
@@ -36,12 +38,12 @@ export default function Payment() {
         (async () => {
             const d = await getSummary()
             if (!d || (d.totalRooms === 0 && d.nights === 0)) {
-                window.location.replace('/booking')
+                nav('/booking')
                 return
             }
             setSum(d)
         })()
-    }, [])
+    }, [nav])
 
     const validate = () => {
         // Validación compartida (sin exigir message)
@@ -79,8 +81,8 @@ export default function Payment() {
         setForm(INITIAL_FORM)
         setErr({})
 
-        // Redirige a home
-        window.location.replace('/')
+        // Redirige a home usando useNavigate
+        nav('/')
     }
 
     if (!sum) return null

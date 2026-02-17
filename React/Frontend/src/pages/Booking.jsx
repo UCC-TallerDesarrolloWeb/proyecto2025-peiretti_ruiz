@@ -91,7 +91,7 @@ export default function Booking() {
                     setQty(newQty)
                 }
             } catch (e) {
-                console.warn('⚠️ No se cargaron datos previos:', e.message)
+                console.warn('Could not load previous data:', e.message)
                 // Sigue normal sin datos previos
             }
         })()
@@ -151,7 +151,7 @@ export default function Booking() {
             await finalize()
             nav('/payment')
         } catch (error) {
-            console.error('❌ Error al proceder al pago:', error)
+            console.error('Error proceeding to payment:', error)
             setDateErr(`Error: ${error.message || 'Could not proceed to payment. Please try again.'}`)
         }
     }
