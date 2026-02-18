@@ -1,29 +1,28 @@
 {
-  "summary": {
-    "item": {
-      "id": 1,
-      "checkin": "",
-      "checkout": "",
-      "nights": 0,
-      "rooms": [],
-      "totalRooms": 0,
-      "total": 0
-    },
-    "id": 1,
-    "checkin": "2025-11-10",
-    "checkout": "2025-11-12",
-    "nights": 2,
-    "rooms": [
-      {
-        "id": "std",
-        "name": "Standard Room",
-        "price": 200,
-        "qty": 2
-      }
-    ],
-    "totalRooms": 2,
-    "total": 800
-  },
+  "summary": [
+    {
+      "id": "1",
+      "checkin": "2026-02-18",
+      "checkout": "2026-02-20",
+      "nights": 2,
+      "rooms": [
+        {
+          "id": "std",
+          "name": "Standard Room",
+          "price": 200,
+          "qty": 1
+        },
+        {
+          "id": "fam",
+          "name": "Family Suite",
+          "price": 400,
+          "qty": 1
+        }
+      ],
+      "totalRooms": 2,
+      "total": 1200
+    }
+  ],
   "rooms": [
     {
       "id": "std",

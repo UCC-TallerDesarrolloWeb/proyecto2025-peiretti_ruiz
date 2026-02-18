@@ -1,5 +1,5 @@
 // src/api/summaryApi.js
-const BASE_URL = "http://localhost:4000/summary";
+const BASE_URL = "http://localhost:4000/summary/1";
 
 const recalc = (sum) => {
     const safeRooms = Array.isArray(sum.rooms) ? sum.rooms : [];
@@ -34,12 +34,19 @@ export async function syncAllRooms(roomsData) {
 }
 
 export async function finalize() {
-    // Recalcula el total antes de finalizar
     const summary = await getSummary();
     const res = await fetch(BASE_URL, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(summary)
+        body: JSON.stringify({
+            id: 1,
+            checkin: summary.checkin,
+            checkout: summary.checkout,
+            nights: summary.nights,
+            rooms: summary.rooms,
+            totalRooms: summary.totalRooms,
+            total: summary.total
+        })
     });
     return res.json();
 }

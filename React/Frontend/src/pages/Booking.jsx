@@ -42,7 +42,6 @@ export default function Booking() {
 
     const closeModal = useCallback(() => {
         setOpen(false)
-        // liberamos después de la animación (simple, sin CSS keyframes)
         setTimeout(() => setActiveRoom(null), 200)
     }, [])
 
@@ -57,21 +56,14 @@ export default function Booking() {
     // Cargar el resumen al montar el componente
     useEffect(() => {
         (async () => {
-            // Mostrar la página rápido, cargar datos en background
             setIsLoading(false)
-            
+
             try {
-                // Con timeout para no bloquear si la API es lenta
-                const controller = new AbortController()
-                const timeoutId = setTimeout(() => controller.abort(), 3000) // 3s max
-                
                 const summary = await Promise.race([
                     getSummary(),
                     new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
                 ])
-                
-                clearTimeout(timeoutId)
-                
+
                 // Si hay datos previos, restaurar filters y qty
                 if (summary?.checkin && summary?.checkout) {
                     setFilters(prev => ({
@@ -92,13 +84,12 @@ export default function Booking() {
                 }
             } catch (e) {
                 console.warn('Could not load previous data:', e.message)
-                // Sigue normal sin datos previos
             }
         })()
     }, [])
 
     const nights = useMemo(
-        () => calcNights(parseISODate(filters.checkin), parseISODate(filters.checkout)),
+        () => Math.round(calcNights(parseISODate(filters.checkin), parseISODate(filters.checkout))),
         [filters.checkin, filters.checkout]
     )
 
@@ -125,7 +116,6 @@ export default function Booking() {
             return
         }
         setDateErr('')
-        // aplicar filtro por tipo
         let r = ALL_ROOMS
         if (filters.type !== 'all') {
             r = r.filter(x => x.id === filters.type)
@@ -146,9 +136,19 @@ export default function Booking() {
             if (qty.sup > 0) roomsData.push({id: 'sup', name: 'Superior Room', price: PRICES.sup, qty: qty.sup})
             if (qty.fam > 0) roomsData.push({id: 'fam', name: 'Family Suite', price: PRICES.fam, qty: qty.fam})
 
-            await setDates({checkin: filters.checkin, checkout: filters.checkout, nights})
+            // 1. Guardar fechas y noches (nights como entero)
+            await setDates({
+                checkin: filters.checkin,
+                checkout: filters.checkout,
+                nights: Math.round(nights)
+            })
+
+            // 2. Guardar habitaciones
             await syncAllRooms(roomsData)
+
+            // 3. Recalcular y persistir todo con PUT
             await finalize()
+
             nav('/payment')
         } catch (error) {
             console.error('Error proceeding to payment:', error)
