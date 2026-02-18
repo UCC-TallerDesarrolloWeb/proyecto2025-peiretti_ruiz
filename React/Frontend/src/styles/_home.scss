@@ -39,29 +39,6 @@
   z-index: 1;
 }
 
-/* Botón principal */
-.hero .btn-primary {
-  position: relative;
-  background: var(--terracota);
-  color: var(--blanco);
-  border: 0;
-  border-radius: 8px;
-  padding: 12px 22px;
-  font-weight: 600;
-  cursor: pointer;
-  z-index: 1;
-  transition: transform 0.1s ease, opacity 0.2s ease;
-}
-
-.hero .btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.hero .btn-primary:active {
-  transform: translateY(0);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .hero {

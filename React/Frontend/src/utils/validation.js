@@ -64,18 +64,6 @@ export const formatCardGroups = (s) => {
   return out
 }
 
-/** Algoritmo Luhn para validación opcional */
-export const isLuhn = s => {
-  const digits = keepDigits(s)
-  let sum = 0, dbl = false
-  for (let i = digits.length - 1; i >= 0; i--) {
-    let d = +digits[i]
-    if (dbl) { d *= 2; if (d > 9) d -= 9 }
-    sum += d; dbl = !dbl
-  }
-  return sum % 10 === 0
-}
-
 // === Booking: fechas ===
 export const validateDates = (checkin, checkout) => {
   const inD = parseISODate(checkin), outD = parseISODate(checkout), today = new Date()

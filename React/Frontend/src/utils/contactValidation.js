@@ -54,6 +54,3 @@ export function validateContact(data = {}, options = {}) {
 
   return { ok: Object.keys(errors).length === 0, errors }
 }
-
-export const buildInternationalPhone = (ccode = '', phone = '') =>
-  keepDigits(`${ccode}${phone}`)

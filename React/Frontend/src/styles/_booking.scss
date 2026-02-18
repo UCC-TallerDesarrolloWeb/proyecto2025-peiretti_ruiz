@@ -476,15 +476,6 @@
   }
 }
 
-/* ===== Modal styles (moved from inline) ===== */
-.room-backdrop[aria-hidden="true"] {
-  display: none;
-}
-
-.room-backdrop[aria-hidden="false"] {
-  display: grid;
-}
-
 .room-overview-desc {
   line-clamp: 2;
   margin: 8px 0 14px;
