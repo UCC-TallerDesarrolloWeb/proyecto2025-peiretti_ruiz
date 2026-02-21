@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <section
             className="hero"
-            style={{backgroundImage: `url(${hero})`}}
+            style={{'--hero-bg': `url(${hero})`}}
         >
             <h1 id="titulo-principal">Welcome to Santorini Blue</h1>
         </section>

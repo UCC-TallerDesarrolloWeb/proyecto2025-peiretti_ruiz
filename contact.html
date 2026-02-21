@@ -2,113 +2,173 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title>Santorini Blue | Contact</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <link rel="icon" href="Imagenes/favicon.png" type="image/x-icon"/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="Imagenes/favicon.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:wght@600&display=swap"
-            rel="stylesheet">
-
-    <link rel="stylesheet" href="css/styles.css"/>
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:wght@600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
-<header class="header">
-    <nav aria-label="Primaria">
-        <ul class="nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="booking.html">Book a room</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html" aria-current="page">Contact</a></li>
-        </ul>
-    </nav>
-</header>
+    <header class="header">
+        <nav aria-label="Primaria">
+            <ul class="nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Book a room</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<section class="imagen-acostada">
-    <img src="Imagenes/imagencontact.png" alt="Private balcony with Aegean Sea view">
-</section>
+    <!-- IMAGEN DE CABECERA -->
+    <section class="imagen-acostada">
+        <img src="Imagenes/imagencontact.png" alt="Private balcony with Aegean Sea view">
+    </section>
 
-<section class="container">
-    <h1 class="titulo">Contact the Resort</h1>
+    <section class="container">
+        <h1 class="titulo">Contact the Resort</h1>
+        <!-- h1 acá (no h2 como en booking). No hay un h1 global de página como en index -->
 
-    <div class="contact-social">
-        <a aria-label="Instagram" href="https://www.instagram.com/p/DPKSImIDDjq/?img_index=4&igsh=ZG9sbXh6eHU5bGVu"
-           class="soc soc-ig" title="Instagram" target="_blank" rel="noopener"></a>
+        <!-- ÍCONOS DE REDES SOCIALES -->
+        <div class="contact-social">
+            <!-- Contenedor de los tres links a redes-->
 
-        <a aria-label="X / Twitter"
-           href="https://x.com/worldipictures/status/1825208695044596010?s=48&t=rODdoYJSeQAQYfGSVWoi_A"
-           class="soc soc-x" title="X" target="_blank" rel="noopener"></a>
+            <a aria-label="Instagram" href="https://www.instagram.com/p/DPKSImIDDjq/?img_index=4&igsh=ZG9sbXh6eHU5bGVu"
+                class="soc soc-ig" title="Instagram" target="_blank" rel="noopener">
+            </a>
+            <!-- <a> vacío que funciona como ícono gracias al CSS
+             El ícono es una imagen de fondo CSS, no un <img> dentro del link.
+    
+             aria-label="Instagram": como el <a> está vacío (sin texto), el lector de pantalla
+             no sabría qué es. aria-label le da el nombre legible.
+             
+             title="Instagram": tooltip que aparece al hovear con el mouse.
+             
+             target="_blank": abre el link en una pestaña nueva.
+             
+             rel="noopener": seguridad. Cuando abro una pestaña con target="_blank",
+             la nueva página podría acceder a la anterior con window.opener. -->
 
-        <a aria-label="Facebook" href="https://www.facebook.com/share/17Pcqp5GcP/?mibextid=wwXIfr"
-           class="soc soc-fb" title="Facebook" target="_blank" rel="noopener"></a>
-    </div>
+            <a aria-label="X / Twitter"
+                href="https://x.com/worldipictures/status/1825208695044596010?s=48&t=rODdoYJSeQAQYfGSVWoi_A"
+                class="soc soc-x" title="X" target="_blank" rel="noopener">
+            </a>
 
-    <div class="mapa">
-        <iframe title="Santorini Blue location"
+            <a aria-label="Facebook" href="https://www.facebook.com/share/17Pcqp5GcP/?mibextid=wwXIfr"
+                class="soc soc-fb" title="Facebook" target="_blank" rel="noopener">
+            </a>
+        </div>
+
+        <!-- MAPA DE GOOGLE -->
+        <div class="mapa">
+            <iframe title="Santorini Blue location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6288.393877956319!2d25.4297!3d36.4624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1499cbf3e1f3df1f%3A0x4c8cb2c7b1b8d9b!2sOia%2C%20Santorini!5e0!3m2!1sen!2sgr!4v0000000000000"
-                width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-
-    <!-- Form -->
-    <form class="contact-form" novalidate>
-        <div class="field">
-            <label for="fname">First name *</label>
-            <input id="fname" name="fname" type="text" placeholder="Write your name" size="30" maxlength="50"/>
+                width="100%" height="360" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
-        <div class="field">
-            <label for="lname">Last name *</label>
-            <input id="lname" name="lname" type="text" placeholder="Write your last name" size="30"
-                   maxlength="50"/>
-        </div>
+        <!-- <iframe>: incrusta otra página web dentro de la mia, osea Google Maps.
+             title="...": accesibilidad, describe el iframe para lectores de pantalla.
+             src="...": la URL del mapa embebido (la generó Google Maps con "compartir > insertar mapa").
 
-        <div class="field">
-            <label for="email">Email *</label>
-            <input id="email" name="email" type="email" placeholder="name@mail.com" size="30" maxlength="60"/>
-        </div>
+             loading="lazy": el mapa no se carga hasta que el usuario scrollea hasta él.
+             
+             referrerpolicy="no-referrer-when-downgrade": práctica de privacidad -->
 
-        <div class="field phone-field">
-            <label for="phone">Phone</label>
-            <div class="phone-input">
-                <select aria-label="Country code" name="ccode" size="1">
-                    <option value="+30">+30</option>
-                    <option value="+54">+54</option>
-                    <option value="+34">+34</option>
-                    <option value="+44">+44</option>
-                    <option value="+1">+1</option>
-                </select>
-                <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="___ ___ ___" size="15"
-                       maxlength="15"/>
+
+        <!-- FORMULARIO DE CONTACTO -->
+        <form class="contact-form" novalidate>
+            <!-- Sin action: el JS intercepta el submit y muestra un modal, no envía a ningún servidor.
+         novalidate: desactiva la validación del navegador, la maneja app.js -->
+
+            <div class="field">
+                <label for="fname">First name *</label>
+                <!-- El * indica que es campo requerido (convención visual, no funcional) -->
+                <input id="fname" name="fname" type="text" placeholder="Write your name" size="30" maxlength="50" />
+            </div>
+
+            <div class="field">
+                <label for="lname">Last name *</label>
+                <input id="lname" name="lname" type="text" placeholder="Write your last name" size="30"
+                    maxlength="50" />
+            </div>
+
+            <div class="field">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" placeholder="name@mail.com" size="30" maxlength="60" />
+                <!-- type="email": en celular muestra teclado con @ y .com.
+                 El JS valida que tenga @ y punto en posición válida con isEmailBasic() -->
+            </div>
+
+            <div class="field phone-field">
+                <label for="phone">Phone</label>
+                <div class="phone-input">
+                    <!-- Contenedor que pone el select de código de país y el input en la misma fila (CSS grid) -->
+
+                    <select aria-label="Country code" name="ccode" size="1">
+                        <!-- No tiene <label> propio (el label de arriba dice "Phone" en general) -->
+                        <option value="+30">+30</option>
+                        <option value="+54">+54</option>
+                        <option value="+34">+34</option>
+                        <option value="+44">+44</option>
+                        <option value="+1">+1</option>
+                    </select>
+
+                    <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="___ ___ ___" size="15"
+                        maxlength="15" />
+                    <!-- type="tel": semántico, indica que es un teléfono.
+                     inputmode="tel": en celular muestra teclado numérico con guiones.
+                     El JS filtra que solo sean dígitos con: phone.value = keepDigits(phone.value) -->
+                </div>
+            </div>
+
+            <div class="field field-full">
+                <!-- field-full: clase que hace que este campo ocupe las 2 columnas del grid (grid-column: 1 / -1) -->
+                <label for="message">Type your message here...</label>
+                <textarea id="message" name="message" rows="6" maxlength="500"
+                    placeholder="Max 500 characters"></textarea>
+                <!-- <textarea>: área de texto multilínea (a diferencia de <input> que es una sola línea).
+                 No tiene validación en el JS (se puede enviar vacío) -->
+            </div>
+
+            <div class="actions">
+                <button class="btn-primary" type="submit">Submit</button>
+                <!-- type="submit": dispara el evento submit del form, que el JS intercepta.
+                 El JS valida los campos y si todo está bien muestra "Message sent!" en el modal -->
+            </div>
+
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <p>Phone Support (24 hours a day)<br>
+                +54 9 351 815 1351</p>
+        </div>
+        <div class="footer-right">
+            <p>© 2025 by Santorini Blue. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="app-modal" class="modal-backdrop" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true">
+            <button class="modal-close" type="button" aria-label="Close">×</button>
+            <h3 id="modal-title">Error</h3>
+            <div id="modal-msg"></div>
+            <div class="modal-actions">
+                <button type="button" class="btn-primary" id="modal-ok">OK</button>
             </div>
         </div>
-
-        <div class="field field-full">
-            <label for="message">Type your message here...</label>
-            <textarea id="message" name="message" rows="6" maxlength="500"
-                      placeholder="Max 500 characters"></textarea>
-        </div>
-
-        <div class="actions">
-            <button class="btn-primary" type="submit">Submit</button>
-        </div>
-    </form>
-</section>
-<footer class="footer">
-    <div class="footer-left">
-        <p>Phone Support (24 hours a day)<br>
-            +54 9 351 815 1351</p>
     </div>
-    <div class="footer-right">
-        <p>© 2025 by Santorini Blue. All rights reserved.</p>
-    </div>
-</footer>
-<script defer src="js/app.js"></script>
+
+    <script defer src="js/app.js"></script>
+    <!-- defer: el JS se ejecuta después de que el HTML esté completamente cargado.
+     El JS busca .contact-form y le agrega validación y el listener del submit -->
 </body>
 
 </html>

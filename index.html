@@ -1,15 +1,21 @@
 <!doctype html>
 <html lang="en">
 
-<head>
+<head> <!-- contiene información SOBRE la página, no contenido visible -->
     <title>Santorini Blue</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Hace que la página sea responsive: se adapta al ancho del dispositivo (celular, tablet). Sin esto en mobile se vería todo chiquito -->
 
     <meta name="author" content="Peiretti Sofia, Ruiz Lola" />
+    <!-- Quiénes hicieron la página. No es visible para el usuario, pero sí para buscadores -->
+
     <meta name="description"
         content="Santorini Blue: an intimate beachfront inn in Santorini. Rooms with a view, a pool, and 24/7 service." />
+    <!-- Descripción que Google muestra abajo del título en los resultados de búsqueda -->
+
     <meta name="keywords" content="Santorini, hotel, inn, resort, rooms, reservation" />
+    <!-- Palabras clave para buscadores. Hoy Google casi no las usa pero es buena practica -->
 
     <!-- Favicon -->
     <link rel="icon" href="Imagenes/favicon.png" type="image/x-icon" />
@@ -21,35 +27,45 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600&display=swap"
         rel="stylesheet">
 
-    <!-- Estilos -->
     <link rel="stylesheet" href="css/styles.css" />
+    <!-- Vincula el archivo CSS propio del proyecto. Tiene que ir después de las fuentes de Google para que pueda usarlas -->
+
 </head>
 
-<body>
+<body> <!-- Todo lo que el usuario ve en la página va acá -->
     <header class="header">
         <nav aria-label="Primaria">
+            <!-- Elemento de navegación. aria-label es accesibilidad: le dice a los lectores de pantalla que esta es la "navegación primaria" -->
+
             <ul class="nav">
                 <li><a href="index.html" aria-current="page">Home</a></li>
+                <!-- Cada <li> es un ítem de la lista. <a href="..."> es el link.
+                     aria-current="page" le dice a los lectores de pantalla que este es el link de la página actual.
+                     En el CSS, ese atributo también lo usa para ponerle color distinto al link activo -->
                 <li><a href="booking.html">Book a room</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+
             </ul>
         </nav>
     </header>
+
     <section class="fondo">
         <h1 id="titulo-principal">Welcome to Santorini Blue</h1>
-
         <footer class="footer">
             <div class="footer-left">
+                <!-- Contenedor del lado izquierdo del footer -->
                 <p>Phone Support (24 hours a day)<br>
                     +54 9 351 815 1351</p>
+                <!-- <br> fuerza un salto de línea dentro del párrafo -->
             </div>
             <div class="footer-right">
+                <!-- Contenedor del lado derecho del footer -->
                 <p>© 2025 by Santorini Blue. All rights reserved.</p>
+                <!-- © es el símbolo de copyright -->
             </div>
         </footer>
     </section>
-
 </body>
 
 </html>

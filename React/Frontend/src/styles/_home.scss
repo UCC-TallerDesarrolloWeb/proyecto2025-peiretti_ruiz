@@ -10,17 +10,19 @@
 
 /* Hero principal */
 .hero {
-  background: center / cover no-repeat;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: var(--azulclaro);
-  position: relative;
-  padding-top: 80px;
-  z-index: 0;
+    background-image: var(--hero-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: var(--azulclaro);
+    position: relative;
+    padding-top: 80px;
+    z-index: 0;
 }
-
 
 .hero h1 {
   position: relative;

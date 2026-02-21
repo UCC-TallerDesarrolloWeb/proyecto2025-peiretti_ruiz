@@ -5,18 +5,13 @@
     <meta charset="UTF-8">
     <title>Santorini Blue | Payment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <link rel="icon" href="Imagenes/favicon.png" type="image/x-icon" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
 
 <body>
@@ -30,18 +25,31 @@
             </ul>
         </nav>
     </header>
+    <!-- Nota: ningún link tiene aria-current="page" porque payment.html
+         no aparece en el menú, es una página a la que solo se llega
+         desde el botón "Continue" de booking.html -->
 
     <main class="pay-wrap">
+        <!-- pay-wrap: le da margen automático y ancho máximo de 1000px centrado -->
+
         <h1 class="titulo titulo-payment">PAYMENT</h1>
         <div class="pay-grid">
-            <!-- Payment form -->
+            <!-- CSS Grid de 2 columnas: formulario a la izquierda, resumen a la derecha -->
+
             <section class="card">
                 <h2>Guest & Payment details</h2>
                 <form id="pay-form" class="pay-form" novalidate>
+                    <!-- id="pay-form": el JS lo busca con getElementById("pay-form") para agregarle validación.
+                     novalidate: desactiva la validación del navegador, la maneja app.js.
+                     Sin action: el JS intercepta el submit, no hay envío real a un servidor -->
+
                     <div class="field">
                         <label for="fname">First name</label>
                         <input id="fname" name="fname" autocomplete="given-name" required>
+                        <!-- autocomplete="given-name": le dice al navegador que este campo es el nombre,
+                             así puede autocompletarlo con los datos guardados del usuario. -->
                     </div>
+
                     <div class="field">
                         <label for="lname">Last name</label>
                         <input id="lname" name="lname" autocomplete="family-name" required>
@@ -51,30 +59,42 @@
                         <label for="email">Email</label>
                         <input id="email" name="email" type="email" autocomplete="email" required>
                     </div>
+
                     <div class="field">
                         <label for="phone">Phone</label>
                         <input id="phone" name="phone" placeholder="Phone" inputmode="numeric" maxlength="12">
+                        <!-- Sin required: el teléfono es opcional igual que en contact.html -->
                     </div>
 
+                    <!-- SEPARADOR VISUAL -->
                     <div class="field-full">
                         <hr>
+                        <!-- field-full: ocupa las 2 columnas del grid. La línea separa visualmente datos del huésped de datos de pago -->
                     </div>
 
+                    <!-- DATOS DE PAGO -->
                     <div class="field">
                         <label for="card">Card number</label>
                         <input id="card" name="card" inputmode="numeric" placeholder="4111 1111 1111 1111"
                             maxlength="19" required>
                     </div>
+
                     <div class="field">
                         <label for="nameoncard">Name on card</label>
                         <input id="nameoncard" name="nameoncard" autocomplete="cc-name" placeholder="Name on card"
                             maxlength="40" required>
+                        <!-- autocomplete="cc-name": autocompletado específico para nombre en tarjeta.
+                             El JS filtra que solo sean letras con keepLetters() -->
                     </div>
 
                     <div class="field">
                         <label for="exp">Expiry (MM/YY)</label>
                         <input id="exp" name="exp" placeholder="MM/YY" maxlength="5" required>
+                        <!-- maxlength="5": exactamente MM/YY son 5 caracteres.
+                             El JS formatea automáticamente: si escribís "1226" lo convierte a "12/26".
+                             La validación isExpiryMMYY() chequea que el mes sea 01-12 -->
                     </div>
+
                     <div class="field">
                         <label for="cvv">CVV</label>
                         <input id="cvv" name="cvv" inputmode="numeric" maxlength="3" required>
@@ -84,14 +104,19 @@
                         <hr>
                     </div>
 
+                    <!-- DIRECCIÓN DE FACTURACIÓN -->
                     <div class="field field-full">
+                        <!-- field-full: ocupa las 2 columnas, igual que el textarea de contact -->
                         <label for="address">Billing address</label>
                         <input id="address" name="address" autocomplete="address-line1" maxlength="40">
+                        <!-- autocomplete="address-line1": primera línea de dirección postal. -->
                     </div>
+
                     <div class="field">
                         <label for="country">Country</label>
                         <select id="country" name="country">
                             <option value="">Select…</option>
+                            <!-- value="": opción vacía por defecto, no tiene valor real -->
                             <option>Argentina</option>
                             <option>Chile</option>
                             <option>Uruguay</option>
@@ -100,6 +125,7 @@
                             <option>Spain</option>
                         </select>
                     </div>
+
                     <div class="field">
                         <label for="zip">ZIP/Postal code</label>
                         <input id="zip" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="4"
@@ -108,26 +134,49 @@
 
                     <div class="field-full">
                         <button type="submit" class="btn-pay">Pay now</button>
+                        <!-- type="submit": dispara el evento submit del form.
+                             El JS valida todo y si está bien muestra "Payment successful!",
+                             borra el localStorage y resetea el form -->
                     </div>
+
                 </form>
-                <p class="muted payment-note">Your card will be charged the total shown. You’ll receive a
-                    confirmation email.</p>
+
+                <p class="muted payment-note">Your card will be charged the total shown. You'll receive a confirmation
+                    email.</p>
+                <!-- Texto informativo fuera del form, no se envía con él -->
+
             </section>
 
-            <!-- Summary -->
             <aside class="resumen">
+
                 <h3 class="resumen-title">Your Reservation</h3>
+
                 <div class="resumen-line"><span>Check-In:</span><span id="sum-in">—</span></div>
                 <div class="resumen-line"><span>Check-Out:</span><span id="sum-out">—</span></div>
                 <div class="resumen-line"><span>Nights:</span><span id="sum-nights">—</span></div>
-                <div id="sum-rooms"></div>
-                <div class="resumen-total"><span>Total</span><span id="sum-total">$0.00</span></div>
-                <a href="booking.html" class="link-like">Modify selection</a>
-            </aside>
+                <!-- El JS llena estos "—" con los datos del localStorage:
+                     document.getElementById("sum-in").textContent = d.checkin
+                     Si no hay datos válidos en localStorage, redirige a booking.html -->
 
+                <div id="sum-rooms"></div>
+                <!-- Contenedor vacío que el JS llena con las habitaciones reservadas.
+                     Genera un .sum-row por cada habitación con nombre, cantidad y precio -->
+
+                <div class="resumen-total">
+                    <span>Total</span>
+                    <span id="sum-total">$0.00</span>
+                    <!-- El JS pone el total formateado: document.getElementById("sum-total").textContent = money(d.total) -->
+                </div>
+
+                <a href="booking.html" class="link-like">Modify selection</a>
+                <!-- Link para volver a booking si el usuario quiere cambiar algo.-->
+
+            </aside>
         </div>
     </main>
+
     <script defer src="js/app.js"></script>
+
 </body>
 
 </html>
