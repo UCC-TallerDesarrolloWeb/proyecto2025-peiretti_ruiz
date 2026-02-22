@@ -10,7 +10,7 @@
 
 /* Hero principal */
 .hero {
-    background-image: var(--hero-bg);
+    background-image: var(--hero-bg); // la imagen se pasa como variable CSS desde el componente Home.jsx
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

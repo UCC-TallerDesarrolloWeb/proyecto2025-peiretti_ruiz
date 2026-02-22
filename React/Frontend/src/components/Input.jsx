@@ -1,5 +1,6 @@
 import {useId} from 'react'
 
+// parametros que recibe 
 export default function Input({
                                   label,
                                   value,
@@ -8,7 +9,7 @@ export default function Input({
                                   placeholder = '',
                                   error,
                                   full = false,
-                                  ...rest
+                                  ...rest // → cualquier otra prop que se le pase (maxLength, autoComplete, etc.)
                               }) {
     const id = useId()
     const classes = [
@@ -16,7 +17,7 @@ export default function Input({
         error ? 'is-error' : '',
         full ? 'field-full' : ''
     ]
-        .filter(Boolean)
+        .filter(Boolean) // elimina los strings vacíos '' del array
         .join(' ')
 
     return (
@@ -28,11 +29,14 @@ export default function Input({
                 onChange={onChange}
                 type={type}
                 placeholder={placeholder}
-                {...rest}
+                {...rest} // sin necesidad de declararlas explícitamente
             />
             <div role="alert" aria-live="polite" className="field-error">
                 {error || ''}
             </div>
+            {/* role="alert" + aria-live="polite" → accesibilidad
+                el lector de pantalla anuncia el error cuando aparece
+                si no hay error muestra string vacío pero mantiene el espacio */}
         </div>
     )
 }

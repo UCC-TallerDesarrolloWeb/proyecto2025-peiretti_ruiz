@@ -3,6 +3,10 @@ import '@styles/_about.scss'
 export default function About() {
     return (
         <>
+            {/* El fragmento <> permite retornar múltiples elementos sin agregar un div extra al DOM
+                imagen-acostada + imagen-about → clases SCSS que hacen que
+                la imagen ocupe el ancho completo rompiendo el container */}
+
             <section className="imagen-acostada imagen-about">
                 <img src="/images/imagenabout.png" alt="Aerial view of Santorini"/>
             </section>

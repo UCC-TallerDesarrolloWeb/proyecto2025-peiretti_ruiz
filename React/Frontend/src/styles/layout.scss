@@ -60,32 +60,6 @@
   padding-bottom: 2px;
 }
 
-/* === FOOTER === */
-.footer {
-  background-color: color-mix(in srgb, var(--arena) 80%, transparent);
-  color: var(--blanco);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.9rem;
-  flex-wrap: wrap;
-}
-
-.footer p {
-  margin: 4px 0;
-}
-
-.footer-left,
-.footer-right {
-  flex: 1;
-}
-
-.footer-right {
-  text-align: right;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .nav {

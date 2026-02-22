@@ -18,6 +18,9 @@ export default function Layout() {
 
             <main className="main-content container">
                 <Outlet/>
+                {/* Outlet es donde aparece la página activa según la ruta
+                ej: si estoy en /booking → aparece Booking.jsx acá
+                container → clase SCSS que limita el ancho y centra */}
             </main>
 
             <Footer/>

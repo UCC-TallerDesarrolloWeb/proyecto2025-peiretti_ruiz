@@ -1,5 +1,8 @@
-// src/pages/Booking.jsx
 import {useEffect, useMemo, useState, useCallback} from 'react'
+// useEffect → ejecuta código cuando el componente monta o cambian dependencias
+// useMemo → memoriza un valor calculado, solo recalcula si cambian sus dependencias
+// useState → maneja estado local del componente
+// useCallback → memoriza una función, evita recrearla en cada render
 import {useNavigate} from 'react-router-dom'
 import {validateDates, calcNights, parseISODate, formatPrice, pluralize} from '@utils/validation'
 import Filters from '@components/Filters'
@@ -27,13 +30,12 @@ export default function Booking() {
     })
 
     const [dateErr, setDateErr] = useState('')
-    const [qty, setQty] = useState({std: 0, sup: 0, fam: 0})
-    const [filteredRooms, setFilteredRooms] = useState(null) // null = mostrar todas
+    const [qty, setQty] = useState({std: 0, sup: 0, fam: 0}) // cantidad de cada tipo de habitación seleccionada
+    const [filteredRooms, setFilteredRooms] = useState(null) // habitaciones que cumplen los filtros, null = no se ha buscado aún
     const [isLoading, setIsLoading] = useState(true)
 
-    // ===== Modal state =====
-    const [open, setOpen] = useState(false)
-    const [activeRoom, setActiveRoom] = useState(null)
+    const [open, setOpen] = useState(false) // controla si el modal de detalles de habitación está abierto o cerrado
+    const [activeRoom, setActiveRoom] = useState(null) // guarda la habitación actualmente seleccionada para mostrar sus detalles en el modal. null = no hay habitación seleccionada
 
     const openModal = useCallback((room) => {
         setActiveRoom(room)
@@ -47,7 +49,7 @@ export default function Booking() {
 
     // ESC para cerrar
     useEffect(() => {
-        if (!open) return
+        if (!open) return // si el modal no está abierto, no hace nada
         const onKey = (e) => e.key === 'Escape' && closeModal()
         window.addEventListener('keydown', onKey)
         return () => window.removeEventListener('keydown', onKey)
@@ -62,9 +64,10 @@ export default function Booking() {
                 const summary = await Promise.race([
                     getSummary(),
                     new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000))
+                    // Si getSummary tarda más de 3 segundos → lanza error "timeout"
                 ])
 
-                // Si hay datos previos, restaurar filters y qty
+                // Si había fechas guardadas en la sesión anterior, las restaura
                 if (summary?.checkin && summary?.checkout) {
                     setFilters(prev => ({
                         ...prev,
@@ -72,7 +75,7 @@ export default function Booking() {
                         checkout: summary.checkout
                     }))
                 }
-                // Restaurar cantidad de habitaciones
+                // Si había habitaciones guardadas, restaura las cantidades
                 if (Array.isArray(summary?.rooms) && summary.rooms.length > 0) {
                     const newQty = {std: 0, sup: 0, fam: 0}
                     summary.rooms.forEach(room => {
@@ -88,13 +91,13 @@ export default function Booking() {
         })()
     }, [])
 
-    const nights = useMemo(
+    const nights = useMemo( // solo recalcula nights si cambian checkin o checkout
         () => Math.round(calcNights(parseISODate(filters.checkin), parseISODate(filters.checkout))),
         [filters.checkin, filters.checkout]
     )
 
     // Total local (para el aside)
-    const total = useMemo(() => {
+    const total = useMemo(() => { // Solo recalcula si cambian qty o nights
         const sum = qty.std * PRICES.std + qty.sup * PRICES.sup + qty.fam * PRICES.fam
         return sum * (nights || 0)
     }, [qty, nights])
@@ -108,8 +111,9 @@ export default function Booking() {
         }
     }, [filters.checkin, filters.checkout])
 
+    // boton Search
     const onSearch = (e) => {
-        e.preventDefault()
+        e.preventDefault() // evita que el formulario recargue la página al hacer submit
         const err = validateDates(filters.checkin, filters.checkout)
         if (err) {
             setDateErr(err)
@@ -118,11 +122,12 @@ export default function Booking() {
         setDateErr('')
         let r = ALL_ROOMS
         if (filters.type !== 'all') {
-            r = r.filter(x => x.id === filters.type)
+            r = r.filter(x => x.id === filters.type) // filtra por tipo si no es "all"
         }
         setFilteredRooms(r)
     }
 
+    // boton Continue
     const continuePayment = async () => {
         const err = validateDates(filters.checkin, filters.checkout)
         if (err) return setDateErr(err)
@@ -179,7 +184,7 @@ export default function Booking() {
                     </div>
                 </form>
 
-                {/* error de fecha visible */}
+                {/* error de fecha visible bajo el formulario */}
                 {dateErr && <p className="field-error">{dateErr}</p>}
 
                 {/* Lista + Resumen */}
@@ -219,7 +224,7 @@ export default function Booking() {
                                                 type="button"
                                                 onClick={() => setQty(s => ({
                                                     ...s,
-                                                    [r.id]: Math.max(0, (s[r.id] || 0) - 1)
+                                                    [r.id]: Math.max(0, (s[r.id] || 0) - 1) // decrementa pero no deja bajar de 0
                                                 }))}
                                                 aria-label={`Decrease ${r.name} quantity`}
                                             >
@@ -256,6 +261,7 @@ export default function Booking() {
                         <div className="resumen-line">
                             <span>Check-In:</span>
                             <span>{filters.checkin || '—'}</span>
+                            {/* || '—' → si no hay fecha muestra un guión */}
                         </div>
                         <div className="resumen-line">
                             <span>Check-Out:</span>
@@ -264,12 +270,12 @@ export default function Booking() {
                         <hr className="resumen-sep"/>
 
                         <ul className="resumen-items">
-                            {Object.entries(qty).filter(([, v]) => v > 0).map(([id, v]) => (
+                            {Object.entries(qty).filter(([, v]) => v > 0).map(([id, v]) => (  // solo las que tienen qty > 0
                                 <li key={id}>
-                  <span>
-                    {pluralize(v, id === 'fam' ? 'Family Suite' : id === 'sup' ? 'Superior Room' : 'Standard Room')}
-                      {nights ? `, ${pluralize(nights, 'night')}` : ''}
-                  </span>
+                                    <span>
+                                        {pluralize(v, id === 'fam' ? 'Family Suite' : id === 'sup' ? 'Superior Room' : 'Standard Room')}
+                                        {nights ? `, ${pluralize(nights, 'night')}` : ''}
+                                    </span>
                                     <button
                                         type="button"
                                         className="line-remove"
@@ -282,6 +288,7 @@ export default function Booking() {
                             ))}
                         </ul>
 
+                        {/* Se oculta si hay al menos una habitación seleccionada */}
                         <p className="resumen-warn" hidden={Object.values(qty).some(v => v > 0)}>
                             Please add rooms
                         </p>
@@ -298,11 +305,11 @@ export default function Booking() {
                 </div>
             </section>
 
-            {/* ===== Modal (Room Details) ===== */}
+            {/* Modal (Room Details) */}
             <div
                 className="room-backdrop"
                 onClick={(e) => {
-                    if (e.target === e.currentTarget) closeModal()
+                    if (e.target === e.currentTarget) closeModal() // solo cierra si se hace click en el backdrop, no en el contenido del modal
                 }}
                 aria-hidden={!open}
             >

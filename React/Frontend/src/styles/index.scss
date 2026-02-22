@@ -1,12 +1,7 @@
-/* Entry de estilos: solo importa parciales */
+/* Entry de estilos */
 @use './layout';
 @use './home';
 @use './about';
 @use './contact';
 @use './booking';
 @use './payment';
-
-/* cuando hagamos las otras páginas, agregamos:
-   @use './booking';
-   @use './payment';
-*/

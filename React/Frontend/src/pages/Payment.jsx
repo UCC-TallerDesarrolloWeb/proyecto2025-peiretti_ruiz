@@ -1,4 +1,3 @@
-// src/pages/Payment.jsx
 import {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import Input from '@components/Input'
@@ -9,6 +8,7 @@ import {
     normalizeMMYY, isExpiredMMYY, formatCardGroups
 } from '@utils/validation'
 
+// Helpers compartidos con Contact
 import {
     sanitizeName,
     sanitizeEmail,
@@ -20,6 +20,7 @@ import {
 // API (json-server)
 import {getSummary, clearSummary} from '@api/summaryApi'
 
+// Estado inicial del formulario separado como constante, permite resetearlo facilmente al enviar el formulario exitosamente. Además, mejora la legibilidad al tener toda la estructura del form en un solo lugar.
 const INITIAL_FORM = {
     fname: '', lname: '', email: '', phone: '',
     card: '', namec: '', exp: '', cvv: '',
@@ -29,6 +30,8 @@ const INITIAL_FORM = {
 export default function Payment() {
     const nav = useNavigate()
     const [sum, setSum] = useState(null)
+    // sum → resumen de la reserva cargado desde json-server
+    // null mientras carga, si no hay reserva redirige a Booking
     const [form, setForm] = useState(INITIAL_FORM)
     const [err, setErr] = useState({})
     const set = (k, v) => setForm(s => ({...s, [k]: v}))
@@ -51,10 +54,10 @@ export default function Payment() {
             {fname: form.fname, lname: form.lname, email: form.email, phone: form.phone},
             {requireMessage: false}
         )
-        const e = {...sharedErrs}
+        const e = {...sharedErrs} // copia los errores compartidos
 
-        const cn = keepDigits(form.card)
-        if (!cn || cn.length < 13 || cn.length > 19) e.card = 'Invalid card number'
+        const cn = keepDigits(form.card) // valida card number
+        if (!cn || cn.length !== 16) e.card = 'Invalid card number'
 
         if (!sanitizeName(form.namec)) e.namec = 'Letters only'
 
@@ -68,6 +71,7 @@ export default function Payment() {
         if (form.zip && !isDigits(form.zip)) e.zip = 'Digits only'
 
         setErr(e)
+        // Devuelve true si no hay errores → el submit puede continuar
         return Object.keys(e).length === 0
     }
 
@@ -172,7 +176,7 @@ export default function Payment() {
                     <div className="resumen-line"><span>Nights:</span><span>{sum.nights}</span></div>
 
                     <div id="sum-rooms">
-                        {sum.rooms.map(r => (
+                        {sum.rooms.map(r => ( // mapea cada habitación seleccionada en el resumen
                             <div className="sum-row" key={r.id}>
                                 <span>{r.qty} {r.name}</span>
                                 <strong>{formatPrice(r.qty * r.price * sum.nights)}</strong>

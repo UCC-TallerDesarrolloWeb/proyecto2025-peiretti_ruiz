@@ -8,8 +8,6 @@
   --notanblanco: #f6f5f3;
 }
 
-/* bloque superior con imagen acostada ya lo tenés en global */
-
 .contact-social {
   display: flex;
   justify-content: center;
@@ -18,8 +16,8 @@
 }
 
 .soc {
-  width: 58px;
-  height: 58px;
+  width: 42px;
+  height: 42px;
   display: inline-block;
   border-radius: 0;
   transition: background-size .15s ease, transform .15s ease;
@@ -38,15 +36,6 @@
   outline: 2px solid var(--arena);
   outline-offset: 2px;
 }
-
-/* usa assets en /public/images */
-/* stylelint-disable-next-line */
-
-
-
-
-
-
 
 .mapa {
   max-width: 900px;

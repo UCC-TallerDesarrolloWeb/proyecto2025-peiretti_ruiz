@@ -2,19 +2,12 @@
   "summary": [
     {
       "id": "1",
-      "checkin": "2026-02-23",
-      "checkout": "2026-02-25",
-      "nights": 2,
-      "rooms": [
-        {
-          "id": "std",
-          "name": "Standard Room",
-          "price": 200,
-          "qty": 1
-        }
-      ],
-      "totalRooms": 1,
-      "total": 400
+      "checkin": "",
+      "checkout": "",
+      "nights": 0,
+      "rooms": [],
+      "totalRooms": 0,
+      "total": 0
     }
   ],
   "rooms": [

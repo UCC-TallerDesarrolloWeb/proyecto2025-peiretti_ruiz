@@ -1,12 +1,13 @@
 import {useId} from "react";
+// useId → genera IDs únicos y accesibles automáticamente
 
 /**
- * Props:
- *  - filters: { checkin, checkout, type, priceMin?, priceMax? }
- *  - onChange: (nextFilters) => void
+ * Parametros que recibe
+ *  - filters → objeto con { checkin, checkout, type } que vive en Booking.jsx
+ *  - onChange → función para actualizar los filtros en Booking.jsx
  *
- * No hace submit; el parent maneja el botón "Search".
- * Renderiza con las mismas clases que tu CSS (_booking.scss).
+ * Este componente NO tiene estado propio, es completamente controlado
+ * por Booking.jsx a través de props. Solo se encarga de mostrar los campos
  */
 
 export default function Filters({filters, onChange}) {
@@ -27,7 +28,8 @@ export default function Filters({filters, onChange}) {
                         type="date"
                         value={filters.checkin}
                         onChange={(e) => set("checkin", e.target.value)}
-                        min={new Date().toISOString().slice(0, 10)}
+                        min={new Date().toISOString().slice(0, 10)} // slice(0,10)   → "2026-02-22"
+                        // min → no permite seleccionar fechas anteriores a hoy, 
                     />
                     <span className="dash">—</span>
                     <input
@@ -36,6 +38,7 @@ export default function Filters({filters, onChange}) {
                         value={filters.checkout}
                         onChange={(e) => set("checkout", e.target.value)}
                         min={filters.checkin || new Date().toISOString().slice(0, 10)}
+                        // min del checkout → si hay checkin elegido, no puede ser menor a ese, sino no puede ser menor a hoy
                     />
                 </div>
                 {/* reserva espacio p/ error (alineación) */}

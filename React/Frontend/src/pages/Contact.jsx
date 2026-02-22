@@ -9,6 +9,7 @@ import {
     CONTACT_LIMITS,
 } from '@utils/contactValidation'
 
+// Un solo objeto agrupa todos los campos → un solo useState
 export default function Contact() {
     const [form, setForm] = useState({
         fname: '',
@@ -19,19 +20,27 @@ export default function Contact() {
         message: '',
     })
 
+    // Objeto que guarda los mensajes de error por campo
+    // Empieza vacío → ningún error visible al cargar la página
     const [err, setErr] = useState({})
 
     const set = (k, v) => setForm((s) => ({...s, [k]: v}))
+    //           │  │              │      │        │
+    //           │  │              │      │        └── sobreescribe solo esa key
+    //           │  │              │      └── copia todo el estado anterior
+    //           │  │              └── s = estado actual del form
+    //           │  └── v = valor nuevo  ej: "Juan"
+    //           └── k = key del campo   ej: "fname"
 
     const submit = (e) => {
         e.preventDefault()
         const {ok, errors} = validateContact(form)
-        setErr(errors)
-        if (!ok) return
+        setErr(errors) // muestra los errores en pantalla
+        if (!ok) return // si hay errores, no se envía el formulario
 
         alert('Message sent successfully! We will contact you soon.')
         setForm({fname: '', lname: '', email: '', ccode: '+30', phone: '', message: ''})
-        setErr({})
+        setErr({}) // limpia los errores al enviar el formulario exitosamente
     }
 
     return (
@@ -43,16 +52,18 @@ export default function Contact() {
             <section className="container">
                 <h1 className="titulo">Contact the Resort</h1>
 
-                {/* Redes sociales */}
+                {/* Redes sociales 
+                    target="_blank" → abre en pestaña nueva
+                    rel="noopener"  → seguridad: evita que la nueva pestaña pueda acceder a window.opener de esta página */}
                 <div className="contact-social">
                     <a href="https://www.instagram.com/..." aria-label="Instagram" target="_blank" rel="noopener">
-                        <img src="/images/instaLogo.png" alt="Instagram" className="soc" />
+                        <img src="/images/instaLogo.png" alt="Instagram" className="soc"/>
                     </a>
                     <a href="https://x.com/..." aria-label="Twitter" target="_blank" rel="noopener">
-                        <img src="/images/twitLogo.png" alt="Twitter" className="soc" />
+                        <img src="/images/twitLogo.png" alt="Twitter" className="soc"/>
                     </a>
                     <a href="https://www.facebook.com/..." aria-label="Facebook" target="_blank" rel="noopener">
-                        <img src="/images/faceLogo.png" alt="Facebook" className="soc" />
+                        <img src="/images/faceLogo.png" alt="Facebook" className="soc"/>
                     </a>
                 </div>
 
@@ -67,8 +78,17 @@ export default function Contact() {
                     />
                 </div>
 
-                {/* Formulario con validación */}
+                {/* Formulario con validación 
+                    noValidate → desactiva la validación nativa del navegador               
+                */}
                 <form className="contact-form" noValidate onSubmit={submit}>
+
+                    {/* Cada campo sigue el mismo patrón:
+                        1. onChange sanitiza el valor antes de guardarlo en estado
+                        2. el div.field-error muestra el error si existe
+                        3. role="alert" + aria-live="polite" → accesibilidad:
+                           el lector de pantalla anuncia el error al aparecer */}
+
                     <div className="field">
                         <label htmlFor="fname">First name *</label>
                         <input
@@ -136,7 +156,7 @@ export default function Contact() {
                                 id="phone"
                                 name="phone"
                                 type="tel"
-                                inputMode="tel"
+                                inputMode="tel" // teclado numérico en móvil
                                 placeholder="___ ___ ___"
                                 maxLength={CONTACT_LIMITS.phoneMax}
                                 value={form.phone}
@@ -148,6 +168,7 @@ export default function Contact() {
                         </div>
                     </div>
 
+                    {/* field-full → clase SCSS que hace que ocupe las 2 columnas del grid */}
                     <div className="field field-full">
                         <label htmlFor="message">Type your message here...</label>
                         <textarea

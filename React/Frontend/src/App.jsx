@@ -1,6 +1,6 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Layout from '@components/Layout'
-import {lazy} from 'react'
+import {BrowserRouter, Routes, Route} from 'react-router-dom' // BrowserRouter es el componente que envuelve toda la aplicación y permite usar las rutas. Routes es el componente que contiene todas las rutas. Route es el componente que define una ruta específica.
+import Layout from '@components/Layout' // Layout es el "esqueleto" de la página: header + footer + <Outlet/>
+import {lazy} from 'react'  // lazy es una función que permite cargar un componente de forma asíncrona, es decir, solo cuando se necesite. Esto mejora el rendimiento 
 
 const Home = lazy(() => import('@pages/Home'))
 const Booking = lazy(() => import('@pages/Booking'))
