@@ -34,7 +34,7 @@
     <section class="imagen-acostada">
         <img src="Imagenes/imagenbook.png" alt="View of Santorini Blue resort">
         <!-- alt="..." es obligatorio para accesibilidad: lo lee un lector de pantalla si el usuario es ciego,
-             y también lo muestra el navegador si la imagen no carga -->
+         y también lo muestra el navegador si la imagen no carga -->
     </section>
 
     <!-- FORMULARIO DE BÚSQUEDA -->
@@ -43,8 +43,8 @@
 
         <form class="book-form" action="#" novalidate>
             <!-- <form>: contenedor del formulario.
-             action="#": a dónde se envían los datos. El "#" significa "a ningún lado" (lo maneja JavaScript).
-             novalidate: desactiva la validación automática del navegador para usar la propia (la que está en app.js) -->
+         action="#": a dónde se envían los datos. El "#" significa "a ningún lado" (lo maneja JavaScript).
+         novalidate: desactiva la validación automática del navegador para usar la propia (la que está en app.js) -->
 
             <div class="campo">
                 <label for="checkin">Check-in and check-out</label>
@@ -64,7 +64,7 @@
                 <select id="guests" name="guests"> <!-- <select>: menú desplegable. El usuario elige una opción -->
                     <option value="all" selected>Show all rooms</option>
                     <!-- value="all": el valor que se envía/lee en JS cuando esta opción está seleccionada.
-                         selected: opción que aparece seleccionada por defecto al cargar la página -->
+                     selected: opción que aparece seleccionada por defecto al cargar la página -->
                     <option value="1">For room · 1 guest</option>
                     <option value="2">For room · 2 guests</option>
                     <option value="3-5">For room · 3–5 guests</option>
@@ -104,23 +104,25 @@
 
                         <a href="#" class="room-more" data-action="room-details" data-room="std">More details</a>
                         <!-- Link que abre el modal de detalles.
-                             href="#": no navega a ningún lado (el JS previene el comportamiento por defecto).
-                             data-action="room-details": el JS escucha clicks y busca este atributo para saber qué hacer.
-                             data-room="std": identifica cuál habitación mostrar (std/sup/fam), lo usa openRoomDetails() -->
+                         href="#": no navega a ningún lado (el JS previene el comportamiento por defecto).
+                         data-action="room-details": el JS escucha clicks y busca este atributo para saber qué hacer.
+                         data-room="std": identifica cuál habitación mostrar (std/sup/fam), lo usa openRoomDetails() -->
 
                         <div class="room-cant">
                             <label class="qty-label" for="std_qty">Add rooms</label>
 
                             <div class="counter nojs">
                                 <button type="button" class="qty-btn" data-action="dec" data-target="std_qty"
-                                    aria-label="Decrease Standard rooms">−</button>
+                                    aria-label="Decrease Standard rooms">−
+                                </button>
                                 <input id="std_qty" type="number" name="std_qty" min="0" max="9" value="0"
                                     inputmode="numeric" size="2" maxlength="1" aria-labelledby="std_qty_label">
                                 <!-- type="number": input numérico. min/max: límites. value="0": valor inicial.
-                                     inputmode="numeric": en celular muestra teclado numérico. -->
+                                 inputmode="numeric": en celular muestra teclado numérico. -->
 
                                 <button type="button" class="qty-btn" data-action="inc" data-target="std_qty"
-                                    aria-label="Increase Standard rooms">+</button>
+                                    aria-label="Increase Standard rooms">+
+                                </button>
                             </div>
                         </div>
 
@@ -144,11 +146,13 @@
                             <label class="qty-label" for="sup_qty">Add rooms</label>
                             <div class="counter nojs">
                                 <button type="button" class="qty-btn" data-action="dec" data-target="sup_qty"
-                                    aria-label="Decrease Superior rooms">−</button>
+                                    aria-label="Decrease Superior rooms">−
+                                </button>
                                 <input id="sup_qty" type="number" name="sup_qty" min="0" max="9" value="0"
                                     inputmode="numeric" size="2" maxlength="1">
                                 <button type="button" class="qty-btn" data-action="inc" data-target="sup_qty"
-                                    aria-label="Increase Superior rooms">+</button>
+                                    aria-label="Increase Superior rooms">+
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -171,11 +175,13 @@
                             <label class="qty-label" for="fam_qty">Add rooms</label>
                             <div class="counter nojs">
                                 <button type="button" class="qty-btn" data-action="dec" data-target="fam_qty"
-                                    aria-label="Decrease Family suites">−</button>
+                                    aria-label="Decrease Family suites">−
+                                </button>
                                 <input id="fam_qty" type="number" name="fam_qty" min="0" max="9" value="0"
                                     inputmode="numeric" size="2" maxlength="1">
                                 <button type="button" class="qty-btn" data-action="inc" data-target="fam_qty"
-                                    aria-label="Increase Family suites">+</button>
+                                    aria-label="Increase Family suites">+
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -206,7 +212,7 @@
 
                 <ul class="resumen-items" id="summary-items"></ul>
                 <!-- Lista vacía que el JS llena dinámicamente con las habitaciones seleccionadas.
-                     id="summary-items" para que el JS la encuentre con getElementById -->
+                 id="summary-items" para que el JS la encuentre con getElementById -->
 
                 <p class="resumen-warn">Please add rooms</p>
                 <hr class="resumen-sep">
@@ -218,7 +224,7 @@
 
                 <button type="button" class="btn-payment">Continue</button>
                 <!-- type="button": no dispara el submit del form.
-                     El JS le agrega el listener: contBtn.addEventListener("click", handleContinue) -->
+                 El JS le agrega el listener: contBtn.addEventListener("click", handleContinue) -->
             </aside>
 
         </div>
@@ -227,13 +233,13 @@
     <!-- MODAL DE ERROR -->
     <div id="app-modal" class="modal-backdrop" aria-hidden="true">
         <!-- Modal que muestra mensajes de error o confirmación.
-         aria-hidden="true": oculto para lectores de pantalla mientras no está activo.
-         Está oculto visualmente con display:none en el CSS-->
+     aria-hidden="true": oculto para lectores de pantalla mientras no está activo.
+     Está oculto visualmente con display:none en el CSS-->
 
         <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-msg">
             <!-- role="dialog": le dice al navegador/lector que esto es un diálogo emergente.
-             aria-modal="true": el lector de pantalla sabe que el resto de la página está bloqueada.
-             aria-labelledby/aria-describedby: conecta el diálogo con su título y mensaje para accesibilidad -->
+         aria-modal="true": el lector de pantalla sabe que el resto de la página está bloqueada.
+         aria-labelledby/aria-describedby: conecta el diálogo con su título y mensaje para accesibilidad -->
 
             <button class="modal-close" type="button" aria-label="Close">×</button>
 
@@ -284,9 +290,9 @@
 
     <script src="js/app.js" defer></script>
     <!-- Carga el archivo JavaScript.
-         defer: el script se descarga en paralelo pero se ejecuta DESPUÉS de que el HTML terminó de parsearse.
-         Esto es importante porque el JS busca elementos del DOM (como getElementById),
-         y si se ejecutara antes de que el HTML esté listo, no encontraría nada -->
+     defer: el script se descarga en paralelo pero se ejecuta DESPUÉS de que el HTML terminó de parsearse.
+     Esto es importante porque el JS busca elementos del DOM (como getElementById),
+     y si se ejecutara antes de que el HTML esté listo, no encontraría nada -->
 
 </body>
 

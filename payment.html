@@ -26,8 +26,8 @@
         </nav>
     </header>
     <!-- Nota: ningún link tiene aria-current="page" porque payment.html
-         no aparece en el menú, es una página a la que solo se llega
-         desde el botón "Continue" de booking.html -->
+     no aparece en el menú, es una página a la que solo se llega
+     desde el botón "Continue" de booking.html -->
 
     <main class="pay-wrap">
         <!-- pay-wrap: le da margen automático y ancho máximo de 1000px centrado -->
@@ -40,14 +40,14 @@
                 <h2>Guest & Payment details</h2>
                 <form id="pay-form" class="pay-form" novalidate>
                     <!-- id="pay-form": el JS lo busca con getElementById("pay-form") para agregarle validación.
-                     novalidate: desactiva la validación del navegador, la maneja app.js.
-                     Sin action: el JS intercepta el submit, no hay envío real a un servidor -->
+                 novalidate: desactiva la validación del navegador, la maneja app.js.
+                 Sin action: el JS intercepta el submit, no hay envío real a un servidor -->
 
                     <div class="field">
                         <label for="fname">First name</label>
                         <input id="fname" name="fname" autocomplete="given-name" required>
                         <!-- autocomplete="given-name": le dice al navegador que este campo es el nombre,
-                             así puede autocompletarlo con los datos guardados del usuario. -->
+                         así puede autocompletarlo con los datos guardados del usuario. -->
                     </div>
 
                     <div class="field">
@@ -84,15 +84,15 @@
                         <input id="nameoncard" name="nameoncard" autocomplete="cc-name" placeholder="Name on card"
                             maxlength="40" required>
                         <!-- autocomplete="cc-name": autocompletado específico para nombre en tarjeta.
-                             El JS filtra que solo sean letras con keepLetters() -->
+                         El JS filtra que solo sean letras con keepLetters() -->
                     </div>
 
                     <div class="field">
                         <label for="exp">Expiry (MM/YY)</label>
                         <input id="exp" name="exp" placeholder="MM/YY" maxlength="5" required>
                         <!-- maxlength="5": exactamente MM/YY son 5 caracteres.
-                             El JS formatea automáticamente: si escribís "1226" lo convierte a "12/26".
-                             La validación isExpiryMMYY() chequea que el mes sea 01-12 -->
+                         El JS formatea automáticamente: si escribís "1226" lo convierte a "12/26".
+                         La validación isExpiryMMYY() chequea que el mes sea 01-12 -->
                     </div>
 
                     <div class="field">
@@ -135,8 +135,8 @@
                     <div class="field-full">
                         <button type="submit" class="btn-pay">Pay now</button>
                         <!-- type="submit": dispara el evento submit del form.
-                             El JS valida todo y si está bien muestra "Payment successful!",
-                             borra el localStorage y resetea el form -->
+                         El JS valida todo y si está bien muestra "Payment successful!",
+                         borra el localStorage y resetea el form -->
                     </div>
 
                 </form>
@@ -155,12 +155,12 @@
                 <div class="resumen-line"><span>Check-Out:</span><span id="sum-out">—</span></div>
                 <div class="resumen-line"><span>Nights:</span><span id="sum-nights">—</span></div>
                 <!-- El JS llena estos "—" con los datos del localStorage:
-                     document.getElementById("sum-in").textContent = d.checkin
-                     Si no hay datos válidos en localStorage, redirige a booking.html -->
+                 document.getElementById("sum-in").textContent = d.checkin
+                 Si no hay datos válidos en localStorage, redirige a booking.html -->
 
                 <div id="sum-rooms"></div>
                 <!-- Contenedor vacío que el JS llena con las habitaciones reservadas.
-                     Genera un .sum-row por cada habitación con nombre, cantidad y precio -->
+                 Genera un .sum-row por cada habitación con nombre, cantidad y precio -->
 
                 <div class="resumen-total">
                     <span>Total</span>
@@ -175,8 +175,18 @@
         </div>
     </main>
 
-    <script defer src="js/app.js"></script>
+    <div id="app-modal" class="modal-backdrop" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true">
+            <button class="modal-close" type="button" aria-label="Close">×</button>
+            <h3 id="modal-title">Error</h3>
+            <div id="modal-msg"></div>
+            <div class="modal-actions">
+                <button type="button" class="btn-primary" id="modal-ok">OK</button>
+            </div>
+        </div>
+    </div>
 
+    <script defer src="js/app.js"></script>
 </body>
 
 </html>

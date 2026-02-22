@@ -7,8 +7,10 @@
  * y si no lo encuentra, no hace nada (if (!f) return).
  */
 
+// UTILIDADES GRALES 
+
 const formatPrice = n =>
-    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(+n || 0);
+    new Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(+n || 0);
 // Intl.NumberFormat: API del navegador para formatear números según región.
 // "en-US" + currency: convierte 200 → "$200.00"
 // +n convierte string a número. || 0 evita NaN si n es undefined
@@ -65,6 +67,8 @@ const isExpiryMMYY = s => {
     return m >= 1 && m <= 12; // Mes válido entre 01 y 12
 };
 
+// FUNCIONES DE MODALES
+
 const bindModalHandlers = (overlay) => {
     if (!overlay || overlay.dataset.bound) return;
     // overlay.dataset.bound: si ya se le asignaron los listeners, no los repite.
@@ -93,12 +97,12 @@ const bindModalHandlers = (overlay) => {
     overlay.dataset.bound = "1"; // Marca que los listeners ya fueron asignados
 };
 
+// busca el modal en el HTML, le agrega los listeners y lo devuelve
 const ensureModal = () => {
     const overlay = document.getElementById("app-modal");
     bindModalHandlers(overlay);
     return overlay;
 };
-// busca el modal en el HTML, le agrega los listeners y lo devuelve
 
 const showModal = (msg, t = "Error") => {
     // t = "Error" es el valor por defecto del título 
@@ -118,10 +122,12 @@ const showErrorAndClear = (el, msg) => {
     el.value = "";       // limpia el input con error
     el.focus();          // pone el cursor en ese input
     el.classList.add("is-error"); // agrega borde rojo 
-    el.addEventListener("input", () => el.classList.remove("is-error"), { once: true });
+    el.addEventListener("input", () => el.classList.remove("is-error"), {once: true});
     // En cuanto el usuario empieza a escribir, el borde rojo desaparece.
     showModal(msg);
 };
+
+// VALIDACIONES
 
 const validateDates = (inEl, outEl) => {
     const inD = parseISODate(inEl.value);
@@ -132,7 +138,7 @@ const validateDates = (inEl, outEl) => {
     if (!inD || !outD) return showErrorAndClear(outEl, "Complete Check-in and Check-out.");
     if (inD < today) return showErrorAndClear(inEl, "The check-in date cannot be earlier than today.");
     if (outD <= inD) return showErrorAndClear(outEl, "The check-out date must be after the check-in date.");
-    return true; 
+    return true;
 };
 
 const validateRoomQty = i => {
@@ -150,6 +156,7 @@ const computeTotal = (q, n) => (q.std * 200 + q.sup * 300 + q.fam * 400) * (n ||
 // Precio por noche × cantidad de habitaciones × noches
 // q = { std: 1, sup: 0, fam: 2 }, n = 3 noches
 
+// muestra u oculta una card de habitación según el filtro de huéspedes
 const setVisibilityByQtyName = (qtyName, visible) => {
     const input = document.querySelector(`input[name="${qtyName}"]`);
     const card = input?.closest(".room-card");
@@ -162,13 +169,13 @@ const setVisibilityByQtyName = (qtyName, visible) => {
     if (input) {
         input.disabled = !visible;
         // si la card está oculta, el input queda bloqueado
-        if (!visible && input.value !== "0") { 
+        if (!visible && input.value !== "0") {
             input.value = "0"; // resetea el valor a 0 si era necesario
-            input.dispatchEvent(new Event("input", { bubbles: true }));
+            input.dispatchEvent(new Event("input", {bubbles: true}));
             // Esto hace que updateSummary se ejecute y actualice el total.
         }
     }
-}; // muestra u oculta una card de habitación según el filtro de huéspedes
+};
 
 const filterRoomsByGuests = () => {
     const sel = document.getElementById("guests");
@@ -212,8 +219,6 @@ document.addEventListener("click", (e) => {
     stepQty(name, btn.dataset.action === "inc" ? 1 : -1);
 });
 
-// --------------------------------------------------------------------------------
-
 const updateSummary = (inEl, outEl) => {
     const inD = parseISODate(inEl.value);
     const outD = parseISODate(outEl.value);
@@ -244,20 +249,20 @@ const updateSummary = (inEl, outEl) => {
         </li>`).join(""); // join("") une todos los strings sin separador
 
     list.innerHTML = items;
-    document.querySelector(".resumen-warn").hidden = !!items;
-    // items convierte el string a boolean: si items es "" (vacío) → false → muestra la advertencia
+    document.querySelector(".resumen-warn").hidden = items.length > 0;
+    // si items es "" → false → muestra la advertencia
 
     // Listener para los botones × de eliminar habitación del resumen
     list.onclick = e => {
         const id = e.target.dataset.id; // "std", "sup" o "fam"
-        if (!id) return;
+        if (!id) return; // si el click no fue en un botón con data-id, ignora
         const input = document.querySelector(`[name="${id}_qty"]`);
         input.value = "0";
-        input.dispatchEvent(new Event("input", { bubbles: true }));
         updateSummary(inEl, outEl);
     };
 };
 
+// funcion ejecutada cuando el usuario toca el boton Search
 const handleSubmit = e => {
     e.preventDefault(); // evita que el form recargue la página
     const inEl = document.getElementById("checkin");
@@ -267,14 +272,12 @@ const handleSubmit = e => {
     updateSummary(inEl, outEl);
 };
 
+// Si el usuario vuelve de payment.html con "Modify selection", restaura las fechas y cantidades que tenía antes.
 const restoreFromCheckout = () => {
-    // Si el usuario vuelve de payment.html con "Modify selection",
-    // restaura las fechas y cantidades que tenía antes.
     let d;
-    try {
+    try { // try/catch: si el JSON está corrupto, no tira error.
         d = JSON.parse(localStorage.getItem("sb_checkout") || "{}");
         // localStorage solo guarda strings. JSON.parse convierte el string de vuelta a objeto.
-        // try/catch: si el JSON está corrupto (poco probable pero posible), no tira error.
     } catch {
         d = {};
     }
@@ -288,12 +291,12 @@ const restoreFromCheckout = () => {
     const stdEl = document.querySelector('input[name="std_qty"]');
     const supEl = document.querySelector('input[name="sup_qty"]');
     const famEl = document.querySelector('input[name="fam_qty"]');
-    if (stdEl) stdEl.value = "0";
+    if (stdEl) stdEl.value = "0"; // antes de restaurar los valores guardados, limpia todo
     if (supEl) supEl.value = "0";
     if (famEl) famEl.value = "0";
 
     (d.rooms || []).forEach(r => {
-        const map = { std: stdEl, sup: supEl, fam: famEl };
+        const map = {std: stdEl, sup: supEl, fam: famEl};
         const el = map[r.id]; // busca el input correspondiente a esa habitación
         if (el) el.value = String(r.qty || 0);
     });
@@ -301,27 +304,23 @@ const restoreFromCheckout = () => {
     // Restaura el select de huéspedes según qué tipos de habitación había
     const guests = document.getElementById("guests");
     if (guests) {
-        const hasStd = (d.rooms || []).some(r => r.id === "std");
-        // .some() devuelve true si AL MENOS UN elemento cumple la condición
+        const hasStd = (d.rooms || []).some(r => r.id === "std"); // .some() devuelve true si AL MENOS UN elemento cumple la condición
         const hasSup = (d.rooms || []).some(r => r.id === "sup");
         const hasFam = (d.rooms || []).some(r => r.id === "fam");
         guests.value =
             hasStd && !hasSup && !hasFam ? "1" :
-            !hasStd && hasSup && !hasFam ? "2" :
-            !hasStd && !hasSup && hasFam ? "3-5" : "all";
-        // Ternario encadenado: si solo hay std → "1", solo sup → "2", solo fam → "3-5", cualquier otra combo → "all"
+                !hasStd && hasSup && !hasFam ? "2" :
+                    !hasStd && !hasSup && hasFam ? "3-5" : "all";
         filterRoomsByGuests();
     }
-
     updateSummary(inEl, outEl);
 };
 
-// Punto de entrada principal para booking.html
+// Punto de entrada principal para booking.html Se ejecuta una sola vez cuando el HTML termina de cargarse.
 document.addEventListener("DOMContentLoaded", () => {
-    // DOMContentLoaded: se dispara cuando el HTML terminó de parsearse (no espera imágenes ni CSS).
-    // Es similar a lo que hace defer en el <script>, pero permite tener lógica más explícita.
+    // DOMContentLoaded: se dispara cuando el HTML terminó de parsearse (leer y procesarse).
     const form = document.querySelector(".book-form");
-    if (!form) return; // no estamos en booking.html, termina
+    if (!form) return; // si no encuentra el formulario, no estamos en booking.html, termina
 
     const inEl = document.getElementById("checkin");
     const outEl = document.getElementById("checkout");
@@ -335,10 +334,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", handleSubmit);
 
-    const contBtn = document.querySelector(".resumen .btn-payment");
+    const contBtn = document.querySelector(".resumen .btn-payment"); // busca boton continue
     contBtn?.addEventListener("click", handleContinue);
 
-    restoreFromCheckout();
+    restoreFromCheckout(); // Se ejecuta una sola vez al cargar la página. Si hay datos en localStorage los restaura.
 });
 
 const handleContinue = () => {
@@ -364,10 +363,9 @@ const handleContinue = () => {
     const data = {
         checkin, checkout, nights,
         rooms: [
-            ...(qty.std ? [{ id: "std", name: "Standard Room", qty: qty.std, price: 200 }] : []),
-            ...(qty.sup ? [{ id: "sup", name: "Superior Room", qty: qty.sup, price: 300 }] : []),
-            ...(qty.fam ? [{ id: "fam", name: "Family Suite", qty: qty.fam, price: 400 }] : []),
-            // ...(condicion ? [valor] : []) es el patrón para agregar condicionalmente a un array.
+            ...(qty.std ? [{id: "std", name: "Standard Room", qty: qty.std, price: 200}] : []),
+            ...(qty.sup ? [{id: "sup", name: "Superior Room", qty: qty.sup, price: 300}] : []),
+            ...(qty.fam ? [{id: "fam", name: "Family Suite", qty: qty.fam, price: 400}] : []),
             // Si qty.std es 0 (falsy), agrega [] (nada). Si es > 0, agrega el objeto.
         ],
         totalRooms,
@@ -378,19 +376,35 @@ const handleContinue = () => {
     // JSON.stringify convierte el objeto a string para guardarlo en localStorage.
     // localStorage solo puede guardar strings.
 
-    window.location.href = "payment.html"; // navega a la página de pago
+    window.location.href = "payment.html";
 };
 
 
-/* =============================================
-   ROOM DETAILS MODAL
-   ============================================= */
+// ROOM DETAILS (modal)
 
 // Objeto con los datos de cada habitación. Clave = id usado en data-room del HTML.
 const ROOMS = {
-    std: { t: "Standard Room", c: "1 adult max", s: "30 m²", a: ["Balcony", "AC", "Smart TV", "Mini-fridge"], img: "Imagenes/standardRoom.png" },
-    sup: { t: "Superior Room", c: "2 adults max", s: "40 m²", a: ["Sea view", "King bed", "Rain shower", "Smart TV"], img: "Imagenes/superiorRoom.png" },
-    fam: { t: "Family Suite", c: "Up to 5 guests", s: "45 m²", a: ["Kitchenette", "Terrace", "2 bathrooms", "Crib"], img: "Imagenes/familySuite.png" }
+    std: {
+        t: "Standard Room",
+        c: "1 adult max",
+        s: "30 m²",
+        a: ["Balcony", "AC", "Smart TV", "Mini-fridge"],
+        img: "Imagenes/standardRoom.png"
+    },
+    sup: {
+        t: "Superior Room",
+        c: "2 adults max",
+        s: "40 m²",
+        a: ["Sea view", "King bed", "Rain shower", "Smart TV"],
+        img: "Imagenes/superiorRoom.png"
+    },
+    fam: {
+        t: "Family Suite",
+        c: "Up to 5 guests",
+        s: "45 m²",
+        a: ["Kitchenette", "Terrace", "2 bathrooms", "Crib"],
+        img: "Imagenes/familySuite.png"
+    }
 };
 
 const openRoomDetails = btn => {
@@ -411,21 +425,19 @@ const openRoomDetails = btn => {
 // Listener global para abrir y cerrar el modal de habitación
 document.addEventListener("click", e => {
     const b = e.target.closest("[data-action='room-details']");
+    // abre al tocar More Details
     if (b) {
         e.preventDefault(); // evita que el href="#" scrollee al top de la página
         openRoomDetails(b);
     }
-    // Cierra el modal si se hace click en el × o en el backdrop
+    // cierra al hacer click en la x o en el fondo del modal
     if (e.target.classList.contains("room-close") || e.target.id === "room-modal") {
         document.getElementById("room-modal").style.display = "none";
         document.body.style.overflow = "";
     }
 });
 
-
-/* =============================================
-   CONTACT FORM
-   ============================================= */
+// CONTACT
 
 document.addEventListener("DOMContentLoaded", () => {
     const f = document.querySelector(".contact-form");
@@ -442,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
     phone?.addEventListener("input", () => phone.value = keepDigits(phone.value));
 
     f.addEventListener("submit", (e) => {
-        e.preventDefault();
+        e.preventDefault(); // evita que el form recargue la página
 
         const n = (fname?.value || "").trim(); // trim() saca espacios al inicio y final
         const l = (lname?.value || "").trim();
@@ -450,10 +462,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const p = (phone?.value || "").trim();
 
         // Validaciones en orden: primero campos vacíos, luego formato
-        if (!n || !l || !m) return showModal("Complete all required fields.", "Error");
-        if (!isLetters(n) || !isLetters(l)) return showModal("First and Last Name: letters only.", "Error");
-        if (!isEmailBasic(m)) return showModal("Invalid email.", "Error");
-        if (p && !isDigits(p)) return showModal("Telephone: numbers only.", "Error");
+        if (!n) return showErrorAndClear(fname, "Complete your first name.");
+        if (!l) return showErrorAndClear(lname, "Complete your last name.");
+        if (!m) return showErrorAndClear(email, "Complete your email.");
+        if (!isLetters(n)) return showErrorAndClear(fname, "First name: letters only.");
+        if (!isLetters(l)) return showErrorAndClear(lname, "Last name: letters only.");
+        if (!isEmailBasic(m)) return showErrorAndClear(email, "Invalid email.");
+        if (p && !isDigits(p)) return showErrorAndClear(phone, "Telephone: numbers only.");
         // p && ...: solo valida el teléfono si tiene algo escrito (es opcional)
 
         showModal("Message sent!", "OK");
@@ -461,10 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-/* =============================================
-   PAYMENT
-   ============================================= */
+// PAYMENT
 
 document.addEventListener("DOMContentLoaded", () => {
     const f = document.getElementById("pay-form");
@@ -488,10 +500,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("sum-in").textContent = d.checkin || "—";
     document.getElementById("sum-out").textContent = d.checkout || "—";
     document.getElementById("sum-nights").textContent = d.nights ?? "—";
-    // ?? (nullish coalescing): si d.nights es null o undefined usa "—", pero si es 0 usa 0
     document.getElementById("sum-total").textContent = formatPrice(d.total || 0);
 
-    const rooms = Array.isArray(d.rooms) ? d.rooms : [];
+    const rooms = Array.isArray(d.rooms) ? d.rooms : []; // si d.rooms no es un array, usa array vacío para evitar errores
     document.getElementById("sum-rooms").innerHTML = rooms
         .map(r => `<div class="sum-row">
             <span>${r.qty} ${r.name}</span>
@@ -503,10 +514,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const lname = document.getElementById("lname");
     const email = document.getElementById("email");
     const phone = document.getElementById("phone");
-    const card  = document.getElementById("card");
+    const card = document.getElementById("card");
     const namec = document.getElementById("nameoncard");
-    const exp   = document.getElementById("exp");
-    const cvv   = document.getElementById("cvv");
+    const exp = document.getElementById("exp");
+    const cvv = document.getElementById("cvv");
 
     // Filtros en tiempo real
     fname?.addEventListener("input", () => fname.value = keepLetters(fname.value));
@@ -514,55 +525,55 @@ document.addEventListener("DOMContentLoaded", () => {
     namec?.addEventListener("input", () => namec.value = keepLetters(namec.value));
     phone?.addEventListener("input", () => phone.value = keepDigits(phone.value));
     cvv?.addEventListener("input", () => cvv.value = keepDigits(cvv.value).slice(0, 3));
-    // .slice(0, 3): aunque maxlength="3" ya lo limita en el HTML, esto lo refuerza por JS
 
-    // Formatea el número de tarjeta como 4111 1111 1111 1111 mientras se escribe
+    // Formatea el número de tarjeta en grupos de 4 dígitos mientras el usuario escribe
     card?.addEventListener("input", () => {
-        const digits = keepDigits(card.value).slice(0, 16); // máximo 16 dígitos
+        const digits = keepDigits(card.value).slice(0, 16);
         const groups = [];
         for (let i = 0; i < digits.length; i += 4) groups.push(digits.slice(i, i + 4));
-        // Recorre de 4 en 4: slice(0,4) → "4111", slice(4,8) → "1111", etc.
-        card.value = groups.join(" ").trim(); // une con espacios: "4111 1111 1111 1111"
+        card.value = groups.join(" ").trim();
     });
 
-    // Formatea la expiración como MM/YY mientras se escribe
+    // Formatea la fecha de expiración como MM/YY mientras el usuario escribe
     exp?.addEventListener("input", () => {
-        const digits = keepDigits(exp.value).slice(0, 4); // máximo 4 dígitos: MMYY
+        const digits = keepDigits(exp.value).slice(0, 4);
         exp.value = digits.length <= 2 ? digits : `${digits.slice(0, 2)}/${digits.slice(2)}`;
-        // Si el usuario escribió "12": muestra "12"
-        // Si escribió "1226": muestra "12/26"
     });
 
     // Validación al enviar
     f.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const n  = (fname?.value || "").trim();
-        const l  = (lname?.value || "").trim();
-        const m  = (email?.value || "").trim();
-        const p  = (phone?.value || "").trim();
-        const cn = keepDigits(card?.value || "");  // solo los dígitos del número de tarjeta
+        const n = (fname?.value || "").trim();
+        const l = (lname?.value || "").trim();
+        const m = (email?.value || "").trim();
+        const p = (phone?.value || "").trim();
+        const cn = keepDigits(card?.value || "");
         const nc = (namec?.value || "").trim();
         const ex = (exp?.value || "").trim();
         const cv = keepDigits(cvv?.value || "");
 
-        if (!n || !l || !m || !cn || !nc || !ex || !cv)
-            return showModal("Complete all required fields.", "Error");
-        if (!isLetters(n) || !isLetters(l) || !isLetters(nc))
-            return showModal("Names must consist of only letters.", "Error");
-        if (!isEmailBasic(m))
-            return showModal("Invalid email.", "Error");
-        if (p && !isDigits(p))
-            return showModal("Telephone: numbers only.", "Error");
-        if (!isDigits(cn) || cn.length < 13 || cn.length > 19)
-            return showModal("Invalid card number.", "Error");
-        if (!isExpiryMMYY(ex))
-            return showModal("Invalid date (MM/YY).", "Error");
-        if (!isDigits(cv) || cv.length !== 3)
-            return showModal("Invalid CVV (3 numbers).", "Error");
+        // Campos obligatorios: marca en rojo el primero que esté vacío
+        if (!n) return showErrorAndClear(fname, "Complete your first name.");
+        if (!l) return showErrorAndClear(lname, "Complete your last name.");
+        if (!m) return showErrorAndClear(email, "Complete your email.");
+        if (!cn) return showErrorAndClear(card, "Complete your card number.");
+        if (!nc) return showErrorAndClear(namec, "Complete the name on card.");
+        if (!ex) return showErrorAndClear(exp, "Complete the expiry date.");
+        if (!cv) return showErrorAndClear(cvv, "Complete the CVV.");
+
+        // Validaciones de formato
+        if (!isLetters(n)) return showErrorAndClear(fname, "First name: letters only.");
+        if (!isLetters(l)) return showErrorAndClear(lname, "Last name: letters only.");
+        if (!isLetters(nc)) return showErrorAndClear(namec, "Name on card: letters only.");
+        if (!isEmailBasic(m)) return showErrorAndClear(email, "Invalid email.");
+        if (p && !isDigits(p)) return showErrorAndClear(phone, "Telephone: numbers only.");
+        if (!isDigits(cn) || cn.length !== 16) return showErrorAndClear(card, "Invalid card number.");
+        if (!isExpiryMMYY(ex)) return showErrorAndClear(exp, "Invalid date (MM/YY).");
+        if (!isDigits(cv) || cv.length !== 3) return showErrorAndClear(cvv, "Invalid CVV (3 numbers).");
 
         showModal("Payment successful! Confirmation sent.", "Payment");
-        localStorage.removeItem("sb_checkout"); // limpia los datos de la reserva
+        localStorage.removeItem("sb_checkout");
         f.reset();
     });
 });

@@ -2,17 +2,17 @@
     /* :root es el elemento raíz del documento (equivale a <html>).
       se definen variables CSS (custom properties) que se reusan en todo el archivo. */
 
-    --azul: #2f4a92;           
-    --azulclaro: #4a69bd;      
+    --azul: #2f4a92;
+    --azulclaro: #4a69bd;
     --blanco: #fff;
-    --arena: #e6c899;         
-    --arena-rgb: 235 211 175;  
-    --terracota: #b35a36;      
-    --container-w: 1100px;     /* Ancho máximo del contenido */
-    --container-pad: 16px;     /* Padding lateral del contenedor */
-    --header-h: 64px;          /* Altura del header fijo. Se usa en varios lugares para compensar el espacio que ocupa */
-    --nav-bg: var(--azul);     /* Variable que referencia otra variable */
-    --muted: rgba(0, 0, 0, .66); 
+    --arena: #e6c899;
+    --arena-rgb: 235 211 175;
+    --terracota: #b35a36;
+    --container-w: 1100px; /* Ancho máximo del contenido */
+    --container-pad: 16px; /* Padding lateral del contenedor */
+    --header-h: 64px; /* Altura del header fijo. Se usa en varios lugares para compensar el espacio que ocupa */
+    --nav-bg: var(--azul); /* Variable que referencia otra variable */
+    --muted: rgba(0, 0, 0, .66);
 }
 
 *,
@@ -24,17 +24,18 @@
 
 html,
 body {
-    height: 100%;  /* Necesario para que el body pueda ocupar toda la pantalla */
-    margin: 0;     /* Los navegadores tienen márgenes por defecto, esto los saca */
+    height: 100%; /* Necesario para que el body pueda ocupar toda la pantalla */
+    margin: 0; /* Los navegadores tienen márgenes por defecto, esto los saca */
     padding: 0;
 }
 
 body {
-    min-height: 100vh;        /* Al menos toda la altura de la ventana (vh = viewport height) */
+    min-height: 100vh; /* Al menos toda la altura de la ventana (vh = viewport height) */
     display: flex;
-    flex-direction: column;   /* Los hijos (header, main, footer) se apilan verticalmente */
-    padding-top: var(--header-h); /* Compensa el header fijo: empuja el contenido 64px hacia abajo
-                                     para que no quede tapado por el nav */
+    flex-direction: column; /* Los hijos (header, main, footer) se apilan verticalmente */
+    padding-top: var(--header-h);
+    /* Compensa el header fijo: empuja el contenido 64px hacia abajo
+                                        para que no quede tapado por el nav */
 }
 
 main {
@@ -46,42 +47,42 @@ main {
 #titulo-principal {
     /* Solo afecta al h1 de index.html (id único) */
     margin: 0;
-    font-size: 3rem;         
+    font-size: 3rem;
     color: var(--azulclaro);
     text-align: center;
     position: relative;
-    z-index: 1;               /* Lo pone por encima de la imagen de fondo */
+    z-index: 1; /* Lo pone por encima de la imagen de fondo */
 }
 
 .header {
     background: var(--azul);
-    position: fixed;          /* Se queda fijo en pantalla aunque el usuario scrollee */
-    inset: 0 0 auto;          /* top:0, right:0, bottom:auto, left:0. Lo pega a la parte superior de la pantalla, de lado a lado */
-    height: var(--header-h);  /* 64px */
-    z-index: 1000;            /* Número alto para que quede por encima de todo el contenido */
+    position: fixed; /* Se queda fijo en pantalla aunque el usuario scrollee */
+    inset: 0 0 auto; /* top:0, right:0, bottom:auto, left:0. Lo pega a la parte superior de la pantalla, de lado a lado */
+    height: var(--header-h); /* 64px */
+    z-index: 1000; /* Número alto para que quede por encima de todo el contenido */
     display: flex;
-    align-items: center;      /* Centra el nav verticalmente dentro del header */
-    justify-content: center;  /* Centra el nav horizontalmente */
+    align-items: center; /* Centra el nav verticalmente dentro del header */
+    justify-content: center; /* Centra el nav horizontalmente */
 }
 
 .nav {
-    list-style: none;         /* Saca los bullets de la lista */
-    display: flex;            /* Los <li> se ponen en fila horizontal */
-    gap: 3rem;               
+    list-style: none; /* Saca los bullets de la lista */
+    display: flex; /* Los <li> se ponen en fila horizontal */
+    gap: 3rem;
     justify-content: center;
-    max-width: var(--container-w); 
+    max-width: var(--container-w);
     width: 100%;
     padding: 0 var(--container-pad);
-    margin: 0 auto;           /* Centra el nav si la pantalla es más ancha que max-width */
+    margin: 0 auto; /* Centra el nav si la pantalla es más ancha que max-width */
 }
 
 .nav a {
     font-family: "Playfair Display", serif;
-    text-transform: uppercase;   /* Convierte el texto a mayúsculas solo visualmente */
-    letter-spacing: .06em;       
+    text-transform: uppercase; /* Convierte el texto a mayúsculas solo visualmente */
+    letter-spacing: .06em;
     color: var(--blanco);
-    text-decoration: none;       /* Saca el subrayado de los links */
-    transition: color .2s ease;  /* Anima el cambio de color en 0.2 segundos con curva ease */
+    text-decoration: none; /* Saca el subrayado de los links */
+    transition: color .2s ease; /* Anima el cambio de color en 0.2 segundos con curva ease */
 }
 
 .nav a[aria-current="page"] {
@@ -96,7 +97,7 @@ main {
 }
 
 .nav a:hover {
-    color: var(--arena);  /* Al hovear cualquier link, se pone color arena */
+    color: var(--arena); /* Al hovear cualquier link, se pone color arena */
 }
 
 .fondo {
@@ -104,12 +105,12 @@ main {
     /* / cover: tamaño (cover = cubre todo el contenedor sin deformar, puede recortar)
        no-repeat: no se repite en mosaico */
 
-    min-height: 100vh;        /* Ocupa al menos toda la pantalla */
+    min-height: 100vh; /* Ocupa al menos toda la pantalla */
     display: flex;
     flex-direction: column;
     text-align: center;
     color: var(--azulclaro);
-    position: relative;       
+    position: relative;
     padding-top: 80px;
     z-index: 0;
 }
@@ -146,12 +147,12 @@ main {
 }
 
 .imagen-acostada {
-    width: 100vw;                     
-    margin-left: calc(50% - 50vw);     /* Truco para romper el contenedor padre y llegar al borde */
+    width: 100vw;
+    margin-left: calc(50% - 50vw); /* Truco para romper el contenedor padre y llegar al borde */
 }
 
 .imagen-acostada img {
-    display: block;   /* Saca el espacio extra que los img tienen por defecto  */
+    display: block; /* Saca el espacio extra que los img tienen por defecto  */
     width: 100%;
     height: clamp(220px, 32vh, 420px);
     object-fit: cover; /* La imagen cubre el área sin deformarse, recortando si es necesario */
@@ -180,12 +181,12 @@ main {
     max-width: 1100px;
     width: 100%;
     margin-left: auto;
-    margin-right: auto;   /* Centra el form */
+    margin-right: auto; /* Centra el form */
 }
 
 .campo {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 6px;
     height: auto;
 }
@@ -210,11 +211,11 @@ main {
 }
 
 .rango-fecha input[type="date"] {
-    border: 0;         /* el borde lo tiene el contenedor */
-    outline: none;     
+    border: 0; /* el borde lo tiene el contenedor */
+    outline: none;
     height: 100%;
-    flex: 1;           /* Cada input ocupa la mitad del espacio disponible */
-    min-width: 0;      /* Necesario en flexbox para que el input pueda achicarse */
+    flex: 1; /* Cada input ocupa la mitad del espacio disponible */
+    min-width: 0; /* Necesario en flexbox para que el input pueda achicarse */
     font-family: "Montserrat", sans-serif;
     font-size: .95rem;
     color: #333;
@@ -272,7 +273,7 @@ main {
 /* accesibilidad teclado con Tab */
 .book-form input[type="date"]:focus-visible,
 .book-form select:focus-visible,
-.rango-fecha:focus-within,   /* focus-within: se activa cuando CUALQUIER hijo tiene el foco (osea fehca entrada o salida) */
+.rango-fecha:focus-within, /* focus-within: se activa cuando CUALQUIER hijo tiene el foco (osea fehca entrada o salida) */
 .btn-buscar:focus-visible {
     outline: 3px solid color-mix(in oklab, var(--azul), white 70%);
     /* Borde de foco visible al navegar con Tab */
@@ -284,8 +285,9 @@ main {
     .book-form {
         grid-template-columns: 1fr 1fr; /* 2 columnas en vez de 3 */
     }
+
     .search {
-        grid-column: 1 / -1;      /* Ocupa desde columna 1 hasta la última */
+        grid-column: 1 / -1; /* Ocupa desde columna 1 hasta la última */
         justify-content: flex-end; /* Botón alineado a la derecha */
     }
 }
@@ -294,9 +296,11 @@ main {
     .book-form {
         grid-template-columns: 1fr 1fr;
     }
+
     .search {
         grid-column: 1 / -1;
     }
+
     .btn-buscar {
         width: 100%; /* Botón ocupa todo el ancho */
     }
@@ -308,12 +312,15 @@ main {
         grid-template-columns: 1fr;
         gap: 16px;
     }
+
     .search {
         justify-content: stretch;
     }
+
     .btn-buscar {
         width: 100%;
     }
+
     .container {
         padding-inline: 12px; /* padding-inline = padding izquierdo y derecho juntos */
     }
@@ -336,7 +343,7 @@ main {
     grid-template-columns: 1.6fr .9fr;
     /* 2 columnas: lista de habitaciones más ancha y resumen más angosto */
     gap: 32px;
-    align-items: start; 
+    align-items: start;
 }
 
 .rooms-list {
@@ -358,7 +365,7 @@ main {
 .room-img {
     width: 100%;
     height: 160px;
-    object-fit: cover;  /* La imagen cubre los 160px sin deformarse */
+    object-fit: cover; /* La imagen cubre los 160px sin deformarse */
     border-radius: 6px;
 }
 
@@ -588,6 +595,7 @@ main {
     .rooms-layout {
         grid-template-columns: 1fr; /* Las 2 columnas pasan a 1: resumen va debajo de las cards */
     }
+
     .resumen {
         position: static; /* Deja de ser sticky en pantallas chicas */
     }
@@ -597,32 +605,33 @@ main {
     .room-card {
         grid-template-columns: 1fr; /* Imagen arriba, info abajo (en vez de lado a lado) */
     }
+
     .room-img {
         height: 180px;
     }
 }
 
 .intro {
-    max-width: 760px;       /* El párrafo no se estira más allá de 760px aunque la pantalla sea más ancha */
-    margin: 0 auto 28px;    /* auto en los lados lo centra horizontalmente */
-    color: var(--muted);    
-    line-height: 1.9;       /* Interlineado */
+    max-width: 760px; /* El párrafo no se estira más allá de 760px aunque la pantalla sea más ancha */
+    margin: 0 auto 28px; /* auto en los lados lo centra horizontalmente */
+    color: var(--muted);
+    line-height: 1.9; /* Interlineado */
     font-size: 1.10rem;
     text-align: center;
 }
 
 .figure img {
     width: 100%;
-    max-width: 560px;   
-    height: auto;       /* La altura se ajusta proporcionalmente al ancho (no se deforma) */
-    display: block;     /* Las imágenes son inline por defecto, block permite centrarlas con margin auto */
+    max-width: 560px;
+    height: auto; /* La altura se ajusta proporcionalmente al ancho (no se deforma) */
+    display: block; /* Las imágenes son inline por defecto, block permite centrarlas con margin auto */
     margin: 0 auto 10px;
 }
 
 .amenities-list {
-    list-style: none;   /* Saca los bullets (puntitos de items)  */
+    list-style: none; /* Saca los bullets (puntitos de items)  */
     padding: 0;
-    margin: 0 auto;    
+    margin: 0 auto;
     max-width: 420px;
 }
 
@@ -638,7 +647,7 @@ main {
     }
 
     .intro {
-        padding: 0 4px; 
+        padding: 0 4px;
     }
 }
 
@@ -672,8 +681,8 @@ main {
 }
 
 .soc:hover {
-    background-size: 72%;       /* El ícono crece al 72% al hovear */
-    transform: scale(1.06);     /* El contenedor también crece un 6% */
+    background-size: 72%; /* El ícono crece al 72% al hovear */
+    transform: scale(1.06); /* El contenedor también crece un 6% */
 }
 
 .soc:focus-visible {
@@ -684,9 +693,11 @@ main {
 .soc-ig {
     background-image: url("../Imagenes/instaLogo.png");
 }
+
 .soc-x {
     background-image: url("../Imagenes/twitLogo.png");
 }
+
 .soc-fb {
     background-image: url("../Imagenes/faceLogo.png");
 }
@@ -695,17 +706,18 @@ main {
     max-width: 900px;
     margin: 0 auto 20px;
     border-radius: 8px;
-    overflow: hidden;   /* El border-radius no afecta al iframe por sí solo.
-                           overflow: hidden hace que el iframe respete las esquinas redondeadas */
+    overflow: hidden;
+    /* El border-radius no afecta al iframe por sí solo.
+                            overflow: hidden hace que el iframe respete las esquinas redondeadas */
     border: 1px solid #dcdcdc;
     background: #fff;
 }
 
 .mapa iframe {
-    display: block; 
+    display: block;
     width: 100%;
     height: 320px;
-    border: 0;      /* Los iframes tienen borde por defecto, esto lo saca */
+    border: 0; /* Los iframes tienen borde por defecto, esto lo saca */
 }
 
 .contact-form {
@@ -772,7 +784,9 @@ main {
     cursor: pointer;
 }
 
-.btn-primary:hover { opacity: .92; }
+.btn-primary:hover {
+    opacity: .92;
+}
 
 .btn-primary:focus-visible {
     outline: 2px solid var(--azul);
@@ -783,6 +797,7 @@ main {
     .contact-form {
         grid-template-columns: 1fr; /* En celular todo en una columna */
     }
+
     .phone-field .phone-input {
         grid-template-columns: 1fr 2fr; /* El select ocupa 1 parte, el input 2 partes */
     }
@@ -795,19 +810,19 @@ main {
 }
 
 .counter.nojs input[type="number"] {
-    -moz-appearance: textfield; 
-    appearance: textfield;      
+    -moz-appearance: textfield;
+    appearance: textfield;
     /* Los input type="number" tienen flechitas por defecto para subir/bajar el número.
        Como el proyecto usa botones + y − propios, las flechitas nativas sobran y se sacan */
 }
 
 .modal-backdrop {
-    position: fixed;        /* Cubre toda la pantalla independientemente del scroll */
-    inset: 0;               /* ocupa toda la ventana */
-    display: none;          /* Oculto por defecto. El JS lo muestra con style.display = "grid" */
-    place-items: center;    
-    background: rgba(0, 0, 0, .45); 
-    z-index: 9999;          /* Por encima de absolutamente todo */
+    position: fixed; /* Cubre toda la pantalla independientemente del scroll */
+    inset: 0; /* ocupa toda la ventana */
+    display: none; /* Oculto por defecto. El JS lo muestra con style.display = "grid" */
+    place-items: center;
+    background: rgba(0, 0, 0, .45);
+    z-index: 9999; /* Por encima de absolutamente todo */
 }
 
 .modal {
@@ -835,7 +850,7 @@ main {
 .modal-close {
     position: absolute; /* Se posiciona relativo al .modal (que tiene position: relative) */
     top: 10px;
-    right: 12px;        /* Esquina superior derecha del modal */
+    right: 12px; /* Esquina superior derecha del modal */
     border: 0;
     background: transparent;
     font-size: 22px;
@@ -874,16 +889,16 @@ main {
     inset: 0;
     display: none;
     place-items: center;
-    background: rgba(0, 0, 0, .55); 
+    background: rgba(0, 0, 0, .55);
     z-index: 9998; /* Un número menos que .modal-backdrop: si ambos están abiertos, el genérico va encima */
 }
 
 .room-dialog {
     width: min(1040px, 96vw); /* Más ancho que el modal genérico, para mostrar foto + info */
-    max-height: 90vh;         /* Máximo 90% de la pantalla en altura */
+    max-height: 90vh; /* Máximo 90% de la pantalla en altura */
     background: #fff;
     border-radius: 14px;
-    overflow: auto;           /* Si el contenido es muy largo, aparece scrollbar dentro del modal */
+    overflow: auto; /* Si el contenido es muy largo, aparece scrollbar dentro del modal */
     display: grid;
     grid-template-columns: 1.15fr 1fr; /* Foto más ancha a la izquierda, info a la derecha */
     gap: 26px;
@@ -936,7 +951,7 @@ main {
 
 .line-clamp {
     display: -webkit-box;
-    -webkit-line-clamp: 3;  /* Corta el texto a 3 líneas */
+    -webkit-line-clamp: 3; /* Corta el texto a 3 líneas */
     line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -1007,7 +1022,7 @@ main {
 }
 
 .muted {
-    color: #666; 
+    color: #666;
 }
 
 @media (max-width: 900px) {
@@ -1017,19 +1032,20 @@ main {
 }
 
 .titulo-payment {
-    font-size: 1.6rem;   /* Sobreescribe el font-size de .titulo para esta página */
+    font-size: 1.6rem; /* Sobreescribe el font-size de .titulo para esta página */
     margin-bottom: 12px;
 }
 
 .sr-only {
     position: absolute;
     width: 1px;
-    height: 1px;        /* Tamaño mínimo, no se puede usar display:none porque
-                           eso también lo oculta para lectores de pantalla */
+    height: 1px;
+    /* Tamaño mínimo, no se puede usar display:none porque
+                       eso también lo oculta para lectores de pantalla */
     padding: 0;
     margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0); /* Recorta el elemento hasta que no se ve nada */
-    white-space: nowrap;     /* Evita que el texto ocupe más de una línea */
+    white-space: nowrap; /* Evita que el texto ocupe más de una línea */
     border: 0;
 }

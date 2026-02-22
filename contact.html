@@ -43,17 +43,17 @@
                 class="soc soc-ig" title="Instagram" target="_blank" rel="noopener">
             </a>
             <!-- <a> vacío que funciona como ícono gracias al CSS
-             El ícono es una imagen de fondo CSS, no un <img> dentro del link.
-    
-             aria-label="Instagram": como el <a> está vacío (sin texto), el lector de pantalla
-             no sabría qué es. aria-label le da el nombre legible.
-             
-             title="Instagram": tooltip que aparece al hovear con el mouse.
-             
-             target="_blank": abre el link en una pestaña nueva.
-             
-             rel="noopener": seguridad. Cuando abro una pestaña con target="_blank",
-             la nueva página podría acceder a la anterior con window.opener. -->
+         El ícono es una imagen de fondo CSS, no un <img> dentro del link.
+
+         aria-label="Instagram": como el <a> está vacío (sin texto), el lector de pantalla
+         no sabría qué es. aria-label le da el nombre legible.
+
+         title="Instagram": tooltip que aparece al hovear con el mouse.
+
+         target="_blank": abre el link en una pestaña nueva.
+
+         rel="noopener": seguridad. Cuando abro una pestaña con target="_blank",
+         la nueva página podría acceder a la anterior con window.opener. -->
 
             <a aria-label="X / Twitter"
                 href="https://x.com/worldipictures/status/1825208695044596010?s=48&t=rODdoYJSeQAQYfGSVWoi_A"
@@ -73,18 +73,18 @@
             </iframe>
         </div>
         <!-- <iframe>: incrusta otra página web dentro de la mia, osea Google Maps.
-             title="...": accesibilidad, describe el iframe para lectores de pantalla.
-             src="...": la URL del mapa embebido (la generó Google Maps con "compartir > insertar mapa").
+         title="...": accesibilidad, describe el iframe para lectores de pantalla.
+         src="...": la URL del mapa embebido (la generó Google Maps con "compartir > insertar mapa").
 
-             loading="lazy": el mapa no se carga hasta que el usuario scrollea hasta él.
-             
-             referrerpolicy="no-referrer-when-downgrade": práctica de privacidad -->
+         loading="lazy": el mapa no se carga hasta que el usuario scrollea hasta él.
+
+         referrerpolicy="no-referrer-when-downgrade": práctica de privacidad -->
 
 
         <!-- FORMULARIO DE CONTACTO -->
         <form class="contact-form" novalidate>
             <!-- Sin action: el JS intercepta el submit y muestra un modal, no envía a ningún servidor.
-         novalidate: desactiva la validación del navegador, la maneja app.js -->
+     novalidate: desactiva la validación del navegador, la maneja app.js -->
 
             <div class="field">
                 <label for="fname">First name *</label>
@@ -102,7 +102,7 @@
                 <label for="email">Email *</label>
                 <input id="email" name="email" type="email" placeholder="name@mail.com" size="30" maxlength="60" />
                 <!-- type="email": en celular muestra teclado con @ y .com.
-                 El JS valida que tenga @ y punto en posición válida con isEmailBasic() -->
+             El JS valida que tenga @ y punto en posición válida con isEmailBasic() -->
             </div>
 
             <div class="field phone-field">
@@ -122,8 +122,8 @@
                     <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="___ ___ ___" size="15"
                         maxlength="15" />
                     <!-- type="tel": semántico, indica que es un teléfono.
-                     inputmode="tel": en celular muestra teclado numérico con guiones.
-                     El JS filtra que solo sean dígitos con: phone.value = keepDigits(phone.value) -->
+                 inputmode="tel": en celular muestra teclado numérico con guiones.
+                 El JS filtra que solo sean dígitos con: phone.value = keepDigits(phone.value) -->
                 </div>
             </div>
 
@@ -133,13 +133,13 @@
                 <textarea id="message" name="message" rows="6" maxlength="500"
                     placeholder="Max 500 characters"></textarea>
                 <!-- <textarea>: área de texto multilínea (a diferencia de <input> que es una sola línea).
-                 No tiene validación en el JS (se puede enviar vacío) -->
+             No tiene validación en el JS (se puede enviar vacío) -->
             </div>
 
             <div class="actions">
                 <button class="btn-primary" type="submit">Submit</button>
                 <!-- type="submit": dispara el evento submit del form, que el JS intercepta.
-                 El JS valida los campos y si todo está bien muestra "Message sent!" en el modal -->
+             El JS valida los campos y si todo está bien muestra "Message sent!" en el modal -->
             </div>
 
         </form>
@@ -168,7 +168,7 @@
 
     <script defer src="js/app.js"></script>
     <!-- defer: el JS se ejecuta después de que el HTML esté completamente cargado.
-     El JS busca .contact-form y le agrega validación y el listener del submit -->
+ El JS busca .contact-form y le agrega validación y el listener del submit -->
 </body>
 
 </html>
