@@ -34,38 +34,39 @@ Crear una experiencia digital inmersiva que refleje la estética mediterránea d
 [Ver proyecto en GitHub Pages](https://2424884sofia.github.io/proyecto2025-peiretti_ruiz/)
 
 ---
+
 ## Pasos para ejecutar el proyecto
 Este proyecto fue desarrollado con **React + Vite**, por lo que requiere instalación local antes de ejecutarse.
+
 1. **Clonar el repositorio**
-   ```bash
+```bash
    git clone https://github.com/2424884sofia/proyecto2025-peiretti_ruiz.git
+```
 
 2. **Instalar dependencias**
-    ```bash
-    npm install
+```bash
+   npm install
+```
 
-3. **Ejecutar el servidor de desarrollo**
-    ```bash
-    npm run dev
+3. **Ejecutar el proyecto completo**
+```bash
+   npm run start
+```
+   > Esto levanta automáticamente ambos servidores al mismo tiempo:
+   > - **React + Vite** en `http://localhost:5173/`
+   > - **json-server** en `http://localhost:4000/`
 
-4. **Abrir el navegador (Ctrl+Click)**
-    ```bash
-    http://localhost:5175/
+4. **Abrir el navegador**
+```
+   http://localhost:5173/
+```
 
- ---
+---
 
- ## Backend (API con json-server)
- Este proyecto usa json-server como backend “fake” para persistir el resumen de la reserva y leer la lista de habitaciones.
+## Backend (API con json-server)
+Este proyecto usa **json-server** como backend "fake" para persistir el resumen de la reserva y leer la lista de habitaciones. Se levanta automáticamente al correr `npm run start`, no es necesario iniciarlo por separado.
 
- ---
-
- ### Cómo ejecutar el Backend
-
-1. **Iniciar el servidor**
-    ```bash
-    npx json-server --watch src/data/db.json --port 4000
-
- ---
+---
 
 ## 🏝️ Contenido de la Página
 La web del resort **Santorini Blue** cuenta con las siguientes secciones principales:

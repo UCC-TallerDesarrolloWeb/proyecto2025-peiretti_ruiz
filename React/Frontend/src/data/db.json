@@ -2,8 +2,8 @@
   "summary": [
     {
       "id": "1",
-      "checkin": "2026-02-18",
-      "checkout": "2026-02-20",
+      "checkin": "2026-02-23",
+      "checkout": "2026-02-25",
       "nights": 2,
       "rooms": [
         {
@@ -11,16 +11,10 @@
           "name": "Standard Room",
           "price": 200,
           "qty": 1
-        },
-        {
-          "id": "fam",
-          "name": "Family Suite",
-          "price": 400,
-          "qty": 1
         }
       ],
-      "totalRooms": 2,
-      "total": 1200
+      "totalRooms": 1,
+      "total": 400
     }
   ],
   "rooms": [
